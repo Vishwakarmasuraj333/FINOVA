@@ -18,12 +18,16 @@ import {
   ExternalLink,
   ShieldCheck,
   FileSpreadsheet,
+  Zap,
+  Plus,
 } from 'lucide-react';
 import { formatPaise, formatDateTime } from '@/lib/utils/format';
 import { Transaction, Account, PaymentProvider } from '@/types';
 import { ProviderBadge } from '@/components/shared/ProviderBadge';
 import { StatusBadge } from '@/components/shared/StatusBadge';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { MakePaymentModal, PAYMENT_APPS_CATALOG } from '@/components/shared/MakePaymentModal';
+import { AddPaymentAppModal } from '@/components/shared/AddPaymentAppModal';
 
 export default function TransactionsPage() {
   const { currentUser } = useAuth();
@@ -44,6 +48,11 @@ export default function TransactionsPage() {
 
   // Selected Transaction for Side Drawer
   const [activeTxn, setActiveTxn] = useState<Transaction | null>(null);
+
+  // Modals
+  const [makePaymentOpen, setMakePaymentOpen] = useState(false);
+  const [addAppOpen, setAddAppOpen] = useState(false);
+  const [selectedAppCode, setSelectedAppCode] = useState('phonepe');
 
   // Modal actions
   const [refundModalOpen, setRefundModalOpen] = useState(false);
@@ -179,14 +188,114 @@ export default function TransactionsPage() {
           </p>
         </div>
 
-        <a
-          href="/api/export/csv?type=transactions"
-          download
-          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-bold text-xs hover:bg-brand-accent transition-colors self-start sm:self-auto shadow-xs"
-        >
-          <Download size={14} />
-          <span>Export Filtered CSV</span>
-        </a>
+        <div className="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+          <button
+            onClick={() => {
+              setSelectedAppCode('phonepe');
+              setMakePaymentOpen(true);
+            }}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
+          >
+            <Zap size={14} />
+            <span>+ Make Real Payment</span>
+          </button>
+
+          <button
+            onClick={() => setAddAppOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
+          >
+            <Plus size={14} />
+            <span>+ Connect App</span>
+          </button>
+
+          <a
+            href="/api/export/csv?type=transactions"
+            download
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#A0ACA1] hover:text-[#F4F7F1] font-semibold text-xs hover:border-brand-primary/40 transition-colors shadow-xs"
+          >
+            <Download size={14} />
+            <span>Export CSV</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Select Payment Application Filter Bar (Official Indian & Global Rails) */}
+      <div className="p-3.5 rounded-2xl bg-[#1A211B] border border-[#303A31] dark:bg-[#1A211B] dark:border-[#303A31] light:bg-white light:border-[#E1E8DF]">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#A0ACA1] flex items-center gap-1.5">
+            <Filter size={13} className="text-brand-primary" />
+            Filter By Payment Application / Rail:
+          </span>
+          {selectedProvider !== 'all' && (
+            <button
+              onClick={() => setSelectedProvider('all')}
+              className="text-[11px] text-brand-primary font-bold hover:underline"
+            >
+              Clear Filter (Show All)
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+          <button
+            onClick={() => setSelectedProvider('all')}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-bold shrink-0 transition-all ${
+              selectedProvider === 'all'
+                ? 'bg-brand-primary text-black border-brand-primary shadow-xs'
+                : 'bg-[#141A15] border-[#2B362C] text-[#A0ACA1] hover:text-[#F4F7F1]'
+            }`}
+          >
+            All Rails ({providers.length})
+          </button>
+
+          {[
+            { code: 'phonepe', name: 'PhonePe' },
+            { code: 'paytm', name: 'Paytm' },
+            { code: 'gpay', name: 'Google Pay' },
+            { code: 'bhim', name: 'BHIM UPI' },
+            { code: 'razorpay', name: 'Razorpay' },
+            { code: 'cashfree', name: 'Cashfree' },
+            { code: 'payzapp', name: 'PayZapp' },
+            { code: 'freecharge', name: 'FreeCharge' },
+            { code: 'mobikwik', name: 'MobiKwik' },
+            { code: 'airtel', name: 'Airtel Money' },
+            { code: 'jiomoney', name: 'JioMoney' },
+            { code: 'pockets', name: 'Pockets' },
+            { code: 'chillr', name: 'Chillr' },
+            { code: 'trupay', name: 'Trupay' },
+            { code: 'oxigen', name: 'Oxigen' },
+            { code: 'moneyonmobile', name: 'MoneyOnMobile' },
+            { code: 'zipcash', name: 'ZipCash' },
+            { code: 'mpurse', name: 'm-Purse' },
+            { code: 'aadhaar', name: 'Aadhaar Pay' },
+            { code: 'itzcash', name: 'ItzCash' },
+            { code: 'mrupee', name: 'mRUPEE' },
+            { code: 'quikwallet', name: 'QuikWallet' },
+            { code: 'axis', name: 'Axis Bank' },
+            { code: 'sbi', name: 'SBI Buddy' },
+            { code: 'hdfc_bank', name: 'HDFC CMS' },
+            { code: 'stripe', name: 'Stripe' },
+          ].map(app => {
+            const isSelected = selectedProvider === `prov_${app.code}`;
+            return (
+              <button
+                key={app.code}
+                onClick={() => {
+                  if (isSelected) setSelectedProvider('all');
+                  else setSelectedProvider(`prov_${app.code}`);
+                }}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border shrink-0 transition-all text-xs font-semibold ${
+                  isSelected
+                    ? 'bg-brand-primary text-black border-brand-primary font-bold shadow-xs'
+                    : 'bg-[#141A15] border-[#2B362C] text-[#F4F7F1] hover:border-brand-primary/50 hover:bg-[#1A231C]'
+                }`}
+              >
+                <ProviderBadge code={app.code} iconOnly size="sm" />
+                <span className="truncate">{app.name}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Filter and Search Bar */}
@@ -629,6 +738,26 @@ export default function TransactionsPage() {
           </div>
         </div>
       )}
+
+      {/* Real Payment Execution Modal */}
+      <MakePaymentModal
+        isOpen={makePaymentOpen}
+        onClose={() => setMakePaymentOpen(false)}
+        onSuccess={() => {
+          fetchTransactions();
+        }}
+        accounts={accounts}
+        initialProviderCode={selectedAppCode}
+      />
+
+      {/* Connect New Payment Application Modal */}
+      <AddPaymentAppModal
+        isOpen={addAppOpen}
+        onClose={() => setAddAppOpen(false)}
+        onSuccess={() => {
+          fetchTransactions();
+        }}
+      />
     </div>
   );
 }

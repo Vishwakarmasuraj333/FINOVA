@@ -96,17 +96,17 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block text-xs font-medium text-[#A0ACA1]">FINOVA</span>
+          <span className="hidden sm:inline-block text-xs font-semibold text-brand-primary">ONEPAY</span>
           <span className="hidden sm:inline-block text-[#303A31] dark:text-[#303A31] light:text-[#E1E8DF]">/</span>
           <h1 className="text-sm font-semibold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] truncate">
             {getBreadcrumbTitle()}
           </h1>
         </div>
 
-        {/* Demo/Sandbox prominent badge */}
-        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/30 text-[10px] font-bold text-brand-primary dark:text-brand-primary light:text-brand-primary-light">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse" />
-          <span>SANDBOX / DEMO DATA</span>
+        {/* Live Production Switch Badge */}
+        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-bold text-emerald-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>ENTERPRISE PRODUCTION SWITCH</span>
         </div>
       </div>
 

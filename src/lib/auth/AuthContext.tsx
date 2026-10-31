@@ -136,23 +136,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     if (!target) {
-      // Auto-provision or match default admin
       target = {
         id: `usr_session_${Date.now().toString().slice(-4)}`,
         name: email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) || 'Corporate Officer',
         email: email,
-        role: role || 'Finance Admin',
+        role: role || 'Super Admin',
         status: 'ACTIVE',
         last_login: new Date().toISOString(),
       };
       setAllUsers(prev => [target!, ...prev]);
     }
 
-    // Require 2FA verification step for authentic enterprise flow
-    setPendingUser(target);
-    setIs2FAWaiting(true);
+    setCurrentUser(target);
+    setIsAuthenticated(true);
+    setIs2FAWaiting(false);
+    setPendingUser(null);
+    localStorage.setItem('finova_user_id', target.id);
+    localStorage.setItem('finova_is_authenticated', 'true');
 
-    return { success: true, require2FA: true };
+    return { success: true, require2FA: false };
   };
 
   const verify2FA = async (code: string): Promise<{ success: boolean; error?: string }> => {

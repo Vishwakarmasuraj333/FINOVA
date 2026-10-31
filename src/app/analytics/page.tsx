@@ -40,6 +40,7 @@ interface TreeNode {
   id: string;
   name: string;
   type: 'ROOT' | 'CATEGORY' | 'PROVIDER' | 'ACCOUNT' | 'POOL';
+  providerCode?: string;
   balancePaise?: number;
   volume24hPaise?: number;
   status: 'HEALTHY' | 'ACTIVE' | 'SANDBOX' | 'ATTENTION';
@@ -99,7 +100,7 @@ export default function AnalyticsPage() {
   // Tree hierarchy representation
   const treeData: TreeNode = {
     id: 'root-treasury',
-    name: 'FINOVA Consolidated Enterprise Treasury',
+    name: 'ONEPAY Consolidated Enterprise Treasury',
     type: 'ROOT',
     balancePaise: 627000000, // ₹62,70,000
     volume24hPaise: 84500000,
@@ -126,6 +127,7 @@ export default function AnalyticsPage() {
             id: 'node-phonepe',
             name: 'PhonePe for Business',
             type: 'PROVIDER',
+            providerCode: 'phonepe',
             category: 'UPI',
             balancePaise: 113000000,
             volume24hPaise: 24000000,
@@ -139,6 +141,7 @@ export default function AnalyticsPage() {
             id: 'node-gpay',
             name: 'Google Pay for Business',
             type: 'PROVIDER',
+            providerCode: 'gpay',
             category: 'UPI',
             balancePaise: 0,
             volume24hPaise: 12000000,
@@ -152,6 +155,7 @@ export default function AnalyticsPage() {
             id: 'node-bhim',
             name: 'BHIM UPI NPCI Direct',
             type: 'PROVIDER',
+            providerCode: 'bhim',
             category: 'UPI',
             balancePaise: 0,
             volume24hPaise: 6000000,
@@ -180,6 +184,7 @@ export default function AnalyticsPage() {
             id: 'node-razorpay',
             name: 'Razorpay Nodal Clearing Escrow',
             type: 'ACCOUNT',
+            providerCode: 'razorpay',
             category: 'GATEWAY',
             balancePaise: 145000000,
             volume24hPaise: 18000000,
@@ -193,6 +198,7 @@ export default function AnalyticsPage() {
             id: 'node-cashfree',
             name: 'Cashfree Payouts Auto-Debit Pool',
             type: 'ACCOUNT',
+            providerCode: 'cashfree',
             category: 'GATEWAY',
             balancePaise: 74500000,
             volume24hPaise: 10000000,
@@ -206,6 +212,7 @@ export default function AnalyticsPage() {
             id: 'node-stripe',
             name: 'Stripe Global Payments',
             type: 'PROVIDER',
+            providerCode: 'stripe',
             category: 'GATEWAY',
             balancePaise: 0,
             volume24hPaise: 4500000,
@@ -234,6 +241,7 @@ export default function AnalyticsPage() {
             id: 'node-hdfc',
             name: 'HDFC Bank Primary Current A/C',
             type: 'ACCOUNT',
+            providerCode: 'hdfc_bank',
             category: 'BANK',
             balancePaise: 250000000,
             volume24hPaise: 12500000,
@@ -247,6 +255,7 @@ export default function AnalyticsPage() {
             id: 'node-tax-reserve',
             name: 'Corporate Tax & GST Reserve Pool',
             type: 'ACCOUNT',
+            providerCode: 'hdfc_bank',
             category: 'BANK',
             balancePaise: 45000000,
             volume24hPaise: 2000000,
@@ -587,20 +596,25 @@ export default function AnalyticsPage() {
                           <button
                             key={leaf.id}
                             onClick={() => setSelectedNode(leaf)}
-                            className={`w-full p-2.5 rounded-xl border text-left text-xs transition-all relative ${
+                            className={`w-full p-3 rounded-xl border text-left text-xs transition-all relative ${
                               selectedNode?.id === leaf.id
                                 ? 'bg-brand-primary/20 border-brand-primary text-[#F4F7F1]'
                                 : 'bg-[#151B16] border-[#303A31]/80 text-[#A0ACA1] hover:border-[#4B594D] hover:text-[#F4F7F1]'
                             }`}
                           >
                             <div className="flex items-center justify-between">
-                              <span className="font-bold text-xs text-[#F4F7F1]">{leaf.name}</span>
+                              <div className="flex items-center gap-2">
+                                {leaf.providerCode && (
+                                  <ProviderBadge code={leaf.providerCode} size="sm" iconOnly />
+                                )}
+                                <span className="font-bold text-xs text-[#F4F7F1]">{leaf.name}</span>
+                              </div>
                               <span className="text-[10px] font-mono text-brand-primary">{leaf.latencyMs}ms</span>
                             </div>
-                            <div className="mt-1 flex items-center justify-between text-[11px]">
-                              <span>{leaf.protocol}</span>
+                            <div className="mt-1.5 flex items-center justify-between text-[11px] pl-8">
+                              <span className="truncate">{leaf.protocol}</span>
                               {leaf.balancePaise !== undefined && leaf.balancePaise > 0 && (
-                                <span className="font-mono text-emerald-400 font-semibold">
+                                <span className="font-mono text-emerald-400 font-semibold shrink-0">
                                   {formatPaise(leaf.balancePaise)}
                                 </span>
                               )}
@@ -632,11 +646,18 @@ export default function AnalyticsPage() {
 
               {selectedNode ? (
                 <div className="space-y-4">
-                  <div>
-                    <h4 className="text-base font-extrabold text-[#F4F7F1]">{selectedNode.name}</h4>
-                    <p className="text-xs text-[#A0ACA1] mt-1 leading-relaxed">
-                      {selectedNode.description}
-                    </p>
+                  <div className="flex items-start gap-3">
+                    {selectedNode.providerCode && (
+                      <div className="shrink-0 pt-0.5">
+                        <ProviderBadge code={selectedNode.providerCode} size="lg" iconOnly />
+                      </div>
+                    )}
+                    <div>
+                      <h4 className="text-base font-extrabold text-[#F4F7F1] leading-tight">{selectedNode.name}</h4>
+                      <p className="text-xs text-[#A0ACA1] mt-1 leading-relaxed">
+                        {selectedNode.description}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Core Metrics Grid */}

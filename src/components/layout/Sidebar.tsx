@@ -180,24 +180,24 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
           ))}
         </div>
 
-        {/* Footer info: Prominent Sandbox Label */}
+        {/* Footer info: Live Switch Engine */}
         <div className="p-3 border-t border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF]">
           {!isCollapsed ? (
             <div className="flex flex-col gap-1.5 p-2.5 rounded-xl bg-[#0D100E] border border-[#303A31] dark:bg-[#0D100E] dark:border-[#303A31] light:bg-[#F6F8F4] light:border-[#E1E8DF]">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-[10px] font-bold text-brand-primary dark:text-brand-primary light:text-brand-primary-light">
-                  <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-                  ENTERPRISE ENGINE
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  LIVE SWITCH ACTIVE
                 </span>
-                <span className="text-[10px] text-[#A0ACA1] font-mono">FINOVA v3.0</span>
+                <span className="text-[10px] text-[#A0ACA1] font-mono">ONEPAY v3.0</span>
               </div>
               <p className="text-[10px] text-[#A0ACA1] leading-tight">
-                Production-grade multi-rail switch. Immutable double-entry ledger.
+                Production multi-rail routing. Double-entry ledger verified.
               </p>
             </div>
           ) : (
             <div className="flex justify-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-brand-primary animate-pulse" title="FINOVA Enterprise Engine Active" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" title="ONEPAY Live Switch Active" />
             </div>
           )}
         </div>

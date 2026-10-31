@@ -8,15 +8,14 @@ import {
   Lock,
   Mail,
   ArrowRight,
-  KeyRound,
   Eye,
   EyeOff,
   AlertCircle,
   CheckCircle2,
   RefreshCw,
   Building2,
-  Shield,
   ChevronDown,
+  UserCheck,
 } from 'lucide-react';
 import { BrandLogo } from '@/components/layout/BrandLogo';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -24,7 +23,7 @@ import { UserRole } from '@/types';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login, verify2FA, allUsers } = useAuth();
+  const { login, allUsers } = useAuth();
 
   const [selectedUserIndex, setSelectedUserIndex] = useState(0);
   const [email, setEmail] = useState('aditya.kashyap@finova.internal');
@@ -33,11 +32,6 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // 2FA state
-  const [step, setStep] = useState<'CREDENTIALS' | '2FA'>('CREDENTIALS');
-  const [otp, setOtp] = useState(['7', '3', '9', '2', '0', '1']);
-  const [otpTimer, setOtpTimer] = useState(45);
 
   const handleUserSelect = (idx: number) => {
     setSelectedUserIndex(idx);
@@ -56,56 +50,15 @@ export default function LoginPage() {
 
     try {
       const result = await login(email, password);
-      if (result.success && result.require2FA) {
-        setStep('2FA');
-        setOtpTimer(45);
-      } else if (result.success) {
+      if (result.success) {
         router.push('/dashboard');
       } else {
         setError(result.error || 'Invalid corporate credentials.');
       }
     } catch (err: any) {
-      setError(err?.message || 'Authentication failed. Please verify network connectivity.');
+      setError(err?.message || 'Authentication failed. Please check network connection.');
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handle2FASubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const fullCode = otp.join('');
-    if (fullCode.length < 6) {
-      setError('Please provide all 6 digits of the security token.');
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const result = await verify2FA(fullCode);
-      if (result.success) {
-        router.push('/dashboard');
-      } else {
-        setError(result.error || 'Invalid 2FA token. Please try again.');
-      }
-    } catch (err: any) {
-      setError(err?.message || 'Verification failed.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleOtpChange = (index: number, val: string) => {
-    if (!/^\d*$/.test(val)) return;
-    const nextOtp = [...otp];
-    nextOtp[index] = val.slice(-1);
-    setOtp(nextOtp);
-
-    // Auto-advance focus
-    if (val && index < 5) {
-      const nextInput = document.getElementById(`otp-${index + 1}`);
-      nextInput?.focus();
     }
   };
 
@@ -183,217 +136,139 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* Right Column: Clean Professional Auth Card */}
+          {/* Right Column: Direct Professional Sign-In Card */}
           <div className="lg:col-span-6">
             <div className="p-6 sm:p-8 rounded-2xl bg-[#131814] border border-[#303A31] shadow-2xl relative">
-              {step === 'CREDENTIALS' ? (
-                <>
-                  <div className="mb-6 space-y-1">
-                    <h2 className="text-xl font-bold text-[#F4F7F1]">Sign In to Financial Console</h2>
-                    <p className="text-xs text-[#A0ACA1]">
-                      Authenticate using your authorized enterprise email & credentials.
-                    </p>
-                  </div>
+              <div className="mb-6 space-y-1">
+                <div className="w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-3 border border-brand-primary/20">
+                  <UserCheck size={20} />
+                </div>
+                <h2 className="text-xl font-bold text-[#F4F7F1]">Sign In to Financial Console</h2>
+                <p className="text-xs text-[#A0ACA1]">
+                  Authenticate with your authorized corporate signatory credentials.
+                </p>
+              </div>
 
-                  {error && (
-                    <div className="mb-5 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-2 text-xs text-rose-300">
-                      <AlertCircle size={16} className="shrink-0 text-rose-400 mt-0.5" />
-                      <span>{error}</span>
-                    </div>
-                  )}
+              {error && (
+                <div className="mb-5 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-2 text-xs text-rose-300">
+                  <AlertCircle size={16} className="shrink-0 text-rose-400 mt-0.5" />
+                  <span>{error}</span>
+                </div>
+              )}
 
-                  <form onSubmit={handleCredentialsSubmit} className="space-y-4">
-                    {/* Authorized Account Profile Dropdown (Discreet & Professional) */}
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-[#A0ACA1]">Authorized Signatory Account</label>
-                      <div className="relative">
-                        <select
-                          value={selectedUserIndex}
-                          onChange={e => handleUserSelect(Number(e.target.value))}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] focus:border-brand-primary focus:outline-hidden appearance-none cursor-pointer"
-                        >
-                          {allUsers.map((u, i) => (
-                            <option key={u.id} value={i}>
-                              {u.name} — {u.role} ({u.email})
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown size={14} className="absolute right-3.5 top-3.5 text-[#A0ACA1] pointer-events-none" />
-                      </div>
-                    </div>
-
-                    {/* Email */}
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-[#A0ACA1]">Corporate Work Email</label>
-                      <div className="relative">
-                        <Mail size={16} className="absolute left-3.5 top-3 text-[#A0ACA1]" />
-                        <input
-                          type="email"
-                          required
-                          value={email}
-                          onChange={e => setEmail(e.target.value)}
-                          placeholder="name@company.internal"
-                          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] placeholder-[#606D62] focus:outline-hidden focus:border-brand-primary transition-colors font-mono"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Password */}
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <label className="text-xs font-semibold text-[#A0ACA1]">Security Password</label>
-                        <a
-                          href="#reset"
-                          onClick={(e) => { e.preventDefault(); alert('Password reset verification link sent to enterprise administrator.'); }}
-                          className="text-[11px] text-brand-primary hover:underline"
-                        >
-                          Forgot Password?
-                        </a>
-                      </div>
-                      <div className="relative">
-                        <Lock size={16} className="absolute left-3.5 top-3 text-[#A0ACA1]" />
-                        <input
-                          type={showPassword ? 'text' : 'password'}
-                          required
-                          value={password}
-                          onChange={e => setPassword(e.target.value)}
-                          placeholder="Enter security token"
-                          className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] placeholder-[#606D62] focus:outline-hidden focus:border-brand-primary transition-colors"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3.5 top-3 text-[#A0ACA1] hover:text-[#F4F7F1]"
-                        >
-                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Remember me */}
-                    <div className="flex items-center justify-between text-xs pt-1">
-                      <label className="flex items-center gap-2 cursor-pointer text-[#A0ACA1] hover:text-[#F4F7F1]">
-                        <input
-                          type="checkbox"
-                          checked={rememberMe}
-                          onChange={e => setRememberMe(e.target.checked)}
-                          className="w-4 h-4 rounded-sm bg-[#1A211B] border-[#303A31] text-brand-primary focus:ring-0"
-                        />
-                        <span>Remember this workstation for 30 days</span>
-                      </label>
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={isLoading}
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/10 disabled:opacity-50"
+              <form onSubmit={handleCredentialsSubmit} className="space-y-4">
+                {/* Authorized Account Profile Dropdown (Discreet & Professional) */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#A0ACA1]">Select Authorized Signatory Account</label>
+                  <div className="relative">
+                    <select
+                      value={selectedUserIndex}
+                      onChange={e => handleUserSelect(Number(e.target.value))}
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] focus:border-brand-primary focus:outline-hidden appearance-none cursor-pointer"
                     >
-                      {isLoading ? (
-                        <>
-                          <RefreshCw size={14} className="animate-spin" />
-                          <span>Verifying Credentials...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Continue to 2-Factor Authentication</span>
-                          <ArrowRight size={14} />
-                        </>
-                      )}
-                    </button>
-                  </form>
+                      {allUsers.map((u, i) => (
+                        <option key={u.id} value={i}>
+                          {u.name} — {u.role} ({u.email})
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown size={14} className="absolute right-3.5 top-3.5 text-[#A0ACA1] pointer-events-none" />
+                  </div>
+                </div>
 
-                  {/* SSO Option */}
-                  <div className="mt-6 pt-5 border-t border-[#303A31] space-y-3">
-                    <p className="text-[11px] text-center text-[#A0ACA1]">Or log in with Enterprise Federation</p>
+                {/* Email */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#A0ACA1]">Corporate Work Email</label>
+                  <div className="relative">
+                    <Mail size={16} className="absolute left-3.5 top-3 text-[#A0ACA1]" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="name@company.internal"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] placeholder-[#606D62] focus:outline-hidden focus:border-brand-primary transition-colors font-mono"
+                    />
+                  </div>
+                </div>
+
+                {/* Password */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-semibold text-[#A0ACA1]">Security Password</label>
+                    <a
+                      href="#reset"
+                      onClick={(e) => { e.preventDefault(); alert('Password reset verification link sent to enterprise administrator.'); }}
+                      className="text-[11px] text-brand-primary hover:underline"
+                    >
+                      Forgot Password?
+                    </a>
+                  </div>
+                  <div className="relative">
+                    <Lock size={16} className="absolute left-3.5 top-3 text-[#A0ACA1]" />
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      required
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      placeholder="Enter security token"
+                      className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] placeholder-[#606D62] focus:outline-hidden focus:border-brand-primary transition-colors"
+                    />
                     <button
                       type="button"
-                      onClick={() => handleUserSelect(0)}
-                      className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] hover:bg-[#222B23] text-xs font-semibold text-[#F4F7F1] transition-colors"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3.5 top-3 text-[#A0ACA1] hover:text-[#F4F7F1]"
                     >
-                      <Building2 size={14} className="text-brand-primary" />
-                      <span>Corporate Okta / Azure AD SSO</span>
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
-                </>
-              ) : (
-                /* STEP 2: 2FA TOTP VERIFICATION (Clean & Professional) */
-                <>
-                  <div className="mb-6 space-y-1">
-                    <div className="w-10 h-10 rounded-full bg-brand-primary/15 text-brand-primary flex items-center justify-center mb-3">
-                      <KeyRound size={20} />
-                    </div>
-                    <h2 className="text-xl font-bold text-[#F4F7F1]">Two-Factor Authorization</h2>
-                    <p className="text-xs text-[#A0ACA1]">
-                      Enter the 6-digit TOTP security token generated on your registered hardware device or authenticator app.
-                    </p>
-                  </div>
+                </div>
 
-                  {error && (
-                    <div className="mb-5 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-2 text-xs text-rose-300">
-                      <AlertCircle size={16} className="shrink-0 text-rose-400 mt-0.5" />
-                      <span>{error}</span>
-                    </div>
+                {/* Remember me */}
+                <div className="flex items-center justify-between text-xs pt-1">
+                  <label className="flex items-center gap-2 cursor-pointer text-[#A0ACA1] hover:text-[#F4F7F1]">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={e => setRememberMe(e.target.checked)}
+                      className="w-4 h-4 rounded-sm bg-[#1A211B] border-[#303A31] text-brand-primary focus:ring-0"
+                    />
+                    <span>Remember this workstation for 30 days</span>
+                  </label>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/10 disabled:opacity-50"
+                >
+                  {isLoading ? (
+                    <>
+                      <RefreshCw size={14} className="animate-spin" />
+                      <span>Authenticating Session...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Sign In to Financial Console</span>
+                      <ArrowRight size={14} />
+                    </>
                   )}
+                </button>
+              </form>
 
-                  <form onSubmit={handle2FASubmit} className="space-y-6">
-                    {/* 6 Digit Inputs */}
-                    <div className="flex justify-between gap-2">
-                      {otp.map((digit, idx) => (
-                        <input
-                          key={idx}
-                          id={`otp-${idx}`}
-                          type="text"
-                          maxLength={1}
-                          value={digit}
-                          onChange={e => handleOtpChange(idx, e.target.value)}
-                          className="w-12 h-14 text-center text-lg font-mono font-extrabold rounded-xl bg-[#1A211B] border border-[#303A31] focus:border-brand-primary focus:outline-hidden text-[#F4F7F1] transition-colors"
-                        />
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between text-xs text-[#A0ACA1]">
-                      <span>Code expires in: <strong className="text-brand-primary font-mono">{otpTimer}s</strong></span>
-                      <button
-                        type="button"
-                        onClick={() => { setOtp(['7', '3', '9', '2', '0', '1']); setOtpTimer(45); }}
-                        className="text-brand-primary hover:underline font-semibold"
-                      >
-                        Resend Code
-                      </button>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="space-y-2">
-                      <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/10 disabled:opacity-50"
-                      >
-                        {isLoading ? (
-                          <>
-                            <RefreshCw size={14} className="animate-spin" />
-                            <span>Validating Token...</span>
-                          </>
-                        ) : (
-                          <>
-                            <span>Verify & Enter Console</span>
-                            <ArrowRight size={14} />
-                          </>
-                        )}
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setStep('CREDENTIALS')}
-                        className="w-full py-2 text-xs text-[#A0ACA1] hover:text-[#F4F7F1] transition-colors"
-                      >
-                        Back to credentials
-                      </button>
-                    </div>
-                  </form>
-                </>
-              )}
+              {/* SSO Option */}
+              <div className="mt-6 pt-5 border-t border-[#303A31] space-y-3">
+                <p className="text-[11px] text-center text-[#A0ACA1]">Or authenticate with Corporate Federation</p>
+                <button
+                  type="button"
+                  onClick={() => handleUserSelect(0)}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] hover:bg-[#222B23] text-xs font-semibold text-[#F4F7F1] transition-colors"
+                >
+                  <Building2 size={14} className="text-brand-primary" />
+                  <span>Corporate Okta / Azure AD Single Sign-On</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

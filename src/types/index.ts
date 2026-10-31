@@ -49,7 +49,30 @@ export type ProviderCode =
   | 'cashfree' 
   | 'stripe' 
   | 'hdfc_bank' 
-  | 'icici_bank';
+  | 'icici_bank'
+  | 'freecharge'
+  | 'oxigen'
+  | 'moneyonmobile'
+  | 'airtel'
+  | 'citrus'
+  | 'zipcash'
+  | 'mobikwik'
+  | 'jiomoney'
+  | 'pockets'
+  | 'chillr'
+  | 'payzapp'
+  | 'trupay'
+  | 'mpurse'
+  | 'axis'
+  | 'aadhaar'
+  | 'sbi'
+  | 'itzcash'
+  | 'mrupee'
+  | 'quikwallet'
+  | 'payu'
+  | 'ccavenue'
+  | 'paypal'
+  | string;
 
 export interface PaymentProvider {
   id: string;

@@ -15,12 +15,15 @@ import {
   Play,
   ArrowRight,
   Lock,
+  Zap,
 } from 'lucide-react';
 import { PaymentProvider } from '@/types';
 import { ProviderBadge } from '@/components/shared/ProviderBadge';
 import { StatusBadge } from '@/components/shared/StatusBadge';
 import { formatDateTime } from '@/lib/utils/format';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { AddPaymentAppModal } from '@/components/shared/AddPaymentAppModal';
+import { MakePaymentModal } from '@/components/shared/MakePaymentModal';
 
 export default function ProvidersPage() {
   const { currentUser } = useAuth();
@@ -31,6 +34,8 @@ export default function ProvidersPage() {
   const [selectedProvider, setSelectedProvider] = useState<PaymentProvider | null>(null);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [makePaymentOpen, setMakePaymentOpen] = useState(false);
+  const [selectedAppCode, setSelectedAppCode] = useState('phonepe');
 
   // Action states
   const [actionLoadingId, setActionLoadingId] = useState<string | null>(null);
@@ -165,20 +170,26 @@ export default function ProvidersPage() {
           </p>
         </div>
 
-        <button
-          onClick={() => {
-            setFormName('');
-            setFormCode('');
-            setFormCategory('GATEWAY');
-            setFormEnv('SANDBOX');
-            setFormWebhook('https://api.finova.internal/webhooks/custom');
-            setIsAddOpen(true);
-          }}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-bold text-xs hover:bg-brand-accent transition-colors self-start sm:self-auto shadow-xs"
-        >
-          <Plus size={15} />
-          <span>Add Custom Provider</span>
-        </button>
+        <div className="flex items-center gap-2.5 self-start sm:self-auto">
+          <button
+            onClick={() => {
+              setSelectedAppCode('phonepe');
+              setMakePaymentOpen(true);
+            }}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
+          >
+            <Zap size={14} />
+            <span>+ Make / Collect Payment</span>
+          </button>
+
+          <button
+            onClick={() => setIsAddOpen(true)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
+          >
+            <Plus size={15} />
+            <span>+ Connect Payment App</span>
+          </button>
+        </div>
       </div>
 
       {/* Honest Integration Notice */}
@@ -309,6 +320,18 @@ export default function ProvidersPage() {
                   </button>
                 )}
 
+                <button
+                  onClick={() => {
+                    setSelectedAppCode(provider.code);
+                    setMakePaymentOpen(true);
+                  }}
+                  className="py-1.5 px-2.5 rounded-lg text-xs font-bold bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 flex items-center justify-center gap-1"
+                  title="Make a transaction using this rail"
+                >
+                  <Zap size={13} />
+                  <span>Pay</span>
+                </button>
+
                 <Link
                   href={`/transactions?provider_id=${provider.id}`}
                   className="p-1.5 rounded-lg text-[#A0ACA1] hover:text-[#F4F7F1] hover:bg-[#131814]"
@@ -323,7 +346,7 @@ export default function ProvidersPage() {
       </div>
 
       {/* Configuration / Connect Modal */}
-      {(isConfigOpen || isAddOpen) && (
+      {isConfigOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
           <form
             onSubmit={handleSaveConfig}
@@ -423,6 +446,25 @@ export default function ProvidersPage() {
           </form>
         </div>
       )}
+
+      {/* Real Payment Execution Modal */}
+      <MakePaymentModal
+        isOpen={makePaymentOpen}
+        onClose={() => setMakePaymentOpen(false)}
+        onSuccess={() => {
+          fetchProviders();
+        }}
+        initialProviderCode={selectedAppCode}
+      />
+
+      {/* Connect New Payment Application Modal */}
+      <AddPaymentAppModal
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onSuccess={() => {
+          fetchProviders();
+        }}
+      />
     </div>
   );
 }
