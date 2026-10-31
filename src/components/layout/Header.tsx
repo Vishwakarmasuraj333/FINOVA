@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Menu,
   Search,
@@ -13,6 +13,9 @@ import {
   ChevronDown,
   RefreshCw,
   CheckCircle2,
+  LogOut,
+  User as UserIcon,
+  Settings as SettingsIcon,
 } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -25,13 +28,20 @@ interface HeaderProps {
 
 export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const { currentUser, allUsers, switchRole } = useAuth();
+  const { currentUser, allUsers, switchRole, logout } = useAuth();
   const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncTimestamp, setSyncTimestamp] = useState('Just now');
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
 
   const handleManualSync = () => {
     setIsSyncing(true);
@@ -44,6 +54,7 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
   // Generate breadcrumb title
   const getBreadcrumbTitle = () => {
     if (pathname === '/dashboard') return 'Financial Overview';
+    if (pathname === '/analytics') return 'Real Analytics & Fund Flow Hierarchy';
     if (pathname === '/admin/financial-summary') return 'Financial Control Center (Consolidated)';
     if (pathname === '/transactions') return 'All Transactions Ledger';
     if (pathname === '/providers') return 'Payment Providers & Rails';
@@ -85,7 +96,7 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block text-xs font-medium text-[#A0ACA1]">ONEPAY</span>
+          <span className="hidden sm:inline-block text-xs font-medium text-[#A0ACA1]">FINOVA</span>
           <span className="hidden sm:inline-block text-[#303A31] dark:text-[#303A31] light:text-[#E1E8DF]">/</span>
           <h1 className="text-sm font-semibold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] truncate">
             {getBreadcrumbTitle()}
@@ -240,19 +251,58 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
           )}
         </div>
 
-        {/* User Avatar */}
-        <div className="flex items-center gap-2 pl-2 border-l border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF]">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-primary/20 text-brand-primary font-bold text-xs border border-brand-primary/40">
-            {currentUser.name.charAt(0)}
-          </div>
-          <div className="hidden xl:flex flex-col text-left">
-            <span className="text-xs font-semibold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] leading-tight">
-              {currentUser.name}
-            </span>
-            <span className="text-[10px] text-[#A0ACA1] leading-tight">
-              {currentUser.role}
-            </span>
-          </div>
+        {/* User Profile & Sign Out Dropdown */}
+        <div className="relative pl-2 border-l border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF]">
+          <button
+            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+            className="flex items-center gap-2 p-1 rounded-lg hover:bg-[#1A211B] dark:hover:bg-[#1A211B] light:hover:bg-[#F0F4EE] transition-colors"
+          >
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-primary/20 text-brand-primary font-bold text-xs border border-brand-primary/40">
+              {currentUser.name.charAt(0)}
+            </div>
+            <div className="hidden xl:flex flex-col text-left">
+              <span className="text-xs font-semibold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] leading-tight">
+                {currentUser.name}
+              </span>
+              <span className="text-[10px] text-[#A0ACA1] leading-tight flex items-center gap-1">
+                {currentUser.role}
+                <ChevronDown size={10} />
+              </span>
+            </div>
+          </button>
+
+          {isUserMenuOpen && (
+            <div className="absolute right-0 mt-2 w-64 rounded-xl bg-[#1A211B] border border-[#303A31] dark:bg-[#1A211B] dark:border-[#303A31] light:bg-white light:border-[#E1E8DF] shadow-2xl py-2 z-50">
+              <div className="px-4 py-2.5 border-b border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF]">
+                <p className="text-xs font-bold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219]">
+                  {currentUser.name}
+                </p>
+                <p className="text-[11px] text-[#A0ACA1] truncate">{currentUser.email}</p>
+                <div className="mt-1.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
+                  <Shield size={10} />
+                  <span>{currentUser.role}</span>
+                </div>
+              </div>
+
+              <div className="p-1 space-y-0.5">
+                <a
+                  href="/settings"
+                  onClick={() => setIsUserMenuOpen(false)}
+                  className="flex items-center gap-2 px-3 py-2 text-xs text-[#A0ACA1] hover:text-[#F4F7F1] hover:bg-[#222B23] dark:hover:bg-[#222B23] light:hover:bg-[#F0F4EE] rounded-lg transition-colors"
+                >
+                  <SettingsIcon size={14} />
+                  <span>Corporate Settings & Security</span>
+                </a>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg transition-colors text-left font-semibold"
+                >
+                  <LogOut size={14} />
+                  <span>Sign Out Session</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>

@@ -281,7 +281,7 @@ export default function UsersPage() {
                 required
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder="ananya.roy@onepay.internal"
+                placeholder="ananya.roy@finova.internal"
                 className="w-full px-3 py-2 rounded-xl bg-[#131814] border border-[#303A31] text-xs text-[#F4F7F1] focus:outline-none focus:border-brand-primary"
               />
             </div>

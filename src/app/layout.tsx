@@ -5,8 +5,8 @@ import { AuthProvider } from '@/lib/auth/AuthContext';
 import { Shell } from '@/components/layout/Shell';
 
 export const metadata: Metadata = {
-  title: 'ONEPAY — Unified Payments & Financial Operations',
-  description: 'All Your Payments. One Clear View. Enterprise-grade unified payment management and financial control center.',
+  title: 'FINOVA — Enterprise Payments & Financial Operations',
+  description: 'All Your Payments. One Clear View. Enterprise-grade unified payment management, multi-rail routing, and financial control center.',
 };
 
 export default function RootLayout({

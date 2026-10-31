@@ -131,7 +131,7 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
             </span>
           </div>
           <span className="font-semibold text-brand-primary dark:text-brand-primary light:text-brand-primary-light">
-            ONEPAY Unified Search
+            FINOVA Unified Search
           </span>
         </div>
       </div>

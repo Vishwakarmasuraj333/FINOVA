@@ -1,7 +1,7 @@
 {
-  "name": "onepay",
+  "name": "finova",
   "version": "3.0.0",
-  "description": "ONEPAY — Unified Payments & Financial Operations Platform",
+  "description": "FINOVA — Enterprise Payments & Financial Operations Platform",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",

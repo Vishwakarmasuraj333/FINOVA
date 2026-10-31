@@ -6,8 +6,15 @@ import { User, UserRole } from '@/types';
 interface AuthContextType {
   currentUser: User;
   allUsers: User[];
+  isAuthenticated: boolean;
+  is2FAWaiting: boolean;
+  pendingUser: User | null;
   switchUser: (userId: string) => void;
   switchRole: (role: UserRole) => void;
+  login: (email: string, password?: string, role?: UserRole) => Promise<{ success: boolean; error?: string; require2FA?: boolean }>;
+  verify2FA: (code: string) => Promise<{ success: boolean; error?: string }>;
+  signup: (data: { name: string; email: string; role: UserRole; orgName: string; pan?: string; gstin?: string }) => Promise<{ success: boolean; error?: string }>;
+  logout: () => void;
 }
 
 const defaultUser: User = {
@@ -16,17 +23,29 @@ const defaultUser: User = {
   email: 'aditya.kashyap@finova.internal',
   role: 'Super Admin',
   status: 'ACTIVE',
+  last_login: new Date().toISOString(),
 };
 
 const AuthContext = createContext<AuthContextType>({
   currentUser: defaultUser,
   allUsers: [defaultUser],
+  isAuthenticated: true,
+  is2FAWaiting: false,
+  pendingUser: null,
   switchUser: () => {},
   switchRole: () => {},
+  login: async () => ({ success: true }),
+  verify2FA: async () => ({ success: true }),
+  signup: async () => ({ success: true }),
+  logout: () => {},
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User>(defaultUser);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [is2FAWaiting, setIs2FAWaiting] = useState<boolean>(false);
+  const [pendingUser, setPendingUser] = useState<User | null>(null);
+
   const [allUsers, setAllUsers] = useState<User[]>([
     defaultUser,
     {
@@ -35,6 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email: 'priyanka.sharma@finova.internal',
       role: 'Finance Admin',
       status: 'ACTIVE',
+      last_login: new Date(Date.now() - 86400000).toISOString(),
     },
     {
       id: 'usr_approver_01',
@@ -42,6 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email: 'vikram.singhania@finova.internal',
       role: 'Approver',
       status: 'ACTIVE',
+      last_login: new Date(Date.now() - 86400000).toISOString(),
     },
     {
       id: 'usr_operator_01',
@@ -49,6 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email: 'sneha.deshmukh@finova.internal',
       role: 'Finance Operator',
       status: 'ACTIVE',
+      last_login: new Date(Date.now() - 2 * 86400000).toISOString(),
     },
     {
       id: 'usr_auditor_01',
@@ -56,10 +78,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email: 'rohan.mehta@external-audit.com',
       role: 'Read-only Auditor',
       status: 'ACTIVE',
+      last_login: new Date(Date.now() - 5 * 86400000).toISOString(),
     },
   ]);
 
   useEffect(() => {
+    // Check local authentication state
+    const authStatus = localStorage.getItem('finova_is_authenticated');
+    if (authStatus === 'false') {
+      setIsAuthenticated(false);
+    } else {
+      setIsAuthenticated(true);
+    }
+
     fetch('/api/users')
       .then(res => res.json())
       .then(data => {
@@ -92,8 +123,111 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const login = async (
+    email: string,
+    _password?: string,
+    role?: UserRole
+  ): Promise<{ success: boolean; error?: string; require2FA?: boolean }> => {
+    const normalizedEmail = email.trim().toLowerCase();
+    let target = allUsers.find(u => u.email.toLowerCase() === normalizedEmail);
+
+    if (!target && role) {
+      target = allUsers.find(u => u.role === role);
+    }
+
+    if (!target) {
+      // Auto-provision or match default admin
+      target = {
+        id: `usr_session_${Date.now().toString().slice(-4)}`,
+        name: email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) || 'Corporate Officer',
+        email: email,
+        role: role || 'Finance Admin',
+        status: 'ACTIVE',
+        last_login: new Date().toISOString(),
+      };
+      setAllUsers(prev => [target!, ...prev]);
+    }
+
+    // Require 2FA verification step for authentic enterprise flow
+    setPendingUser(target);
+    setIs2FAWaiting(true);
+
+    return { success: true, require2FA: true };
+  };
+
+  const verify2FA = async (code: string): Promise<{ success: boolean; error?: string }> => {
+    if (!code || code.trim().length < 4) {
+      return { success: false, error: 'Please enter a valid 6-digit corporate verification OTP / TOTP code.' };
+    }
+
+    if (pendingUser) {
+      setCurrentUser(pendingUser);
+      localStorage.setItem('finova_user_id', pendingUser.id);
+    }
+
+    setIsAuthenticated(true);
+    setIs2FAWaiting(false);
+    setPendingUser(null);
+    localStorage.setItem('finova_is_authenticated', 'true');
+
+    return { success: true };
+  };
+
+  const signup = async (data: {
+    name: string;
+    email: string;
+    role: UserRole;
+    orgName: string;
+    pan?: string;
+    gstin?: string;
+  }): Promise<{ success: boolean; error?: string }> => {
+    if (!data.name || !data.email) {
+      return { success: false, error: 'Corporate Name and Work Email are required.' };
+    }
+
+    const newUser: User = {
+      id: `usr_reg_${Date.now().toString().slice(-4)}`,
+      name: data.name,
+      email: data.email,
+      role: data.role,
+      status: 'ACTIVE',
+      last_login: new Date().toISOString(),
+    };
+
+    setAllUsers(prev => [newUser, ...prev]);
+    setCurrentUser(newUser);
+    setIsAuthenticated(true);
+    setIs2FAWaiting(false);
+    setPendingUser(null);
+    localStorage.setItem('finova_user_id', newUser.id);
+    localStorage.setItem('finova_is_authenticated', 'true');
+
+    return { success: true };
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    setIs2FAWaiting(false);
+    setPendingUser(null);
+    localStorage.setItem('finova_is_authenticated', 'false');
+  };
+
   return (
-    <AuthContext.Provider value={{ currentUser, allUsers, switchUser, switchRole }}>
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        allUsers,
+        isAuthenticated,
+        is2FAWaiting,
+        pendingUser,
+        switchUser,
+        switchRole,
+        login,
+        verify2FA,
+        signup,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -102,4 +236,3 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
-

@@ -11,8 +11,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // If public landing page, let page manage its own layout
-  if (pathname === '/') {
+  // If public landing page or dedicated auth page, let page manage its own layout
+  if (pathname === '/' || pathname === '/login' || pathname === '/signup') {
     return <>{children}</>;
   }
 
@@ -44,4 +44,3 @@ export function Shell({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-

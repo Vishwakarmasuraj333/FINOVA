@@ -24,6 +24,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Layers,
+  Network,
+  GitFork,
+  LineChart,
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
@@ -42,6 +45,13 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
       items: [
         { label: 'Financial Overview', href: '/dashboard', icon: LayoutDashboard },
         { 
+          label: 'Real Analytics & Flows', 
+          href: '/analytics', 
+          icon: LineChart,
+          badge: 'LIVE FLOW',
+          badgeColor: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+        },
+        { 
           label: 'Financial Summary', 
           href: '/admin/financial-summary', 
           icon: Sparkles, 
@@ -51,11 +61,9 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
       ],
     },
     {
-      group: 'TRANSACTIONS & FLOWS',
+      group: 'TRANSACTIONS & OPERATIONS',
       items: [
         { label: 'Unified Transactions', href: '/transactions', icon: ArrowLeftRight },
-        { label: 'Incoming Credits', href: '/credits', icon: ArrowDownLeft },
-        { label: 'Outgoing Debits', href: '/debits', icon: ArrowUpRight },
         { label: 'Fund Transfers', href: '/transfers', icon: SendHorizontal },
         { label: 'Refunds & Returns', href: '/refunds', icon: RotateCcw },
         { label: 'Settlements', href: '/settlements', icon: Receipt },
@@ -179,17 +187,17 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-1.5 text-[10px] font-bold text-brand-primary dark:text-brand-primary light:text-brand-primary-light">
                   <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-                  SANDBOX / VERIFIED
+                  ENTERPRISE ENGINE
                 </span>
-                <span className="text-[10px] text-[#A0ACA1] font-mono">ONEPAY v3.0</span>
+                <span className="text-[10px] text-[#A0ACA1] font-mono">FINOVA v3.0</span>
               </div>
               <p className="text-[10px] text-[#A0ACA1] leading-tight">
-                Simulated provider rails. Immutable double-entry ledger.
+                Production-grade multi-rail switch. Immutable double-entry ledger.
               </p>
             </div>
           ) : (
             <div className="flex justify-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-brand-primary animate-pulse" title="ONEPAY Sandbox Active" />
+              <span className="w-2.5 h-2.5 rounded-full bg-brand-primary animate-pulse" title="FINOVA Enterprise Engine Active" />
             </div>
           )}
         </div>

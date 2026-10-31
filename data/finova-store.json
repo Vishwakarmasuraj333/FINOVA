@@ -3,7 +3,7 @@
     {
       "id": "usr_super_01",
       "name": "Aditya Kashyap",
-      "email": "aditya.kashyap@onepay.internal",
+      "email": "aditya.kashyap@finova.internal",
       "role": "Super Admin",
       "status": "ACTIVE",
       "last_login": "2026-10-31T09:59:21.966Z"
@@ -11,7 +11,7 @@
     {
       "id": "usr_fin_admin_01",
       "name": "Priyanka Sharma",
-      "email": "priyanka.sharma@onepay.internal",
+      "email": "priyanka.sharma@finova.internal",
       "role": "Finance Admin",
       "status": "ACTIVE",
       "last_login": "2026-10-30T09:59:21.966Z"
@@ -19,7 +19,7 @@
     {
       "id": "usr_approver_01",
       "name": "Vikramaditya Singhania",
-      "email": "vikram.singhania@onepay.internal",
+      "email": "vikram.singhania@finova.internal",
       "role": "Approver",
       "status": "ACTIVE",
       "last_login": "2026-10-30T09:59:21.966Z"
@@ -27,7 +27,7 @@
     {
       "id": "usr_operator_01",
       "name": "Sneha Deshmukh",
-      "email": "sneha.deshmukh@onepay.internal",
+      "email": "sneha.deshmukh@finova.internal",
       "role": "Finance Operator",
       "status": "ACTIVE",
       "last_login": "2026-10-29T09:59:21.966Z"
@@ -42,14 +42,14 @@
     }
   ],
   "settings": {
-    "organization_name": "ONEPAY Enterprise Technologies Ltd.",
-    "legal_entity": "OnePay Financial Services Pvt Ltd",
+    "organization_name": "FINOVA Enterprise Technologies Ltd.",
+    "legal_entity": "Finova Financial Services Pvt Ltd",
     "pan": "AABCO9821P",
     "gstin": "27AABCO9821P1ZM",
     "base_currency": "INR",
     "dual_approval_threshold_paise": 50000000,
-    "webhook_secret": "whsec_onepay_live_9a7d3c0f2a4e6b8d",
-    "notification_email": "finance-ops@onepay.internal",
+    "webhook_secret": "whsec_finova_live_9a7d3c0f2a4e6b8d",
+    "notification_email": "finance-ops@finova.internal",
     "theme_preference": "dark",
     "data_freshness_interval_sec": 30,
     "is_sandbox": true
@@ -71,7 +71,7 @@
       ],
       "last_synced_at": "2026-10-31T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/razorpay",
+      "webhook_url": "https://api.finova.internal/webhooks/razorpay",
       "webhook_events": [
         "payment.authorized",
         "payment.captured",
@@ -96,7 +96,7 @@
       ],
       "last_synced_at": "2026-10-30T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/cashfree",
+      "webhook_url": "https://api.finova.internal/webhooks/cashfree",
       "webhook_events": [
         "TRANSFER_SUCCESS",
         "PAYMENT_SUCCESS_WEBHOOK"
@@ -119,7 +119,7 @@
       ],
       "last_synced_at": "2026-10-31T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/phonepe",
+      "webhook_url": "https://api.finova.internal/webhooks/phonepe",
       "webhook_events": [
         "PAYMENT_SUCCESS",
         "REFUND_SUCCESS"
@@ -142,7 +142,7 @@
       ],
       "last_synced_at": "2026-10-30T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/paytm",
+      "webhook_url": "https://api.finova.internal/webhooks/paytm",
       "webhook_events": [
         "Txn_Success",
         "Refund_Success"
@@ -164,7 +164,7 @@
       ],
       "last_synced_at": "2026-10-30T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/gpay",
+      "webhook_url": "https://api.finova.internal/webhooks/gpay",
       "webhook_events": [
         "PAYMENT_RECEIVED"
       ],
@@ -185,12 +185,12 @@
       ],
       "last_synced_at": "2026-10-29T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/bhim",
+      "webhook_url": "https://api.finova.internal/webhooks/bhim",
       "webhook_events": [
         "UPI_COLLECT_SUCCESS"
       ],
       "health_score": 96,
-      "merchant_id_masked": "bhim.onepay@npci",
+      "merchant_id_masked": "bhim.finova@npci",
       "is_demo": true
     },
     {
@@ -208,7 +208,7 @@
       ],
       "last_synced_at": "2026-10-31T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/stripe",
+      "webhook_url": "https://api.finova.internal/webhooks/stripe",
       "webhook_events": [
         "charge.succeeded",
         "payout.paid"
@@ -230,7 +230,7 @@
       ],
       "last_synced_at": "2026-10-31T09:59:21.966Z",
       "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.onepay.internal/webhooks/hdfc",
+      "webhook_url": "https://api.finova.internal/webhooks/hdfc",
       "webhook_events": [
         "NEFT_CREDIT",
         "RTGS_DEBIT"
@@ -252,7 +252,7 @@
       "last_synced_at": "2026-10-21T09:59:21.966Z",
       "last_sync_status": "FAILED",
       "last_error": "Certificate handshake timeout. Missing mutual TLS client cert.",
-      "webhook_url": "https://api.onepay.internal/webhooks/icici",
+      "webhook_url": "https://api.finova.internal/webhooks/icici",
       "webhook_events": [
         "IMPS_OUTWARD_STATUS"
       ],
@@ -335,6 +335,32 @@
   ],
   "transactions": [
     {
+      "id": "txn_adj_1793443304557",
+      "internal_ref": "FIN-ADJ-304557",
+      "external_ref": "MANUAL_ADJ_1793443304557",
+      "idempotency_key": "idem_adj_1793443304557",
+      "account_id": "acc_cashfree_payout",
+      "provider_id": "prov_cashfree",
+      "type": "ADJUSTMENT_CREDIT",
+      "amount_paise": 500000,
+      "fee_paise": 0,
+      "tax_paise": 0,
+      "net_paise": 500000,
+      "currency": "INR",
+      "status": "COMPLETED",
+      "payment_method": "BANK_TRANSFER",
+      "initiated_at": "2026-10-31T10:41:44.553Z",
+      "completed_at": "2026-10-31T10:41:44.553Z",
+      "sender_name": "FINOVA General Ledger Adjustment",
+      "recipient_name": "Cashfree Payouts Auto-Debit Pool",
+      "reconciliation_status": "RECONCILED",
+      "metadata": {
+        "reason": "hiiiuopjuj",
+        "adjusted_by": "Aditya Kashyap"
+      },
+      "is_demo": true
+    },
+    {
       "id": "txn_c_001",
       "internal_ref": "FIN-TXN-2026-8910",
       "external_ref": "pay_rzp_LiveTest_89101",
@@ -354,7 +380,7 @@
       "completed_at": "2026-10-30T09:59:21.966Z",
       "sender_name": "Zomato Media Pvt Ltd",
       "sender_reference": "zomato.corp@hdfcbank",
-      "recipient_name": "ONEPAY Enterprise Tech",
+      "recipient_name": "FINOVA Enterprise Tech",
       "reconciliation_status": "RECONCILED",
       "is_demo": true
     },
@@ -378,7 +404,7 @@
       "completed_at": "2026-10-30T09:59:21.966Z",
       "sender_name": "Swiggy Bundl Technologies",
       "sender_reference": "swiggy.ops@icici",
-      "recipient_name": "ONEPAY UPI Pool",
+      "recipient_name": "FINOVA UPI Pool",
       "reconciliation_status": "RECONCILED",
       "is_demo": true
     },
@@ -399,7 +425,7 @@
       "payment_method": "BANK_TRANSFER",
       "initiated_at": "2026-10-30T09:59:21.966Z",
       "completed_at": "2026-10-30T09:59:21.966Z",
-      "sender_name": "ONEPAY Cashfree Pool",
+      "sender_name": "FINOVA Cashfree Pool",
       "recipient_name": "Vendor Cloud Infrastructure Ltd",
       "reconciliation_status": "RECONCILED",
       "is_demo": true
@@ -428,6 +454,18 @@
     }
   ],
   "ledger_entries": [
+    {
+      "id": "led_1793443304557",
+      "transaction_id": "txn_adj_1793443304557",
+      "entry_type": "CREDIT",
+      "debit_account_id": "acc_cashfree_payout",
+      "credit_account_id": "acc_gl_adjustment_pool",
+      "amount_paise": 500000,
+      "currency": "INR",
+      "timestamp": "2026-10-31T10:41:44.553Z",
+      "description": "Manual Ledger Adjustment (ADJ-304557): hiiiuopjuj",
+      "is_demo": true
+    },
     {
       "id": "led_op_001",
       "entry_type": "CREDIT",
@@ -673,6 +711,21 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "aud_1793443304557",
+      "actor_name": "Aditya Kashyap",
+      "actor_role": "Super Admin",
+      "action": "MANUAL_ADJUSTMENT",
+      "entity": "Account",
+      "entity_id": "acc_cashfree_payout",
+      "amount_paise": 500000,
+      "currency": "INR",
+      "new_status": "COMPLETED",
+      "reason": "Manual CREDIT Adjustment: hiiiuopjuj",
+      "ip_address": "127.0.0.1",
+      "timestamp": "2026-10-31T10:41:44.553Z",
+      "is_demo": true
+    },
     {
       "id": "aud_001",
       "actor_name": "Aditya Kashyap",

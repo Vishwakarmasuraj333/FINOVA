@@ -171,7 +171,7 @@ export default function ProvidersPage() {
             setFormCode('');
             setFormCategory('GATEWAY');
             setFormEnv('SANDBOX');
-            setFormWebhook('https://api.onepay.internal/webhooks/custom');
+            setFormWebhook('https://api.finova.internal/webhooks/custom');
             setIsAddOpen(true);
           }}
           className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-bold text-xs hover:bg-brand-accent transition-colors self-start sm:self-auto shadow-xs"
@@ -189,7 +189,7 @@ export default function ProvidersPage() {
             Enterprise Integration Standards & Zero-Credential Exposure Policy
           </div>
           <p className="text-[#A0ACA1] leading-relaxed">
-            ONEPAY connects exclusively via approved merchant APIs, direct NPCI UPI switches, and corporate Host-to-Host bank channels. We never scrape private accounts or ask for consumer wallet PINs, OTPs, or passwords. Disconnected rails require authorized credentials before synchronization.
+            FINOVA connects exclusively via approved merchant APIs, direct NPCI UPI switches, and corporate Host-to-Host bank channels. We never scrape private accounts or ask for consumer wallet PINs, OTPs, or passwords. Disconnected rails require authorized credentials before synchronization.
           </p>
         </div>
       </div>
@@ -208,7 +208,7 @@ export default function ProvidersPage() {
               <div>
                 {/* Header */}
                 <div className="flex items-start justify-between gap-3 mb-3">
-                  <ProviderBadge code={provider.code} name={provider.name} />
+                  <ProviderBadge code={provider.code} name={provider.name} size="lg" />
                   <StatusBadge status={provider.status} size="sm" />
                 </div>
 
@@ -392,7 +392,7 @@ export default function ProvidersPage() {
                 required
                 value={formWebhook}
                 onChange={e => setFormWebhook(e.target.value)}
-                placeholder="https://api.onepay.internal/webhooks/..."
+                placeholder="https://api.finova.internal/webhooks/..."
                 className="w-full px-3 py-2 rounded-xl bg-[#131814] border border-[#303A31] text-xs text-[#F4F7F1] focus:outline-none focus:border-brand-primary font-mono"
               />
             </div>

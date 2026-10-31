@@ -181,13 +181,13 @@ export default function LandingPage() {
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
             <Link
-              href="/dashboard"
+              href="/login"
               className="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#F4F7F1] hover:text-brand-primary transition-colors"
             >
               Sign In
             </Link>
             <Link
-              href="/dashboard"
+              href="/signup"
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-brand-primary text-black hover:bg-brand-accent transition-all shadow-xs"
             >
               <span>Get Started</span>
@@ -237,10 +237,16 @@ export default function LandingPage() {
             </a>
             <div className="pt-3 border-t border-[#303A31] flex flex-col gap-2">
               <Link
-                href="/dashboard"
+                href="/login"
                 className="w-full py-2.5 text-center text-xs font-bold rounded-xl bg-brand-primary text-black"
               >
-                Open Dashboard
+                Sign In to Console
+              </Link>
+              <Link
+                href="/signup"
+                className="w-full py-2.5 text-center text-xs font-bold rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1]"
+              >
+                Create Corporate Account
               </Link>
             </div>
           </div>
@@ -279,19 +285,19 @@ export default function LandingPage() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/dashboard"
+                  href="/login"
                   className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-extrabold bg-brand-primary text-black hover:bg-brand-accent transition-all shadow-lg hover:shadow-brand-primary/20"
                 >
-                  <span>Open Dashboard</span>
+                  <span>Sign In to Console</span>
                   <ArrowRight size={16} />
                 </Link>
 
                 <Link
-                  href="/providers"
+                  href="/signup"
                   className="flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] hover:border-brand-primary/40 hover:bg-[#222B23] transition-all"
                 >
-                  <Layers size={16} className="text-brand-primary" />
-                  <span>Explore Integrations</span>
+                  <Lock size={16} className="text-brand-primary" />
+                  <span>Onboard Enterprise</span>
                 </Link>
               </div>
 
@@ -323,12 +329,12 @@ export default function LandingPage() {
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                     <span className="ml-2 text-[11px] font-mono text-[#A0ACA1]">
-                      onepay.internal/dashboard
+                      finova.internal/dashboard
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-                    <span className="text-[10px] font-bold text-brand-primary">SANDBOX ACTIVE</span>
+                    <span className="text-[10px] font-bold text-brand-primary">ENTERPRISE LIVE</span>
                   </div>
                 </div>
 
@@ -505,15 +511,15 @@ export default function LandingPage() {
           </div>
 
           {/* Provider Tiles Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredProviders.map(provider => (
               <div
                 key={provider.code}
-                className="p-5 rounded-2xl bg-[#1A211B] border border-[#303A31] hover:border-brand-primary/40 transition-all flex flex-col justify-between group"
+                className="p-5 rounded-2xl bg-[#1A211B] border border-[#303A31] hover:border-brand-primary/50 hover:bg-[#202921] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-brand-primary/5"
               >
                 <div>
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <ProviderBadge code={provider.code} name={provider.name} />
+                  <div className="flex items-start justify-between gap-3 mb-3.5">
+                    <ProviderBadge code={provider.code} name={provider.name} size="lg" />
                     <StatusBadge status={provider.status} size="sm" />
                   </div>
                   <p className="text-xs text-[#A0ACA1] leading-relaxed mb-4">
@@ -527,7 +533,7 @@ export default function LandingPage() {
                   </span>
                   <Link
                     href={provider.href}
-                    className="inline-flex items-center gap-1 font-semibold text-brand-primary group-hover:translate-x-0.5 transition-transform"
+                    className="inline-flex items-center gap-1 font-semibold text-brand-primary group-hover:translate-x-1 transition-transform"
                   >
                     <span>View Integration</span>
                     <ChevronRight size={14} />
@@ -611,7 +617,7 @@ export default function LandingPage() {
                 Built For Compliance, Auditability & Financial Peace of Mind
               </h2>
               <p className="text-sm text-[#A0ACA1] mt-3 leading-relaxed">
-                ONEPAY strictly adheres to official merchant APIs, dual-approval authorization for high-value payouts, and an immutable double-entry journal. We never store consumer wallet PINs, UPI secrets, or bank passwords.
+                FINOVA strictly adheres to official merchant APIs, dual-approval authorization for high-value payouts, and an immutable double-entry journal. We never store consumer wallet PINs, UPI secrets, or bank passwords.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
@@ -659,6 +665,7 @@ export default function LandingPage() {
 
           <div className="flex flex-wrap items-center gap-6">
             <Link href="/dashboard" className="hover:text-brand-primary">Dashboard</Link>
+            <Link href="/analytics" className="hover:text-brand-primary">Analytics & Flow Tree</Link>
             <Link href="/transactions" className="hover:text-brand-primary">Transactions</Link>
             <Link href="/providers" className="hover:text-brand-primary">Providers</Link>
             <Link href="/accounts" className="hover:text-brand-primary">Accounts</Link>
@@ -667,7 +674,7 @@ export default function LandingPage() {
           </div>
 
           <div className="text-[11px] text-[#A0ACA1]/70">
-            © {new Date().getFullYear()} ONEPAY Technologies Ltd. All rights reserved.
+            © {new Date().getFullYear()} FINOVA Financial Technologies Ltd. All rights reserved.
           </div>
         </div>
       </footer>

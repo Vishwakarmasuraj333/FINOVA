@@ -50,7 +50,7 @@ export async function GET(request: Request) {
       return new NextResponse(csvContent, {
         headers: {
           'Content-Type': 'text/csv',
-          'Content-Disposition': `attachment; filename="onepay_transactions_${Date.now()}.csv"`,
+          'Content-Disposition': `attachment; filename="finova_transactions_${Date.now()}.csv"`,
         },
       });
     }
@@ -94,7 +94,7 @@ export async function GET(request: Request) {
       return new NextResponse(csvContent, {
         headers: {
           'Content-Type': 'text/csv',
-          'Content-Disposition': `attachment; filename="onepay_consolidated_summary_${Date.now()}.csv"`,
+          'Content-Disposition': `attachment; filename="finova_consolidated_summary_${Date.now()}.csv"`,
         },
       });
     }

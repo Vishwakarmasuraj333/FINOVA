@@ -45,7 +45,7 @@ export async function POST(request: Request) {
           supported_operations: body.supported_operations || ['PAYMENTS'],
           last_synced_at: now,
           last_sync_status: 'SUCCESS',
-          webhook_url: body.webhook_url || `https://api.onepay.internal/webhooks/${body.code}`,
+          webhook_url: body.webhook_url || `https://api.finova.internal/webhooks/${body.code}`,
           webhook_events: ['payment.success', 'settlement.processed'],
           health_score: 98,
           merchant_id_masked: `MID_••••${Math.floor(1000 + Math.random() * 9000)}`,
