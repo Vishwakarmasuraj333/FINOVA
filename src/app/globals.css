@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #F6F8F4;
+  --bg-secondary: #EEF2EC;
+  --surface: #FFFFFF;
+  --surface-elevated: #F8FAF7;
+  --border: #E1E8DF;
+  --text-primary: #192219;
+  --text-secondary: #687568;
+  --accent-primary: #477C27;
+}
+
+html.dark {
+  --bg-main: #0D100E;
+  --bg-secondary: #131814;
+  --surface: #1A211B;
+  --surface-elevated: #222B23;
+  --border: #303A31;
+  --text-primary: #F4F7F1;
+  --text-secondary: #A0ACA1;
+  --accent-primary: #C0F477;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 172, 161, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(160, 172, 161, 0.45);
+}
+
+/* Tabular figures for financial numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hero subtle grid pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(192, 244, 119, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(192, 244, 119, 0.05) 1px, transparent 1px);
+}
+
+.bg-grid-pattern-light {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(71, 124, 39, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(71, 124, 39, 0.06) 1px, transparent 1px);
+}
+
