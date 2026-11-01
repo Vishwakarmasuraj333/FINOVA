@@ -27,6 +27,7 @@ export interface PaymentBrandMeta {
   officialWebsite?: string;
   operationalNote?: string;
   isDiscontinued?: boolean;
+  assetPath?: string;
   supportedOperations: ('PAYMENTS' | 'PAYOUTS' | 'REFUNDS' | 'SETTLEMENTS' | 'SUBSCRIPTIONS')[];
 }
 
@@ -685,12 +686,69 @@ export function normalizePaymentBrandCode(input: string): string {
 }
 
 /**
+ * Official asset path resolver pointing to verified public SVG files
+ */
+export const OFFICIAL_ASSET_MAP: Record<string, string> = {
+  phonepe: '/assets/payments/phonepe.svg',
+  gpay: '/assets/payments/google-pay.svg',
+  paytm: '/assets/payments/paytm.svg',
+  bharatpe: '/assets/payments/bharatpe.svg',
+  bhim: '/assets/payments/bhim-upi.svg',
+  amazonpay: '/assets/payments/amazon-pay.svg',
+  whatsapppay: '/assets/payments/whatsapp-pay.svg',
+  cred: '/assets/payments/cred.svg',
+  freecharge: '/assets/payments/freecharge.svg',
+  mobikwik: '/assets/payments/mobikwik.svg',
+  airtel: '/assets/payments/airtel-payments-bank.svg',
+  jiomoney: '/assets/payments/jiomoney.svg',
+  payzapp: '/assets/payments/payzapp.svg',
+  pockets: '/assets/payments/pockets.svg',
+  chillr: '/assets/payments/chillr.svg',
+  trupay: '/assets/payments/trupay.svg',
+  oxigen: '/assets/payments/oxigen.svg',
+  moneyonmobile: '/assets/payments/moneyonmobile.svg',
+  zipcash: '/assets/payments/zipcash.svg',
+  mpurse: '/assets/payments/mpurse.svg',
+  aadhaar: '/assets/payments/aadhaar-pay.svg',
+  itzcash: '/assets/payments/itzcash.svg',
+  quikwallet: '/assets/payments/quikwallet.svg',
+  sbi_buddy: '/assets/payments/sbi-buddy.svg',
+  mrupee: '/assets/payments/mrupee.svg',
+  citrus: '/assets/payments/citrus.svg',
+  fino: '/assets/payments/fino-payments-bank.svg',
+  bob: '/assets/payments/baroda-pay.svg',
+  rbl: '/assets/payments/rbl-bank.svg',
+  sbi_pay: '/assets/payments/sbi-pay.svg',
+  paywiz: '/assets/payments/paywiz.svg',
+  axis: '/assets/payments/axis-bank.svg',
+  hdfc_bank: '/assets/payments/payzapp.svg',
+  icici_bank: '/assets/payments/pockets.svg',
+  sbi: '/assets/payments/sbi-pay.svg',
+  razorpay: '/assets/payments/razorpay.svg',
+  cashfree: '/assets/payments/cashfree.svg',
+  stripe: '/assets/payments/stripe.svg',
+  paypal: '/assets/payments/paypal.svg',
+  visa: '/assets/payments/visa.svg',
+  mastercard: '/assets/payments/mastercard.svg',
+  rupay: '/assets/payments/rupay.svg',
+  amex: '/assets/payments/amex.svg',
+  upi: '/assets/payments/upi.svg',
+};
+
+export function getBrandAssetPath(input: string): string {
+  const code = normalizePaymentBrandCode(input);
+  return OFFICIAL_ASSET_MAP[code] || '/assets/payments/upi.svg';
+}
+
+/**
  * Returns brand metadata with intelligent fallback
  */
 export function getPaymentBrand(input: string): PaymentBrandMeta {
   const code = normalizePaymentBrandCode(input);
   if (PAYMENT_BRAND_REGISTRY[code]) {
-    return PAYMENT_BRAND_REGISTRY[code];
+    const meta = { ...PAYMENT_BRAND_REGISTRY[code] };
+    meta.assetPath = OFFICIAL_ASSET_MAP[code];
+    return meta;
   }
 
   // Fallback for custom or unknown providers
@@ -703,6 +761,7 @@ export function getPaymentBrand(input: string): PaymentBrandMeta {
     status: 'CONNECTED',
     environment: 'PRODUCTION',
     brandColor: '#303A31',
+    assetPath: OFFICIAL_ASSET_MAP[code] || '/assets/payments/upi.svg',
     supportedOperations: ['PAYMENTS'],
   };
 }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#002966"/>
+  <ellipse cx="24" cy="24" rx="19" ry="13" stroke="#FF9900" stroke-width="1.8" fill="none"/>
+  <text x="9" y="27" font-family="sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF">ItzCash</text>
+  <path d="M31 16L37 19L33 22L31 16Z" fill="#FF9900"/>
+</svg>

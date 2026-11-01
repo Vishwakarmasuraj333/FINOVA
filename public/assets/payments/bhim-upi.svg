@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#1C1E24"/>
+  <text x="6" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="900" font-style="italic" fill="#FFFFFF">BHIM</text>
+  <path d="M31 14L37 23L31 32H34.5L40.5 23L34.5 14H31Z" fill="#008848"/>
+  <path d="M35 14L41 23L35 32H38.5L44.5 23L38.5 14H35Z" fill="#F47920"/>
+</svg>

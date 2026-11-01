@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#FFF9E6" stroke="#F5A623" stroke-width="2"/>
+  <path d="M18 16C21 14 27 14 30 16M15 21C20 18 28 18 33 21M17 26C21 23.5 27 23.5 31 26" stroke="#D0021B" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="7" y="28" width="34" height="12" rx="3" fill="#F5A623"/>
+  <text x="10" y="37" font-family="sans-serif" font-size="10" font-weight="900" fill="#9013FE">PAY</text>
+</svg>

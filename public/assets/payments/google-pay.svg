@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.5"/>
+  <path d="M22 24.2C22 23.3 21.9 22.5 21.7 21.7H12V26.4H17.6C17.3 27.9 16.4 29.1 15.1 30V33H19.3C21.7 30.7 23.1 27.4 22 24.2Z" fill="#4285F4"/>
+  <path d="M12 34.5C14.7 34.5 17 33.6 18.7 32.1L14.5 29.1C13.3 29.9 11.8 30.3 10.2 30.3C7.2 30.3 4.8 28.2 3.9 25.5H-0.5V28.6C1.3 32.2 4.9 34.5 9.1 34.5" fill="#34A853" transform="translate(3, -1)"/>
+  <path d="M6.9 24.5C6.5 23.2 6.5 21.8 6.9 20.5V17.4H2.5C0.7 20.7 0.7 24.5 2.5 27.8L6.9 24.5Z" fill="#FBBC04" transform="translate(3, 0)"/>
+  <path d="M12 13.5C13.5 13.5 14.9 14 16 15.1L19.5 11.6C17.4 9.6 14.8 8.5 12 8.5C7.8 8.5 4.2 10.8 2.4 14.4L6.8 17.5C7.7 14.8 10.1 13.5 12 13.5Z" fill="#EA4335" transform="translate(3, 0)"/>
+  <text x="25" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#3C4043">Pay</text>
+</svg>

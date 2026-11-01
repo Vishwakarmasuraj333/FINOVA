@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#0091DA" stroke-width="1.5"/>
+  <circle cx="15" cy="24" r="7.5" fill="#0091DA"/>
+  <rect x="13.8" y="24" width="2.4" height="6" fill="#FFFFFF"/>
+  <text x="24" y="27" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#002D62">Buddy</text>
+</svg>

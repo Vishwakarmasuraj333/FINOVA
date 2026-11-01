@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#F26522" stroke-width="1.5"/>
+  <circle cx="16" cy="24" r="8" fill="#F26522"/>
+  <path d="M16 12V16M16 32V36M6 24H10M22 24H26" stroke="#F26522" stroke-width="2.2"/>
+  <text x="24" y="27" font-family="sans-serif" font-size="9" font-weight="bold" fill="#F26522">Baroda</text>
+</svg>

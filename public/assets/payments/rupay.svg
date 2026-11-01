@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#009540" stroke-width="1.5"/>
+  <text x="6" y="28" font-family="sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#003366">RuPay</text>
+  <path d="M33 16L37.5 24L33 32H36L40.5 24L36 16H33Z" fill="#F47920"/>
+  <path d="M37.5 16L42 24L37.5 32H40.5L45 24L40.5 16H37.5Z" fill="#009540"/>
+</svg>

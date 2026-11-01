@@ -20,6 +20,7 @@ export function PaymentBrandIcon({
 }: PaymentBrandIconProps) {
   const brandCode = normalizePaymentBrandCode(code);
   const brandMeta = getPaymentBrand(brandCode);
+  const [imgError, setImgError] = React.useState(false);
 
   // Size mapping
   const sizeMap: Record<string, string> = {
@@ -756,10 +757,20 @@ export function PaymentBrandIcon({
 
   return (
     <div
-      className={`inline-flex items-center justify-center shrink-0 ${containerSize} ${shapeClass} ${className}`}
+      className={`inline-flex items-center justify-center shrink-0 overflow-hidden ${containerSize} ${shapeClass} ${className}`}
       title={showTooltip ? `${brandMeta.name} (${brandMeta.category})` : undefined}
     >
-      {renderSvg()}
+      {brandMeta.assetPath && !imgError ? (
+        <img
+          src={brandMeta.assetPath}
+          alt={brandMeta.name}
+          onError={() => setImgError(true)}
+          className="w-full h-full object-contain pointer-events-none select-none"
+          loading="lazy"
+        />
+      ) : (
+        renderSvg()
+      )}
     </div>
   );
 }

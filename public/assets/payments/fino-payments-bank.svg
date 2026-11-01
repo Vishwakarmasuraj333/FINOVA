@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#9C1A2E" stroke-width="1.5"/>
+  <path d="M16 16L19 21H24L20 24L22 29L16 26L10 29L12 24L8 21H13L16 16Z" stroke="#9C1A2E" stroke-width="2" fill="#FFF0F2"/>
+  <text x="24" y="27" font-family="sans-serif" font-size="10" font-weight="bold" fill="#1C3F7A">Fino</text>
+</svg>
