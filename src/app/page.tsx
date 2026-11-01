@@ -643,15 +643,27 @@ export default function LandingPage() {
                     </span>
                     <span className="text-[10px] text-brand-primary font-mono">100% HEALTHY</span>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    <ProviderBadge code="phonepe" name="PhonePe" size="sm" />
-                    <ProviderBadge code="paytm" name="Paytm" size="sm" />
-                    <ProviderBadge code="razorpay" name="Razorpay" size="sm" />
-                    <ProviderBadge code="payzapp" name="PayZapp" size="sm" />
-                    <ProviderBadge code="freecharge" name="Freecharge" size="sm" />
-                    <ProviderBadge code="bhim" name="BHIM UPI" size="sm" />
-                    <ProviderBadge code="mobikwik" name="MobiKwik" size="sm" />
-                    <ProviderBadge code="cashfree" name="Cashfree" size="sm" />
+                  <div className="grid grid-cols-4 gap-2">
+                    {[
+                      { code: 'phonepe', name: 'PhonePe' },
+                      { code: 'paytm', name: 'Paytm' },
+                      { code: 'gpay', name: 'Google Pay' },
+                      { code: 'bharatpe', name: 'BharatPe' },
+                      { code: 'bhim', name: 'BHIM UPI' },
+                      { code: 'razorpay', name: 'Razorpay' },
+                      { code: 'payzapp', name: 'PayZapp' },
+                      { code: 'cashfree', name: 'Cashfree' },
+                    ].map(rail => (
+                      <div
+                        key={rail.code}
+                        className="flex flex-col items-center justify-center p-2 rounded-xl bg-[#131814] border border-[#303A31] text-center"
+                      >
+                        <ProviderBadge code={rail.code} iconOnly size="md" />
+                        <span className="text-[10px] font-semibold text-[#F4F7F1] mt-1 truncate max-w-full">
+                          {rail.name}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 

@@ -45,7 +45,7 @@ export async function POST(request: Request) {
         reason: `Created user ${newUser.name} with role ${newUser.role}`,
         ip_address: '127.0.0.1',
         timestamp: new Date().toISOString(),
-        is_demo: true,
+        is_demo: false,
       });
 
       return { db, result: newUser };
@@ -86,7 +86,7 @@ export async function PATCH(request: Request) {
         reason: `Changed role from ${oldRole} to ${user.role}`,
         ip_address: '127.0.0.1',
         timestamp: new Date().toISOString(),
-        is_demo: true,
+        is_demo: false,
       });
 
       return { db, result: user };

@@ -31,6 +31,19 @@ import {
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
+interface NavItem {
+  label: string;
+  href: string;
+  icon: React.ComponentType<any>;
+  badge?: string;
+  badgeColor?: string;
+}
+
+interface NavGroup {
+  group: string;
+  items: NavItem[];
+}
+
 interface SidebarProps {
   isMobileOpen: boolean;
   onMobileClose: () => void;
@@ -40,24 +53,20 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const navGroups = [
+  const navGroups: NavGroup[] = [
     {
       group: 'EXECUTIVE & CONTROL',
       items: [
         { label: 'Financial Overview', href: '/dashboard', icon: LayoutDashboard },
         { 
-          label: 'Real Analytics & Flows', 
+          label: 'Analytics', 
           href: '/analytics', 
           icon: LineChart,
-          badge: 'LIVE FLOW',
-          badgeColor: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
         },
         { 
           label: 'Financial Summary', 
           href: '/admin/financial-summary', 
           icon: Sparkles, 
-          badge: 'CONSOLIDATED',
-          badgeColor: 'bg-brand-primary/20 text-brand-primary border-brand-primary/30' 
         },
       ],
     },
@@ -110,23 +119,21 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
         `}
       >
         {/* Brand Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF]">
+        <div className={`flex items-center h-16 border-b border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] ${isCollapsed ? 'justify-center px-2 relative' : 'justify-between px-4'}`}>
           {!isCollapsed ? (
             <BrandLogo size="md" href="/dashboard" />
           ) : (
-            <div className="mx-auto">
-              <BrandLogo size="sm" href="/dashboard" className="justify-center" />
-            </div>
+            <BrandLogo size="sm" href="/dashboard" iconOnly className="justify-center" />
           )}
 
           <div className="flex items-center gap-1">
             {/* Desktop collapse toggle */}
             <button
               onClick={() => setIsCollapsed(!isCollapsed)}
-              className="hidden lg:flex items-center justify-center w-7 h-7 rounded-md text-[#A0ACA1] hover:text-[#F4F7F1] hover:bg-[#1A211B] dark:hover:bg-[#1A211B] light:hover:bg-[#F0F4EE] transition-colors"
+              className={`${isCollapsed ? 'absolute -right-3 top-5 w-6 h-6 rounded-full bg-[#1A211B] border border-[#303A31] text-[#A0ACA1] hover:text-brand-primary z-20 flex items-center justify-center shadow-md' : 'hidden lg:flex items-center justify-center w-7 h-7 rounded-md text-[#A0ACA1] hover:text-[#F4F7F1] hover:bg-[#1A211B] dark:hover:bg-[#1A211B] light:hover:bg-[#F0F4EE] transition-colors'}`}
               title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             >
-              {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+              {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={16} />}
             </button>
 
             {/* Mobile Close X button */}
@@ -144,10 +151,12 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
         <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 scrollbar-thin">
           {navGroups.map((group, idx) => (
             <div key={idx} className="space-y-1">
-              {!isCollapsed && (
+              {!isCollapsed ? (
                 <p className="px-3 text-[10px] font-bold tracking-wider text-[#A0ACA1]/70 uppercase mb-1">
                   {group.group}
                 </p>
+              ) : (
+                <div className="w-6 h-px bg-[#303A31]/60 mx-auto my-2" />
               )}
               {group.items.map(item => {
                 const isActive = pathname === item.href;
@@ -157,12 +166,16 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
                     key={item.href}
                     href={item.href}
                     onClick={onMobileClose}
-                    className={`group flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                    className={`group flex items-center transition-all ${
+                      isCollapsed
+                        ? 'justify-center w-10 h-10 mx-auto rounded-xl'
+                        : 'gap-3 px-3 py-2 rounded-xl text-xs font-medium'
+                    } ${
                       isActive
                         ? 'bg-brand-primary text-black font-semibold shadow-xs'
                         : 'text-[#A0ACA1] hover:text-[#F4F7F1] hover:bg-[#1A211B] dark:hover:bg-[#1A211B] dark:text-[#A0ACA1] dark:hover:text-[#F4F7F1] light:text-[#687568] light:hover:text-[#192219] light:hover:bg-[#F0F4EE]'
                     }`}
-                    title={isCollapsed ? item.label : undefined}
+                    title={item.label}
                   >
                     <Icon
                       size={18}
@@ -193,25 +206,21 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
           ))}
         </div>
 
-        {/* Footer info: Live Switch Engine */}
-        <div className="p-3 border-t border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF]">
+        {/* Clean Minimalist Footer */}
+        <div className="px-4 py-3 border-t border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] flex items-center justify-between">
           {!isCollapsed ? (
-            <div className="flex flex-col gap-1.5 p-2.5 rounded-xl bg-[#0D100E] border border-[#303A31] dark:bg-[#0D100E] dark:border-[#303A31] light:bg-[#F6F8F4] light:border-[#E1E8DF]">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  LIVE SWITCH ACTIVE
-                </span>
-                <span className="text-[10px] text-[#A0ACA1] font-mono">FINOVA v3.0</span>
-              </div>
-              <p className="text-[10px] text-[#A0ACA1] leading-tight">
-                Production multi-rail routing. Double-entry ledger verified.
-              </p>
+            <div className="flex items-center justify-between w-full text-[11px] text-[#A0ACA1]">
+              <span className="font-medium text-[#F4F7F1]">FINOVA Enterprise</span>
+              <span className="font-mono text-[10px] text-[#687568]">v3.0</span>
             </div>
           ) : (
-            <div className="flex justify-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" title="FINOVA Live Switch Active" />
-            </div>
+            <button
+              onClick={() => setIsCollapsed(false)}
+              className="mx-auto w-7 h-7 rounded-lg flex items-center justify-center text-[#A0ACA1] hover:text-brand-primary hover:bg-[#1A211B] transition-colors"
+              title="Expand FINOVA Sidebar"
+            >
+              <ChevronRight size={16} />
+            </button>
           )}
         </div>
       </aside>

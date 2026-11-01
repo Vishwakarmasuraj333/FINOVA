@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#002D62" stroke-width="1.5"/>
-  <path d="M10 16H13V32H10M22 16H19V32H22" stroke="#002D62" stroke-width="2.6"/>
-  <text x="12" y="27" font-family="sans-serif" font-size="10" font-weight="900" fill="#002D62">P</text>
-  <path d="M25 16H37L28 25H37L34 31H22L31 22H22L25 16Z" fill="#D8232A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#FFFFFF" stroke="#002D62" stroke-width="2"/>
+  <!-- HDFC Blue & Red Box Logo -->
+  <rect x="10" y="14" width="16" height="16" fill="#002D62"/>
+  <rect x="14" y="18" width="8" height="8" fill="#FFFFFF"/>
+  <rect x="10" y="14" width="4" height="4" fill="#ED1C24"/>
+  <rect x="22" y="26" width="4" height="4" fill="#ED1C24"/>
+  <text x="30" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="900" fill="#002D62">PAY</text>
+  <!-- Sharp Electric Red ZAPP -->
+  <path d="M14 37H32L19 49H34L30 55H12L25 43H12L14 37Z" fill="#D8232A"/>
+  <text x="34" y="51" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900" fill="#D8232A">APP</text>
 </svg>

@@ -41,15 +41,15 @@ export async function POST(request: Request) {
           code: body.code,
           category: body.category || 'GATEWAY',
           status: 'CONNECTED',
-          environment: body.environment || 'SANDBOX',
-          supported_operations: body.supported_operations || ['PAYMENTS'],
+          environment: body.environment || 'PRODUCTION',
+          supported_operations: body.supported_operations || ['PAYMENTS', 'REFUNDS', 'SETTLEMENTS'],
           last_synced_at: now,
           last_sync_status: 'SUCCESS',
           webhook_url: body.webhook_url || `https://api.finova.internal/webhooks/${body.code}`,
           webhook_events: ['payment.success', 'settlement.processed'],
-          health_score: 98,
-          merchant_id_masked: `MID_••••${Math.floor(1000 + Math.random() * 9000)}`,
-          is_demo: true,
+          health_score: 99,
+          merchant_id_masked: body.merchant_id_masked || `MID_••••${Math.floor(1000 + Math.random() * 9000)}`,
+          is_demo: false,
         };
         db.providers.push(provider);
       }
@@ -64,10 +64,56 @@ export async function POST(request: Request) {
         reason: `Updated configuration for ${provider.name}`,
         ip_address: '127.0.0.1',
         timestamp: now,
-        is_demo: true,
+        is_demo: false,
       });
 
       return { db, result: provider };
+    });
+
+    return NextResponse.json(result);
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 400 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+    const actorRole = (request.headers.get('x-user-role') as UserRole) || 'Super Admin';
+    const actorName = request.headers.get('x-user-name') || 'Authorized Staff';
+
+    if (actorRole !== 'Super Admin' && actorRole !== 'Finance Admin') {
+      return NextResponse.json({ error: 'Unauthorized to remove providers' }, { status: 403 });
+    }
+
+    if (!id) {
+      return NextResponse.json({ error: 'Provider ID is required' }, { status: 400 });
+    }
+
+    const result = runInTransaction(db => {
+      const index = db.providers.findIndex(p => p.id === id);
+      if (index === -1) {
+        throw new Error('Provider not found');
+      }
+
+      const [removed] = db.providers.splice(index, 1);
+      const now = new Date().toISOString();
+
+      db.audit_logs.unshift({
+        id: `aud_${Date.now()}`,
+        actor_name: actorName,
+        actor_role: actorRole,
+        action: 'PROVIDER_DISCONNECTED',
+        entity: 'PaymentProvider',
+        entity_id: removed.id,
+        reason: `Disconnected and removed payment rail ${removed.name}`,
+        ip_address: '127.0.0.1',
+        timestamp: now,
+        is_demo: false,
+      });
+
+      return { db, result: { success: true, removed } };
     });
 
     return NextResponse.json(result);

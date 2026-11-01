@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#1C1E24"/>
-  <text x="7" y="30" font-family="sans-serif" font-size="14" font-weight="900" font-style="italic" fill="#FFFFFF">UPI</text>
-  <path d="M31 15L37 24L31 33H34.7L40.7 24L34.7 15H31Z" fill="#008848"/>
-  <path d="M35.5 15L41.5 24L35.5 33H39.2L45.2 24L39.2 15H35.5Z" fill="#F47920"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#1C1E24"/>
+  <text x="9" y="40" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="19" font-weight="900" font-style="italic" fill="#FFFFFF">UPI</text>
+  <path d="M41 20L49 32L41 44H46L54 32L46 20H41Z" fill="#008848"/>
+  <path d="M47 20L55 32L47 44H52L60 32L52 20H47Z" fill="#F47920"/>
 </svg>

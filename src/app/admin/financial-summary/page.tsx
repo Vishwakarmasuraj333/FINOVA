@@ -273,44 +273,44 @@ export default function FinancialSummaryPage() {
 
       {/* Secondary Detailed Metrics: Processing Fees, Taxes, Refunds, Settlements, Discrepancies */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-        <div className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] text-xs">
-          <span className="text-[#A0ACA1] text-[10px] uppercase font-bold">MDR Gateway Fees</span>
-          <div className="text-sm font-bold text-[#F4F7F1] tabular-nums mt-1">
+        <div className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-xs shadow-2xs">
+          <span className="text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] text-[10px] uppercase font-bold">MDR Gateway Fees</span>
+          <div className="text-sm font-bold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] tabular-nums mt-1">
             {formatPaise(summary?.total_processing_charges_paise)}
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] text-xs">
-          <span className="text-[#A0ACA1] text-[10px] uppercase font-bold">Transfer / IMPS Fees</span>
-          <div className="text-sm font-bold text-[#F4F7F1] tabular-nums mt-1">
+        <div className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-xs shadow-2xs">
+          <span className="text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] text-[10px] uppercase font-bold">Transfer / IMPS Fees</span>
+          <div className="text-sm font-bold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] tabular-nums mt-1">
             {formatPaise(summary?.total_transfer_charges_paise)}
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] text-xs">
-          <span className="text-[#A0ACA1] text-[10px] uppercase font-bold">Statutory GST Taxes</span>
-          <div className="text-sm font-bold text-amber-400 tabular-nums mt-1">
+        <div className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-xs shadow-2xs">
+          <span className="text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] text-[10px] uppercase font-bold">Statutory GST Taxes</span>
+          <div className="text-sm font-bold text-amber-400 dark:text-amber-400 light:text-amber-600 tabular-nums mt-1">
             {formatPaise(summary?.total_taxes_paise)}
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] text-xs">
-          <span className="text-[#A0ACA1] text-[10px] uppercase font-bold">Refunds Disbursed</span>
-          <div className="text-sm font-bold text-rose-400 tabular-nums mt-1">
+        <div className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-xs shadow-2xs">
+          <span className="text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] text-[10px] uppercase font-bold">Refunds Disbursed</span>
+          <div className="text-sm font-bold text-rose-400 dark:text-rose-400 light:text-rose-600 tabular-nums mt-1">
             {formatPaise(summary?.total_refunds_paise)}
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] text-xs">
-          <span className="text-[#A0ACA1] text-[10px] uppercase font-bold">Settled Payouts</span>
-          <div className="text-sm font-bold text-emerald-400 tabular-nums mt-1">
+        <div className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-xs shadow-2xs">
+          <span className="text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] text-[10px] uppercase font-bold">Settled Payouts</span>
+          <div className="text-sm font-bold text-emerald-400 dark:text-emerald-400 light:text-emerald-600 tabular-nums mt-1">
             {formatPaise(summary?.total_completed_settlements_paise)}
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] text-xs">
-          <span className="text-[#A0ACA1] text-[10px] uppercase font-bold">Statement Variance</span>
-          <div className="text-sm font-bold text-purple-400 tabular-nums mt-1">
+        <div className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-xs shadow-2xs">
+          <span className="text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] text-[10px] uppercase font-bold">Statement Variance</span>
+          <div className="text-sm font-bold text-purple-400 dark:text-purple-400 light:text-purple-600 tabular-nums mt-1">
             {formatPaise(summary?.provider_vs_ledger_difference_paise)}
           </div>
         </div>
@@ -334,7 +334,7 @@ export default function FinancialSummaryPage() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#131814] border-b border-[#303A31] text-[10px] font-bold text-[#A0ACA1] uppercase">
+            <thead className="bg-[#131814] dark:bg-[#131814] light:bg-[#F0F4EE] border-b border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] text-[10px] font-bold text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#526053] uppercase">
               <tr>
                 <th className="py-3 px-3">Account</th>
                 <th className="py-3 px-3">Provider Rail</th>

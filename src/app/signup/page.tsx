@@ -27,16 +27,16 @@ export default function SignupPage() {
   const router = useRouter();
   const { signup } = useAuth();
 
-  const [orgName, setOrgName] = useState('Zenith Financial Technologies Ltd');
+  const [orgName, setOrgName] = useState('');
   const [entityType, setEntityType] = useState('PVT_LTD');
-  const [pan, setPan] = useState('AABCZ7812M');
-  const [gstin, setGstin] = useState('27AABCZ7812M1Z8');
-  const [name, setName] = useState('Sameer Vardhan');
-  const [email, setEmail] = useState('sameer.vardhan@zenith.internal');
+  const [pan, setPan] = useState('');
+  const [gstin, setGstin] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [role, setRole] = useState<UserRole>('Finance Admin');
-  const [password, setPassword] = useState('Enterprise@Pass#2026');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [acceptedTerms, setAcceptedTerms] = useState(true);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -144,7 +144,7 @@ export default function SignupPage() {
                       required
                       value={orgName}
                       onChange={e => setOrgName(e.target.value)}
-                      placeholder="e.g. Zenith Technologies Pvt Ltd"
+                      placeholder="Registered corporate legal entity name"
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] focus:border-brand-primary focus:outline-hidden"
                     />
                   </div>
@@ -212,7 +212,7 @@ export default function SignupPage() {
                       required
                       value={name}
                       onChange={e => setName(e.target.value)}
-                      placeholder="e.g. Sameer Vardhan"
+                      placeholder="Authorized signatory full legal name"
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] focus:border-brand-primary focus:outline-hidden"
                     />
                   </div>
@@ -226,7 +226,7 @@ export default function SignupPage() {
                         required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        placeholder="sameer.vardhan@company.internal"
+                        placeholder="corporate.signatory@company.com"
                         className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] focus:border-brand-primary focus:outline-hidden"
                       />
                     </div>
@@ -255,6 +255,7 @@ export default function SignupPage() {
                         required
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        placeholder="Create strong corporate password"
                         className="w-full pl-9 pr-10 py-2.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-xs text-[#F4F7F1] focus:border-brand-primary focus:outline-hidden"
                       />
                       <button
@@ -294,7 +295,7 @@ export default function SignupPage() {
                     className="w-4 h-4 mt-0.5 rounded-sm bg-[#131814] border-[#303A31] text-brand-primary focus:ring-0"
                   />
                   <span>
-                    I certify that I am an authorized corporate signatory for <strong>{orgName || 'this entity'}</strong> and accept the FINOVA Master Services Agreement, Data Privacy Policy, and RBI Payout & Settlement Guidelines.
+                    I certify that I am an authorized corporate signatory for <strong>{orgName.trim() || 'your corporate entity'}</strong> and accept the FINOVA Master Services Agreement, Data Privacy Policy, and RBI Payout & Settlement Guidelines.
                   </span>
                 </label>
               </div>

@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#00875A"/>
-  <text x="7" y="24" font-family="sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF">PayWiz</text>
-  <text x="16" y="34" font-family="sans-serif" font-size="8" font-weight="bold" fill="#C0F477">UPI</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#00685B"/>
+  <text x="8" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="900" font-style="italic" fill="#FFFFFF">Pay</text>
+  <text x="10" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="900" fill="#C0F477">Wiz</text>
+  <!-- UPI in corner -->
+  <text x="40" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="900" fill="#FFFFFF">UPI</text>
+  <path d="M50 14L53 19L50 24H52L55 19L52 14H50Z" fill="#097939"/>
 </svg>

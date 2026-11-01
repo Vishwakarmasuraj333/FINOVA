@@ -125,36 +125,37 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (
     email: string,
-    _password?: string,
+    password?: string,
     role?: UserRole
   ): Promise<{ success: boolean; error?: string; require2FA?: boolean }> => {
-    const normalizedEmail = email.trim().toLowerCase();
-    let target = allUsers.find(u => u.email.toLowerCase() === normalizedEmail);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: password || 'Enterprise@Auth#2026' }),
+      });
 
-    if (!target && role) {
-      target = allUsers.find(u => u.role === role);
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || 'Authentication failed' };
+      }
+
+      const target: User = data.user;
+      setCurrentUser(target);
+      setIsAuthenticated(true);
+      setIs2FAWaiting(false);
+      setPendingUser(null);
+      localStorage.setItem('finova_user_id', target.id);
+      localStorage.setItem('finova_is_authenticated', 'true');
+      setAllUsers(prev => {
+        const filtered = prev.filter(u => u.id !== target.id);
+        return [target, ...filtered];
+      });
+
+      return { success: true, require2FA: false };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Login error' };
     }
-
-    if (!target) {
-      target = {
-        id: `usr_session_${Date.now().toString().slice(-4)}`,
-        name: email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) || 'Corporate Officer',
-        email: email,
-        role: role || 'Super Admin',
-        status: 'ACTIVE',
-        last_login: new Date().toISOString(),
-      };
-      setAllUsers(prev => [target!, ...prev]);
-    }
-
-    setCurrentUser(target);
-    setIsAuthenticated(true);
-    setIs2FAWaiting(false);
-    setPendingUser(null);
-    localStorage.setItem('finova_user_id', target.id);
-    localStorage.setItem('finova_is_authenticated', 'true');
-
-    return { success: true, require2FA: false };
   };
 
   const verify2FA = async (code: string): Promise<{ success: boolean; error?: string }> => {

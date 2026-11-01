@@ -40,13 +40,21 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
   if (!isOpen) return null;
 
   const quickNavItems = [
-    { label: 'Financial Summary (Consolidated Control)', href: '/admin/financial-summary', category: 'Executive', icon: Sparkles },
-    { label: 'All Transactions Ledger', href: '/transactions', category: 'Operations', icon: ArrowLeftRight },
-    { label: 'Payment Providers & Rails', href: '/providers', category: 'Rails', icon: CreditCard },
-    { label: 'Bank & Settlement Accounts', href: '/accounts', category: 'Treasury', icon: Landmark },
-    { label: 'Statement Reconciliation', href: '/reconciliation', category: 'Audit', icon: FileSpreadsheet },
+    { label: 'Financial Operations Overview', href: '/dashboard', category: 'Executive', icon: Sparkles },
+    { label: 'Financial Control Center (Consolidated)', href: '/admin/financial-summary', category: 'Executive', icon: Sparkles },
+    { label: 'Treasury Analytics & Payment Topology', href: '/analytics', category: 'Executive', icon: Sparkles },
+    { label: 'Unified Transactions Ledger', href: '/transactions', category: 'Operations', icon: ArrowLeftRight },
     { label: 'Fund Transfers & Dual Approval', href: '/transfers', category: 'Operations', icon: ArrowRight },
-    { label: 'Staff & Role Permissions', href: '/users', category: 'Admin', icon: UserCheck },
+    { label: 'Refunds & Returns Management', href: '/refunds', category: 'Operations', icon: ArrowLeftRight },
+    { label: 'Settlements & Payout Tracking', href: '/settlements', category: 'Operations', icon: ArrowRight },
+    { label: 'Payment Providers & Rails (41 Rails)', href: '/providers', category: 'Rails', icon: CreditCard },
+    { label: 'Bank & Settlement Accounts', href: '/accounts', category: 'Treasury', icon: Landmark },
+    { label: 'Charges, Fees & Statutory GST', href: '/charges', category: 'Treasury', icon: Landmark },
+    { label: 'Statement Reconciliation & Ledger Matching', href: '/reconciliation', category: 'Audit', icon: FileSpreadsheet },
+    { label: 'Customer Directory & Accounts', href: '/customers', category: 'Management', icon: UserCheck },
+    { label: 'Financial Audit Logs & Trail', href: '/audit-logs', category: 'Audit', icon: FileSpreadsheet },
+    { label: 'Staff & Role-Based Permissions', href: '/users', category: 'Admin', icon: UserCheck },
+    { label: 'Corporate Settings & Security', href: '/settings', category: 'Admin', icon: Landmark },
   ];
 
   const filtered = quickNavItems.filter(item =>

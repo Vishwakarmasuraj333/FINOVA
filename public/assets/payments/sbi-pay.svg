@@ -1,7 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#0091DA" stroke-width="1.5"/>
-  <rect x="10" y="12" width="15" height="24" rx="3" stroke="#002D62" stroke-width="2.2"/>
-  <path d="M14 21H20M17 18L20 21L17 24M20 27H14M17 24L14 27L17 30" stroke="#0091DA" stroke-width="1.8"/>
-  <circle cx="34" cy="24" r="7" fill="#0091DA"/>
-  <rect x="32.8" y="24" width="2.4" height="5.5" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#FFFFFF" stroke="#0091DA" stroke-width="2"/>
+  <!-- Phone Screen Outline -->
+  <rect x="8" y="14" width="22" height="36" rx="4" stroke="#002D62" stroke-width="2.5" fill="none"/>
+  <path d="M13 28H25M21 24L25 28L21 32M25 36H13M17 32L13 36L17 40" stroke="#0091DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- SBI Keyhole Circle Logo -->
+  <circle cx="46" cy="26" r="10" fill="#0091DA"/>
+  <rect x="44.5" y="26" width="3" height="8" fill="#FFFFFF"/>
+  <text x="34" y="47" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="900" fill="#002D62">SBI Pay</text>
 </svg>

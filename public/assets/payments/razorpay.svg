@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#0C2340"/>
-  <path d="M29 12H18L13 36H20L22.4 25.8H26.7L31.8 36H38.2L32.7 24.7C35.4 23.1 36.7 20.4 36.7 17.2C36.7 13.8 33.7 12 29 12ZM28 20.2H20.8L21.8 16.2H27.7C29.6 16.2 30.7 17 30.7 18.2C30.7 19.5 29.5 20.2 28 20.2Z" fill="#0A85EA"/>
-  <path d="M16.5 30L23.2 16.5H27L20.2 30H16.5Z" fill="#3395FF" opacity="0.9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#0C2340"/>
+  <!-- Razor Ribbon -->
+  <path d="M38 16H24L17 48H27L30 35H36L43 48H52L44 33C48 31 50 27 50 23C50 18 46 16 38 16ZM37 27H28L29 22H37C39.5 22 41 23 41 24.5C41 26 39.5 27 37 27Z" fill="#0C83FD"/>
+  <path d="M22 40L31 22H36L27 40H22Z" fill="#3395FF" opacity="0.9"/>
+  <text x="12" y="57" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="bold" fill="#FFFFFF">Razorpay</text>
 </svg>

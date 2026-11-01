@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#F26522" stroke-width="1.5"/>
-  <circle cx="16" cy="24" r="8" fill="#F26522"/>
-  <path d="M16 12V16M16 32V36M6 24H10M22 24H26" stroke="#F26522" stroke-width="2.2"/>
-  <text x="24" y="27" font-family="sans-serif" font-size="9" font-weight="bold" fill="#F26522">Baroda</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#FFFFFF" stroke="#F26522" stroke-width="2"/>
+  <!-- Stylized Baroda Figures / Sun -->
+  <circle cx="20" cy="32" r="11" fill="#F26522"/>
+  <circle cx="20" cy="32" r="6" fill="#FFFFFF"/>
+  <path d="M20 16V21M20 43V48M7 32H12M28 32H33" stroke="#F26522" stroke-width="3" stroke-linecap="round"/>
+  <!-- Baroda Pay Text -->
+  <text x="34" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="7.5" font-weight="900" fill="#008848">BHIM</text>
+  <text x="34" y="41" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="900" fill="#F26522">Baroda</text>
+  <text x="34" y="52" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="900" fill="#F26522">Pay</text>
 </svg>

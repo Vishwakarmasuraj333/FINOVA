@@ -54,8 +54,8 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
   // Generate breadcrumb title
   const getBreadcrumbTitle = () => {
     if (pathname === '/dashboard') return 'Financial Overview';
-    if (pathname === '/analytics') return 'Real Analytics & Fund Flow Hierarchy';
-    if (pathname === '/admin/financial-summary') return 'Financial Control Center (Consolidated)';
+    if (pathname === '/analytics') return 'Analytics & Fund Flows';
+    if (pathname === '/admin/financial-summary') return 'Financial Summary';
     if (pathname === '/transactions') return 'All Transactions Ledger';
     if (pathname === '/providers') return 'Payment Providers & Rails';
     if (pathname === '/payment-methods') return 'Payment Methods & Integrations';
@@ -102,26 +102,25 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
             {getBreadcrumbTitle()}
           </h1>
         </div>
-
-        {/* Live Production Switch Badge */}
-        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-bold text-emerald-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>ENTERPRISE PRODUCTION SWITCH</span>
-        </div>
       </div>
 
       {/* Right Area: Search, Sync, Role Switcher, Theme, Profile */}
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* Global Search Button */}
+        {/* Global Command / Quick Search Bar */}
         <button
           onClick={onOpenSearch}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1A211B] border border-[#303A31] dark:bg-[#1A211B] dark:border-[#303A31] light:bg-[#F8FAF7] light:border-[#E1E8DF] text-xs text-[#A0ACA1] hover:text-[#F4F7F1] dark:hover:text-[#F4F7F1] light:hover:text-[#192219] transition-colors"
+          className="flex items-center justify-between w-36 sm:w-56 md:w-68 lg:w-80 px-3.5 py-2 rounded-xl bg-[#141A15] border border-[#303A31] dark:bg-[#141A15] dark:border-[#303A31] light:bg-[#F4F8F3] light:border-[#D5DFD3] text-xs text-[#A0ACA1] hover:text-[#F4F7F1] dark:hover:text-[#F4F7F1] light:hover:text-[#192219] hover:border-brand-primary/50 transition-all shadow-xs group"
+          title="Global Financial Search (⌘K)"
         >
-          <Search size={14} />
-          <span className="hidden md:inline">Search...</span>
-          <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[9px] rounded bg-[#131814] dark:bg-[#131814] light:bg-[#E1E8DF]/60 border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] font-mono">
-            ⌘K
-          </kbd>
+          <div className="flex items-center gap-2.5 truncate">
+            <Search size={15} className="text-[#A0ACA1] group-hover:text-brand-primary transition-colors shrink-0" />
+            <span className="truncate text-xs font-medium">Search txns, accounts, UTR...</span>
+          </div>
+          <div className="flex items-center gap-1 shrink-0 ml-2">
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono rounded-md bg-[#1C251E] dark:bg-[#1C251E] light:bg-white border border-[#303A31] dark:border-[#303A31] light:border-[#D5DFD3] text-[#A0ACA1] shadow-2xs font-semibold">
+              ⌘K
+            </kbd>
+          </div>
         </button>
 
         {/* Manual Data Sync Trigger */}

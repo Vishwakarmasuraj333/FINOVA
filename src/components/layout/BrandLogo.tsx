@@ -6,6 +6,7 @@ import Link from 'next/link';
 interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg';
   showTagline?: boolean;
+  iconOnly?: boolean;
   href?: string;
   className?: string;
 }
@@ -13,6 +14,7 @@ interface BrandLogoProps {
 export function BrandLogo({
   size = 'md',
   showTagline = false,
+  iconOnly = false,
   href = '/',
   className = '',
 }: BrandLogoProps) {
@@ -70,21 +72,23 @@ export function BrandLogo({
         </svg>
       </div>
 
-      <div className="flex flex-col">
-        <div className="flex items-center gap-1.5">
-          <span className={`font-black tracking-tight text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] ${textSizes[size]}`}>
-            FIN<span className="text-brand-primary dark:text-brand-primary light:text-brand-primary-light">OVA</span>
-          </span>
-          <span className="text-[9px] px-1.5 py-0.2 rounded-md font-bold uppercase tracking-wider bg-brand-primary/15 text-brand-primary dark:text-brand-primary light:text-brand-primary-light border border-brand-primary/30">
-            ENTERPRISE
-          </span>
+      {!iconOnly && (
+        <div className="flex flex-col">
+          <div className="flex items-center gap-1.5">
+            <span className={`font-black tracking-tight text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] ${textSizes[size]}`}>
+              FIN<span className="text-brand-primary dark:text-brand-primary light:text-brand-primary-light">OVA</span>
+            </span>
+            <span className="text-[9px] px-1.5 py-0.2 rounded-md font-bold uppercase tracking-wider bg-brand-primary/15 text-brand-primary dark:text-brand-primary light:text-brand-primary-light border border-brand-primary/30">
+              ENTERPRISE
+            </span>
+          </div>
+          {showTagline && (
+            <span className="text-[10px] tracking-wide text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] -mt-0.5">
+              All Your Payments. One Clear View.
+            </span>
+          )}
         </div>
-        {showTagline && (
-          <span className="text-[10px] tracking-wide text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] -mt-0.5">
-            All Your Payments. One Clear View.
-          </span>
-        )}
-      </div>
+      )}
     </div>
   );
 

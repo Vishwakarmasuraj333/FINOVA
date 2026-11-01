@@ -61,7 +61,7 @@
       "code": "razorpay",
       "category": "GATEWAY",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "PAYOUTS",
@@ -79,7 +79,7 @@
       ],
       "health_score": 99,
       "merchant_id_masked": "rzp_test_••••9812",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_cashfree",
@@ -87,7 +87,7 @@
       "code": "cashfree",
       "category": "GATEWAY",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "PAYOUTS",
@@ -103,7 +103,7 @@
       ],
       "health_score": 97,
       "merchant_id_masked": "CF_MERCH_••••3341",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_phonepe",
@@ -111,7 +111,7 @@
       "code": "phonepe",
       "category": "UPI",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS",
@@ -126,7 +126,7 @@
       ],
       "health_score": 98,
       "merchant_id_masked": "PHONEPE_M••••4829",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_paytm",
@@ -134,7 +134,7 @@
       "code": "paytm",
       "category": "GATEWAY",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS",
@@ -149,7 +149,7 @@
       ],
       "health_score": 95,
       "merchant_id_masked": "PAYTM_MID_••••5019",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_gpay",
@@ -157,7 +157,7 @@
       "code": "gpay",
       "category": "UPI",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS"
@@ -170,7 +170,7 @@
       ],
       "health_score": 99,
       "merchant_id_masked": "gpay_biz_••••8821",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_bhim",
@@ -178,7 +178,7 @@
       "code": "bhim",
       "category": "UPI",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS"
@@ -191,7 +191,7 @@
       ],
       "health_score": 96,
       "merchant_id_masked": "bhim.finova@npci",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_stripe",
@@ -199,7 +199,7 @@
       "code": "stripe",
       "category": "GATEWAY",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS",
@@ -215,7 +215,7 @@
       ],
       "health_score": 100,
       "merchant_id_masked": "acct_••••8932",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_hdfc",
@@ -223,7 +223,7 @@
       "code": "hdfc_bank",
       "category": "BANK",
       "status": "CONNECTED",
-      "environment": "SANDBOX",
+      "environment": "PRODUCTION",
       "supported_operations": [
         "PAYOUTS",
         "SETTLEMENTS"
@@ -237,7 +237,7 @@
       ],
       "health_score": 99,
       "merchant_id_masked": "HDFC_CMS_••••0012",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_icici",
@@ -256,9 +256,9 @@
       "webhook_events": [
         "IMPS_OUTWARD_STATUS"
       ],
-      "health_score": 42,
+      "health_score": 0,
       "merchant_id_masked": "CORP_ICICI_••••9941",
-      "is_demo": true
+      "is_demo": false
     },
     {
       "id": "prov_payzapp",
@@ -417,7 +417,7 @@
       "code": "trupay",
       "category": "UPI",
       "status": "CONNECTED",
-      "environment": "PRODUCTION",
+      "environment": "SANDBOX",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS"
@@ -607,7 +607,7 @@
       "code": "citrus",
       "category": "GATEWAY",
       "status": "CONNECTED",
-      "environment": "PRODUCTION",
+      "environment": "SANDBOX",
       "supported_operations": [
         "PAYMENTS",
         "REFUNDS"
@@ -662,6 +662,325 @@
       ],
       "health_score": 98,
       "merchant_id_masked": "SBI_YONO_••••1184",
+      "is_demo": false
+    },
+    {
+      "id": "prov_bharatpe",
+      "name": "BharatPe Merchant QR & Switch",
+      "code": "bharatpe",
+      "category": "UPI",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.605Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/bharatpe",
+      "webhook_events": [
+        "qr.scanned",
+        "payment.settled"
+      ],
+      "health_score": 99.8,
+      "merchant_id_masked": "BP_MCH_••••7812",
+      "is_demo": false
+    },
+    {
+      "id": "prov_amazonpay",
+      "name": "Amazon Pay UPI & Wallet",
+      "code": "amazonpay",
+      "category": "UPI",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/amazonpay",
+      "webhook_events": [
+        "charge.success",
+        "refund.completed"
+      ],
+      "health_score": 99.6,
+      "merchant_id_masked": "AMZN_MERCH_••••4521",
+      "is_demo": false
+    },
+    {
+      "id": "prov_fino",
+      "name": "Fino Payments Bank Direct Switch",
+      "code": "fino",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/fino",
+      "webhook_events": [
+        "payout.processed",
+        "bank.ack"
+      ],
+      "health_score": 99.4,
+      "merchant_id_masked": "FINO_CMS_••••9012",
+      "is_demo": false
+    },
+    {
+      "id": "prov_bob",
+      "name": "BHIM Baroda Pay (Bank of Baroda)",
+      "code": "bob",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/baroda-pay",
+      "webhook_events": [
+        "upi.transfer.in",
+        "upi.transfer.out"
+      ],
+      "health_score": 99.5,
+      "merchant_id_masked": "BOB_UPI_••••6172",
+      "is_demo": false
+    },
+    {
+      "id": "prov_rbl",
+      "name": "RBL Bank BHIM Direct Switch",
+      "code": "rbl",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/rbl",
+      "webhook_events": [
+        "clearing.match",
+        "transfer.success"
+      ],
+      "health_score": 99.2,
+      "merchant_id_masked": "RBL_CORP_••••8831",
+      "is_demo": false
+    },
+    {
+      "id": "prov_sbi_pay",
+      "name": "BHIM SBI Pay (State Bank of India)",
+      "code": "sbi_pay",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/sbi-pay",
+      "webhook_events": [
+        "sbi.cib.inward",
+        "sbi.cib.settlement"
+      ],
+      "health_score": 99.7,
+      "merchant_id_masked": "SBIPAY_••••3419",
+      "is_demo": false
+    },
+    {
+      "id": "prov_paywiz",
+      "name": "Canara Bank PayWiz UPI",
+      "code": "paywiz",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/paywiz",
+      "webhook_events": [
+        "paywiz.ack",
+        "settlement.confirmed"
+      ],
+      "health_score": 99.1,
+      "merchant_id_masked": "CNRB_WIZ_••••5521",
+      "is_demo": false
+    },
+    {
+      "id": "prov_whatsapppay",
+      "name": "WhatsApp Pay UPI Switch",
+      "code": "whatsapppay",
+      "category": "UPI",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/whatsapp-pay",
+      "webhook_events": [
+        "wa.message.payment",
+        "wa.intent.success"
+      ],
+      "health_score": 99.3,
+      "merchant_id_masked": "WAPAY_••••1209",
+      "is_demo": false
+    },
+    {
+      "id": "prov_cred",
+      "name": "CRED Pay & Merchant Gateway",
+      "code": "cred",
+      "category": "UPI",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/cred",
+      "webhook_events": [
+        "cred.payment.captured",
+        "cred.reward.settled"
+      ],
+      "health_score": 99.4,
+      "merchant_id_masked": "CRED_MID_••••9941",
+      "is_demo": false
+    },
+    {
+      "id": "prov_paypal",
+      "name": "PayPal Global Commerce PG",
+      "code": "paypal",
+      "category": "GATEWAY",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/paypal",
+      "webhook_events": [
+        "PAYMENT.CAPTURE.COMPLETED"
+      ],
+      "health_score": 99.2,
+      "merchant_id_masked": "PP_LIVE_••••8814",
+      "is_demo": false
+    },
+    {
+      "id": "prov_rupay",
+      "name": "RuPay National Card Clearing Rail",
+      "code": "rupay",
+      "category": "CARD_NETWORK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/rupay",
+      "webhook_events": [
+        "rupay.auth.posted",
+        "rupay.clearing.file"
+      ],
+      "health_score": 99.9,
+      "merchant_id_masked": "RUPAY_NPCI_••••001",
+      "is_demo": false
+    },
+    {
+      "id": "prov_visa",
+      "name": "Visa Direct & Cybersource Gateway",
+      "code": "visa",
+      "category": "CARD_NETWORK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/visa",
+      "webhook_events": [
+        "visa.oct.success",
+        "visa.clearing.posted"
+      ],
+      "health_score": 99.9,
+      "merchant_id_masked": "VISA_DIR_••••4421",
+      "is_demo": false
+    },
+    {
+      "id": "prov_mastercard",
+      "name": "Mastercard Send & MPGS Rail",
+      "code": "mastercard",
+      "category": "CARD_NETWORK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/mastercard",
+      "webhook_events": [
+        "mc.send.completed",
+        "mc.settle.posted"
+      ],
+      "health_score": 99.9,
+      "merchant_id_masked": "MC_MPGS_••••5512",
+      "is_demo": false
+    },
+    {
+      "id": "prov_amex",
+      "name": "American Express Enterprise Gateway",
+      "code": "amex",
+      "category": "CARD_NETWORK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "supported_operations": [
+        "PAYMENTS",
+        "REFUNDS",
+        "SETTLEMENTS"
+      ],
+      "last_synced_at": "2026-11-01T12:59:12.628Z",
+      "last_sync_status": "SUCCESS",
+      "webhook_url": "https://api.finova.internal/webhooks/amex",
+      "webhook_events": [
+        "amex.charge.approved",
+        "amex.settle.direct"
+      ],
+      "health_score": 99.8,
+      "merchant_id_masked": "AMEX_GLB_••••7719",
       "is_demo": false
     }
   ],

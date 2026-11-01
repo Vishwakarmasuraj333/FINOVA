@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#131921"/>
-  <text x="6" y="23" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">amazon</text>
-  <text x="26" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="bold" fill="#FF9900">pay</text>
-  <path d="M9 28C14 31.5 22 31.5 27 28.5" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M28 28.2L26 27.2L26.8 29.5Z" fill="#FF9900"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#131921"/>
+  <text x="8" y="30" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">amazon</text>
+  <text x="36" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="bold" fill="#FF9900">pay</text>
+  <!-- Iconic Amazon Smile Arrow -->
+  <path d="M12 37C19 42 31 42 38 38" stroke="#FF9900" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M39 37.5L36.5 35.8L37.2 39.2Z" fill="#FF9900"/>
 </svg>

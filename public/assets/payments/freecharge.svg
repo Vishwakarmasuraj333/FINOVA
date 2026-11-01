@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#EB6324"/>
-  <circle cx="24" cy="24" r="15" fill="#EB6324"/>
-  <path d="M26 12L16 25H23L20 36L31 23H25L26 12Z" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#F15A24"/>
+  <circle cx="32" cy="32" r="24" fill="#F15A24"/>
+  <!-- Freecharge Lightning 'f' -->
+  <path d="M35 14L21 33H30L26 48L42 29H33L35 14Z" fill="#FFFFFF"/>
 </svg>

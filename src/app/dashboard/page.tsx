@@ -164,17 +164,17 @@ export default function DashboardPage() {
               setSelectedAppCode('phonepe');
               setMakePaymentOpen(true);
             }}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
           >
-            <Zap size={14} />
+            <Zap size={14} className="fill-black" />
             <span>+ Make / Collect Payment</span>
           </button>
 
           <button
             onClick={() => setAddAppOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#162118] border border-brand-primary/60 text-brand-primary hover:bg-brand-primary hover:text-black font-extrabold text-xs transition-all shadow-sm"
           >
-            <Plus size={14} />
+            <Plus size={15} strokeWidth={2.5} />
             <span>+ Connect App</span>
           </button>
 
@@ -182,7 +182,7 @@ export default function DashboardPage() {
           <a
             href="/api/export/csv?type=summary"
             download
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#A0ACA1] hover:text-[#F4F7F1] font-semibold text-xs hover:border-brand-primary/40 transition-colors shadow-xs"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#141A15] border border-[#303A31] text-[#F4F7F1] hover:text-brand-primary hover:border-brand-primary/50 font-bold text-xs transition-colors shadow-xs"
           >
             <Download size={14} />
             <span>CSV</span>
@@ -192,34 +192,54 @@ export default function DashboardPage() {
 
       {/* Connected Payment Rails Carousel & Instant Execution Bar */}
       <div className="p-4 rounded-2xl bg-[#1A211B] border border-[#303A31] dark:bg-[#1A211B] dark:border-[#303A31] light:bg-white light:border-[#E1E8DF]">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
             <h2 className="text-xs font-bold uppercase tracking-wider text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#4A554B]">
               Active Indian Payment Rails & Wallets (Click to Pay / Filter)
             </h2>
+            {selectedProvider !== 'all' && (
+              <button
+                onClick={() => setSelectedProvider('all')}
+                className="ml-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-primary/20 text-brand-primary hover:bg-brand-primary/30 border border-brand-primary/40 flex items-center gap-1"
+              >
+                <span>Filter Active</span>
+                <span className="font-mono text-xs">✕</span>
+              </button>
+            )}
           </div>
           <button
             onClick={() => setAddAppOpen(true)}
-            className="text-[11px] font-bold text-brand-primary hover:underline flex items-center gap-1"
+            className="text-[11px] font-bold text-brand-primary hover:underline flex items-center gap-1 self-start sm:self-auto"
           >
-            <span>+ Add New Rail</span>
+            <Plus size={12} strokeWidth={3} />
+            <span>Connect New Payment Rail</span>
           </button>
         </div>
 
         {/* Scrollable list of authentic payment app badges */}
-        <div className="flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-thin">
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-1.5 scrollbar-thin">
           {[
             { code: 'phonepe', name: 'PhonePe' },
             { code: 'paytm', name: 'Paytm' },
             { code: 'gpay', name: 'Google Pay' },
+            { code: 'bharatpe', name: 'BharatPe' },
             { code: 'bhim', name: 'BHIM UPI' },
+            { code: 'amazonpay', name: 'Amazon Pay' },
             { code: 'razorpay', name: 'Razorpay' },
             { code: 'cashfree', name: 'Cashfree' },
             { code: 'payzapp', name: 'PayZapp' },
             { code: 'freecharge', name: 'FreeCharge' },
             { code: 'mobikwik', name: 'MobiKwik' },
             { code: 'airtel', name: 'Airtel Money' },
+            { code: 'sbi_pay', name: 'BHIM SBI Pay' },
+            { code: 'bob', name: 'Baroda Pay' },
+            { code: 'rbl', name: 'RBL BHIM' },
+            { code: 'axis', name: 'BHIM Axis Pay' },
+            { code: 'paywiz', name: 'Canara PayWiz' },
+            { code: 'fino', name: 'Fino Payments Bank' },
+            { code: 'whatsapppay', name: 'WhatsApp Pay' },
+            { code: 'cred', name: 'CRED Pay' },
             { code: 'jiomoney', name: 'JioMoney' },
             { code: 'pockets', name: 'Pockets' },
             { code: 'chillr', name: 'Chillr' },
@@ -232,36 +252,58 @@ export default function DashboardPage() {
             { code: 'itzcash', name: 'ItzCash' },
             { code: 'mrupee', name: 'mRUPEE' },
             { code: 'quikwallet', name: 'QuikWallet' },
-            { code: 'axis', name: 'Axis Bank' },
             { code: 'sbi', name: 'SBI Buddy' },
+            { code: 'citrus', name: 'Citrus Pay' },
             { code: 'hdfc_bank', name: 'HDFC CMS' },
             { code: 'stripe', name: 'Stripe' },
+            { code: 'paypal', name: 'PayPal' },
+            { code: 'rupay', name: 'RuPay' },
+            { code: 'visa', name: 'Visa' },
+            { code: 'mastercard', name: 'Mastercard' },
+            { code: 'amex', name: 'Amex' },
           ].map(app => {
             const isSelected = selectedProvider === `prov_${app.code}`;
             return (
-              <button
+              <div
                 key={app.code}
-                onClick={() => {
-                  if (isSelected) {
-                    setSelectedProvider('all');
-                  } else {
-                    setSelectedProvider(`prov_${app.code}`);
-                  }
-                }}
-                onDoubleClick={() => {
-                  setSelectedAppCode(app.code);
-                  setMakePaymentOpen(true);
-                }}
-                title={`Click to filter, double-click to pay via ${app.name}`}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border shrink-0 transition-all text-xs font-semibold ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border shrink-0 transition-all text-xs font-semibold ${
                   isSelected
                     ? 'bg-brand-primary text-black border-brand-primary font-bold shadow-xs'
                     : 'bg-[#141A15] border-[#2B362C] text-[#F4F7F1] hover:border-brand-primary/50 hover:bg-[#1A231C]'
                 }`}
               >
-                <ProviderBadge code={app.code} iconOnly size="sm" />
-                <span className="truncate">{app.name}</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (isSelected) {
+                      setSelectedProvider('all');
+                    } else {
+                      setSelectedProvider(`prov_${app.code}`);
+                    }
+                  }}
+                  title={`Click to filter transactions by ${app.name}`}
+                  className="flex items-center gap-2"
+                >
+                  <ProviderBadge code={app.code} iconOnly size="sm" />
+                  <span className="truncate">{app.name}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedAppCode(app.code);
+                    setMakePaymentOpen(true);
+                  }}
+                  title={`Instant Pay via ${app.name}`}
+                  className={`ml-1 px-1.5 py-0.5 rounded-md text-[10px] font-extrabold transition-colors ${
+                    isSelected
+                      ? 'bg-black/20 text-black hover:bg-black hover:text-brand-primary'
+                      : 'bg-brand-primary/20 text-brand-primary hover:bg-brand-primary hover:text-black'
+                  }`}
+                >
+                  ⚡ Pay
+                </button>
+              </div>
             );
           })}
         </div>

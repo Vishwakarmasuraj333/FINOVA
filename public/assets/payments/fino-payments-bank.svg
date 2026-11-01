@@ -1,5 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#FFFFFF" stroke="#9C1A2E" stroke-width="1.5"/>
-  <path d="M16 16L19 21H24L20 24L22 29L16 26L10 29L12 24L8 21H13L16 16Z" stroke="#9C1A2E" stroke-width="2" fill="#FFF0F2"/>
-  <text x="24" y="27" font-family="sans-serif" font-size="10" font-weight="bold" fill="#1C3F7A">Fino</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#FFFFFF" stroke="#9C1A2E" stroke-width="2"/>
+  <!-- Red Star with Blue Arc -->
+  <path d="M20 18L23 25H30L25 29L27 36L20 32L13 36L15 29L10 25H17L20 18Z" stroke="#D92534" stroke-width="2.5" fill="#FFF0F2"/>
+  <path d="M12 37C16 41 24 41 28 37" stroke="#1C3F7A" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Fino Wordmark -->
+  <text x="32" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="900" fill="#1C3F7A">Fino</text>
+  <text x="32" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6.5" font-weight="bold" fill="#D92534">Payments Bank</text>
 </svg>

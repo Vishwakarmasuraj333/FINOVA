@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#006FCF"/>
-  <rect x="7" y="12" width="34" height="24" stroke="#FFFFFF" stroke-width="2" fill="none"/>
-  <text x="10" y="28" font-family="sans-serif" font-size="10.5" font-weight="900" fill="#FFFFFF">AMEX</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#006FCF"/>
+  <rect x="9" y="16" width="46" height="32" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
+  <text x="13" y="37" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="900" fill="#FFFFFF">AMEX</text>
 </svg>

@@ -16,6 +16,7 @@ import {
   ArrowRight,
   Lock,
   Zap,
+  Trash2,
 } from 'lucide-react';
 import { PaymentProvider } from '@/types';
 import { ProviderBadge } from '@/components/shared/ProviderBadge';
@@ -148,7 +149,32 @@ export default function ProvidersPage() {
       setIsAddOpen(false);
       fetchProviders();
     } catch (err: any) {
-      alert(err.message);
+      setFeedbackMessage({ id: 'config_err', text: err.message, isError: true });
+    }
+  };
+
+  // Disconnect / Delete Provider
+  const handleDeleteProvider = async (provider: PaymentProvider) => {
+    setActionLoadingId(provider.id);
+    setFeedbackMessage(null);
+    try {
+      const res = await fetch(`/api/providers?id=${provider.id}`, {
+        method: 'DELETE',
+        headers: {
+          'x-user-role': currentUser.role,
+          'x-user-name': currentUser.name,
+        },
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Failed to remove provider');
+      }
+      setFeedbackMessage({ id: provider.id, text: `Successfully disconnected rail ${provider.name}.` });
+      fetchProviders();
+    } catch (err: any) {
+      setFeedbackMessage({ id: provider.id, text: err.message, isError: true });
+    } finally {
+      setActionLoadingId(null);
     }
   };
 
@@ -339,6 +365,16 @@ export default function ProvidersPage() {
                 >
                   <ExternalLink size={15} />
                 </Link>
+
+                <button
+                  type="button"
+                  onClick={() => handleDeleteProvider(provider)}
+                  disabled={isProcessing}
+                  className="p-1.5 rounded-lg text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors"
+                  title={`Disconnect & remove ${provider.name}`}
+                >
+                  <Trash2 size={15} />
+                </button>
               </div>
             </div>
           );

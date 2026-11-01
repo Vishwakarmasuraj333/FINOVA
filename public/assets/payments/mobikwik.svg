@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <rect width="48" height="48" rx="12" fill="#002E6E"/>
-  <path d="M11 33V15L17 24L23 15V33H19.5V21.5L17 25.5L14.5 21.5V33H11Z" fill="#00BAF2"/>
-  <path d="M25 33V15L31 24L37 15V33H33.5V21.5L31 25.5L28.5 21.5V33H25Z" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#004F9F"/>
+  <path d="M14 44V20L22 32L30 20V44H25.5V28L22 34L18.5 28V44H14Z" fill="#00BAF2"/>
+  <path d="M32 44V20L40 32L48 20V44H43.5V28L40 34L36.5 28V44H32Z" fill="#FFFFFF"/>
+  <text x="11" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="900" fill="#FFFFFF" letter-spacing="0.5">MobiKwik</text>
 </svg>

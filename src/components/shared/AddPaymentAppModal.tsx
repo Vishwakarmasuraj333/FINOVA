@@ -182,7 +182,7 @@ export function AddPaymentAppModal({
                 />
               </div>
 
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-44 overflow-y-auto p-1.5 rounded-2xl bg-[#1A211B]/60 border border-[#303A31]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-h-56 overflow-y-auto p-2 rounded-2xl bg-[#1A211B]/60 border border-[#303A31] scrollbar-thin">
                 {filteredApps.map(app => {
                   const isSelected = selectedApp.code === app.code;
                   return (
@@ -190,15 +190,18 @@ export function AddPaymentAppModal({
                       key={app.code}
                       type="button"
                       onClick={() => handleSelectApp(app)}
-                      className={`flex flex-col items-center justify-center p-2 rounded-xl border text-center transition-all ${
+                      className={`flex flex-col items-center justify-center p-2.5 rounded-xl border text-center transition-all ${
                         isSelected
                           ? 'bg-brand-primary/20 border-brand-primary text-[#F4F7F1] shadow-xs'
                           : 'bg-[#141A15] border-[#2A352B] text-[#A0ACA1] hover:text-[#F4F7F1] hover:border-brand-primary/40'
                       }`}
                     >
                       <ProviderBadge code={app.code} iconOnly size="sm" />
-                      <span className="mt-1 text-[11px] font-bold truncate max-w-full">
+                      <span className="mt-1.5 text-[11px] font-bold truncate max-w-full">
                         {app.name}
+                      </span>
+                      <span className="text-[9px] text-[#A0ACA1] truncate max-w-full">
+                        {app.type}
                       </span>
                     </button>
                   );
@@ -273,7 +276,7 @@ export function AddPaymentAppModal({
             <div className="p-3.5 rounded-xl bg-[#1A211B] border border-[#303A31] flex items-center gap-2.5 text-xs text-[#A0ACA1]">
               <Lock size={15} className="text-brand-primary shrink-0" />
               <span>
-                Zero credential exposure: Antigravity connects via official TLS 1.3 mTLS merchant tokens.
+                Zero credential exposure: FINOVA Enterprise connects via official TLS 1.3 mTLS merchant tokens.
               </span>
             </div>
 
