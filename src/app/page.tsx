@@ -31,7 +31,7 @@ import { StatusBadge } from '@/components/shared/StatusBadge';
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'all' | 'upi' | 'gateways' | 'wallets' | 'banks'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'upi' | 'gateways' | 'wallets' | 'banks' | 'cards'>('all');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +42,16 @@ export default function LandingPage() {
   }, []);
 
   const providerEcosystem = [
+    // UPI Rails
+    {
+      code: 'bharatpe',
+      name: 'BharatPe Merchant QR & POS',
+      category: 'upi',
+      status: 'CONNECTED',
+      capability: 'Zero-MDR Interoperable Merchant QR & Daily Settlement',
+      lastSync: 'Live (Just now)',
+      href: '/providers',
+    },
     {
       code: 'phonepe',
       name: 'PhonePe for Business',
@@ -65,7 +75,7 @@ export default function LandingPage() {
       name: 'Google Pay for Business',
       category: 'upi',
       status: 'CONNECTED',
-      capability: 'Spot Payments & Authorized Merchant UPI',
+      capability: 'Spot Payments & Authorized Merchant UPI 2.0',
       lastSync: 'Live (8m ago)',
       href: '/providers',
     },
@@ -74,10 +84,57 @@ export default function LandingPage() {
       name: 'BHIM UPI NPCI Direct Switch',
       category: 'upi',
       status: 'CONNECTED',
-      capability: 'Unified UPI 2.0 Settlement & Direct Debits',
+      capability: 'Unified UPI 2.0 Settlement & Direct NPCI Chevrons',
       lastSync: 'Live (25m ago)',
       href: '/providers',
     },
+    {
+      code: 'amazonpay',
+      name: 'Amazon Pay UPI & Merchant',
+      category: 'upi',
+      status: 'CONNECTED',
+      capability: 'Amazon Pay UPI Dynamic Invoicing & Wallet',
+      lastSync: 'Live (11m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'whatsapppay',
+      name: 'WhatsApp Pay (Meta / NPCI)',
+      category: 'upi',
+      status: 'CONNECTED',
+      capability: 'Conversational UPI Invoicing & Chatbot Payments',
+      lastSync: 'Live (19m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'cred',
+      name: 'CRED Pay Premium Rail',
+      category: 'upi',
+      status: 'CONNECTED',
+      capability: 'High-Ticket Premium UPI Rail & Instant Rebates',
+      lastSync: 'Live (30m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'aadhaar',
+      name: 'Aadhaar Pay (AePS NPCI)',
+      category: 'upi',
+      status: 'CONNECTED',
+      capability: 'UIDAI Biometric Micro-ATM & Merchant Aadhaar Pay',
+      lastSync: 'Live (7m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'trupay',
+      name: 'Trupay Unified Switch',
+      category: 'upi',
+      status: 'CONNECTED',
+      capability: 'Direct Bank-to-Bank IMPS/UPI clearing',
+      lastSync: 'Live (35m ago)',
+      href: '/providers',
+    },
+
+    // Payment Gateways
     {
       code: 'razorpay',
       name: 'Razorpay Gateway & Payouts',
@@ -96,6 +153,26 @@ export default function LandingPage() {
       lastSync: 'Live (12m ago)',
       href: '/providers',
     },
+    {
+      code: 'stripe',
+      name: 'Stripe Global Payments',
+      category: 'gateways',
+      status: 'CONNECTED',
+      capability: 'Cross-Border Invoicing & Multi-Currency',
+      lastSync: 'Live (5m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'paypal',
+      name: 'PayPal Merchant Commerce',
+      category: 'gateways',
+      status: 'CONNECTED',
+      capability: 'Global Cross-Border Buyer Protection Rail',
+      lastSync: 'Live (28m ago)',
+      href: '/providers',
+    },
+
+    // Wallets & Consumer Services
     {
       code: 'payzapp',
       name: 'PayZapp by HDFC Bank',
@@ -151,33 +228,6 @@ export default function LandingPage() {
       href: '/providers',
     },
     {
-      code: 'chillr',
-      name: 'Chillr Multi-Bank IMPS',
-      category: 'upi',
-      status: 'CONNECTED',
-      capability: 'Instant P2M Corporate Settlements',
-      lastSync: 'Live (22m ago)',
-      href: '/providers',
-    },
-    {
-      code: 'trupay',
-      name: 'Trupay Unified Switch',
-      category: 'upi',
-      status: 'CONNECTED',
-      capability: 'Direct Bank-to-Bank IMPS/UPI clearing',
-      lastSync: 'Live (35m ago)',
-      href: '/providers',
-    },
-    {
-      code: 'oxigen',
-      name: 'Oxigen Services & Wallet',
-      category: 'wallets',
-      status: 'CONNECTED',
-      capability: 'RBL White-label Prepaid & Merchant Cash-in',
-      lastSync: 'Live (40m ago)',
-      href: '/providers',
-    },
-    {
       code: 'moneyonmobile',
       name: 'MoneyOnMobile Digital M-Purse',
       category: 'wallets',
@@ -205,29 +255,11 @@ export default function LandingPage() {
       href: '/providers',
     },
     {
-      code: 'aadhaar',
-      name: 'Aadhaar Pay (AePS NPCI)',
-      category: 'upi',
-      status: 'CONNECTED',
-      capability: 'UIDAI Biometric Micro-ATM & Merchant Aadhaar Pay',
-      lastSync: 'Live (7m ago)',
-      href: '/providers',
-    },
-    {
       code: 'itzcash',
       name: 'ItzCash Card & Payouts',
       category: 'wallets',
       status: 'CONNECTED',
       capability: 'EbixCash FinTech Network Integration',
-      lastSync: 'Live (1h ago)',
-      href: '/providers',
-    },
-    {
-      code: 'mrupee',
-      name: 'mRUPEE Mobile Payment',
-      category: 'wallets',
-      status: 'CONNECTED',
-      capability: 'Tata Teleservices PPI Settlement Bridge',
       lastSync: 'Live (1h ago)',
       href: '/providers',
     },
@@ -240,13 +272,80 @@ export default function LandingPage() {
       lastSync: 'Live (1h ago)',
       href: '/providers',
     },
+
+    // Discontinued / Historical Services (Honest Audit Ledger Retention)
+    {
+      code: 'chillr',
+      name: 'Chillr Multi-Bank IMPS (Historic)',
+      category: 'upi',
+      status: 'DISCONTINUED',
+      capability: 'Ceased 2021; historical ledger entries preserved for audit',
+      lastSync: 'Archived Audit',
+      href: '/providers',
+    },
+    {
+      code: 'oxigen',
+      name: 'Oxigen Services & Wallet (Historic)',
+      category: 'wallets',
+      status: 'DISCONTINUED',
+      capability: 'Surrendered PPI license; settlement balances preserved',
+      lastSync: 'Archived Audit',
+      href: '/providers',
+    },
+    {
+      code: 'sbi_buddy',
+      name: 'State Bank Buddy (Historic)',
+      category: 'wallets',
+      status: 'DISCONTINUED',
+      capability: 'Merged into SBI YONO; legacy ledger preserved',
+      lastSync: 'Archived Audit',
+      href: '/providers',
+    },
+    {
+      code: 'mrupee',
+      name: 'mRUPEE Mobile Payment (Historic)',
+      category: 'wallets',
+      status: 'DISCONTINUED',
+      capability: 'Discontinued telecom PPI bridge; statutory audit intact',
+      lastSync: 'Archived Audit',
+      href: '/providers',
+    },
     {
       code: 'citrus',
-      name: 'Citrus Pay Express PG',
+      name: 'Citrus Pay Express PG (Historic)',
       category: 'gateways',
+      status: 'DISCONTINUED',
+      capability: 'Merged into PayU India; historical records retained',
+      lastSync: 'Archived Audit',
+      href: '/providers',
+    },
+
+    // Corporate Banks
+    {
+      code: 'fino',
+      name: 'Fino Payments Bank Cash Point',
+      category: 'banks',
       status: 'CONNECTED',
-      capability: 'Checkout Vault & Tokenized Debit/Credit clearing',
-      lastSync: 'Live (1h ago)',
+      capability: 'AePS Biometric Escrow & Micro-ATM Cash Points',
+      lastSync: 'Live (3m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'bob',
+      name: 'BHIM Baroda Pay (Bank of Baroda)',
+      category: 'banks',
+      status: 'CONNECTED',
+      capability: 'Bank of Baroda Merchant UPI Host & H2H Payouts',
+      lastSync: 'Live (7m ago)',
+      href: '/providers',
+    },
+    {
+      code: 'rbl',
+      name: 'RBL Bank BHIM Direct Switch',
+      category: 'banks',
+      status: 'CONNECTED',
+      capability: 'RBL Bank Fintech Clearing & Corporate CMS',
+      lastSync: 'Live (10m ago)',
       href: '/providers',
     },
     {
@@ -260,7 +359,7 @@ export default function LandingPage() {
     },
     {
       code: 'sbi',
-      name: 'SBI Buddy / YONO Corporate',
+      name: 'SBI Corporate YONO CMS',
       category: 'banks',
       status: 'CONNECTED',
       capability: 'State Bank of India Corporate Cash Management',
@@ -276,13 +375,42 @@ export default function LandingPage() {
       lastSync: 'Live (Just now)',
       href: '/providers',
     },
+
+    // Card Networks
     {
-      code: 'stripe',
-      name: 'Stripe Global Payments',
-      category: 'gateways',
+      code: 'visa',
+      name: 'Visa International Network',
+      category: 'cards',
       status: 'CONNECTED',
-      capability: 'Cross-Border Invoicing & Multi-Currency',
-      lastSync: 'Live (5m ago)',
+      capability: 'Global 3D-Secure 2.0 Credit & Debit Clearing',
+      lastSync: 'Live (Just now)',
+      href: '/providers',
+    },
+    {
+      code: 'mastercard',
+      name: 'Mastercard Worldwide Rail',
+      category: 'cards',
+      status: 'CONNECTED',
+      capability: 'EMV Tokenized Card Vault & Instant Settling',
+      lastSync: 'Live (Just now)',
+      href: '/providers',
+    },
+    {
+      code: 'rupay',
+      name: 'RuPay National Card Rail (NPCI)',
+      category: 'cards',
+      status: 'CONNECTED',
+      capability: 'Sovereign Domestic Zero/Low-MDR Card Network',
+      lastSync: 'Live (Just now)',
+      href: '/providers',
+    },
+    {
+      code: 'amex',
+      name: 'American Express Enterprise',
+      category: 'cards',
+      status: 'CONNECTED',
+      capability: 'Corporate Centurion Card Vault & Direct Settling',
+      lastSync: 'Live (Just now)',
       href: '/providers',
     },
   ];
@@ -611,10 +739,14 @@ export default function LandingPage() {
             {/* Grid of All Real Payment App Icons */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {[
+                { code: 'bharatpe', name: 'BharatPe' },
                 { code: 'phonepe', name: 'PhonePe' },
                 { code: 'paytm', name: 'Paytm' },
                 { code: 'gpay', name: 'Google Pay' },
                 { code: 'bhim', name: 'BHIM UPI' },
+                { code: 'amazonpay', name: 'Amazon Pay' },
+                { code: 'whatsapppay', name: 'WhatsApp Pay' },
+                { code: 'cred', name: 'CRED Pay' },
                 { code: 'razorpay', name: 'Razorpay' },
                 { code: 'cashfree', name: 'Cashfree' },
                 { code: 'payzapp', name: 'PayZapp (HDFC)' },
@@ -623,6 +755,15 @@ export default function LandingPage() {
                 { code: 'airtel', name: 'Airtel Money' },
                 { code: 'jiomoney', name: 'JioMoney' },
                 { code: 'pockets', name: 'Pockets (ICICI)' },
+                { code: 'fino', name: 'Fino Bank' },
+                { code: 'bob', name: 'BHIM Baroda Pay' },
+                { code: 'rbl', name: 'RBL Bank' },
+                { code: 'axis', name: 'Axis Bank' },
+                { code: 'sbi', name: 'SBI Corporate' },
+                { code: 'visa', name: 'Visa' },
+                { code: 'mastercard', name: 'Mastercard' },
+                { code: 'rupay', name: 'RuPay' },
+                { code: 'amex', name: 'Amex' },
                 { code: 'chillr', name: 'Chillr' },
                 { code: 'trupay', name: 'Trupay' },
                 { code: 'oxigen', name: 'Oxigen' },
@@ -633,8 +774,7 @@ export default function LandingPage() {
                 { code: 'itzcash', name: 'ItzCash' },
                 { code: 'mrupee', name: 'mRUPEE' },
                 { code: 'quikwallet', name: 'QuikWallet' },
-                { code: 'axis', name: 'Axis Bank' },
-                { code: 'sbi', name: 'SBI Buddy' },
+                { code: 'citrus', name: 'Citrus Pay' },
               ].map(app => (
                 <div
                   key={app.code}
@@ -675,7 +815,7 @@ export default function LandingPage() {
                   activeTab === 'all' ? 'bg-brand-primary text-black' : 'text-[#A0ACA1] hover:text-[#F4F7F1]'
                 }`}
               >
-                All (27)
+                All ({providerEcosystem.length})
               </button>
               <button
                 onClick={() => setActiveTab('upi')}
@@ -683,7 +823,7 @@ export default function LandingPage() {
                   activeTab === 'upi' ? 'bg-brand-primary text-black' : 'text-[#A0ACA1] hover:text-[#F4F7F1]'
                 }`}
               >
-                UPI Rails (6)
+                UPI Rails ({providerEcosystem.filter(p => p.category === 'upi').length})
               </button>
               <button
                 onClick={() => setActiveTab('wallets')}
@@ -691,7 +831,7 @@ export default function LandingPage() {
                   activeTab === 'wallets' ? 'bg-brand-primary text-black' : 'text-[#A0ACA1] hover:text-[#F4F7F1]'
                 }`}
               >
-                Wallets (12)
+                Wallets ({providerEcosystem.filter(p => p.category === 'wallets').length})
               </button>
               <button
                 onClick={() => setActiveTab('gateways')}
@@ -699,7 +839,7 @@ export default function LandingPage() {
                   activeTab === 'gateways' ? 'bg-brand-primary text-black' : 'text-[#A0ACA1] hover:text-[#F4F7F1]'
                 }`}
               >
-                Gateways (5)
+                Gateways ({providerEcosystem.filter(p => p.category === 'gateways').length})
               </button>
               <button
                 onClick={() => setActiveTab('banks')}
@@ -707,7 +847,15 @@ export default function LandingPage() {
                   activeTab === 'banks' ? 'bg-brand-primary text-black' : 'text-[#A0ACA1] hover:text-[#F4F7F1]'
                 }`}
               >
-                Banking (4)
+                Banking ({providerEcosystem.filter(p => p.category === 'banks').length})
+              </button>
+              <button
+                onClick={() => setActiveTab('cards')}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  activeTab === 'cards' ? 'bg-brand-primary text-black' : 'text-[#A0ACA1] hover:text-[#F4F7F1]'
+                }`}
+              >
+                Card Networks ({providerEcosystem.filter(p => p.category === 'cards').length})
               </button>
             </div>
           </div>

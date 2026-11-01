@@ -276,7 +276,7 @@ export default function LoginPage() {
 
       {/* Footer */}
       <footer className="border-t border-[#303A31]/70 px-6 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-[#A0ACA1] gap-2">
-        <p>© 2026 ONEPAY Enterprise Technologies Ltd. All rights reserved.</p>
+        <p>© 2026 FINOVA Enterprise Technologies Ltd. All rights reserved.</p>
         <div className="flex items-center gap-4">
           <a href="#compliance" className="hover:text-brand-primary">SOC 2 Type II</a>
           <span>•</span>

@@ -202,7 +202,7 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   LIVE SWITCH ACTIVE
                 </span>
-                <span className="text-[10px] text-[#A0ACA1] font-mono">ONEPAY v3.0</span>
+                <span className="text-[10px] text-[#A0ACA1] font-mono">FINOVA v3.0</span>
               </div>
               <p className="text-[10px] text-[#A0ACA1] leading-tight">
                 Production multi-rail routing. Double-entry ledger verified.
@@ -210,7 +210,7 @@ export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {
             </div>
           ) : (
             <div className="flex justify-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" title="ONEPAY Live Switch Active" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" title="FINOVA Live Switch Active" />
             </div>
           )}
         </div>

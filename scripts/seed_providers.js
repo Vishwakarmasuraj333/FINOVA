@@ -338,7 +338,7 @@ const sampleTxns = [
     initiated_at: '2026-10-31T11:45:00.000Z',
     completed_at: '2026-10-31T11:45:02.000Z',
     sender_name: 'Aditya Kashyap (PayZapp)',
-    recipient_name: 'ONEPAY Enterprise Treasury',
+    recipient_name: 'FINOVA Enterprise Treasury',
     reconciliation_status: 'RECONCILED',
     is_demo: false,
   },
@@ -360,7 +360,7 @@ const sampleTxns = [
     initiated_at: '2026-10-31T11:30:00.000Z',
     completed_at: '2026-10-31T11:30:01.000Z',
     sender_name: 'Rahul Verma (FreeCharge)',
-    recipient_name: 'ONEPAY Enterprise Treasury',
+    recipient_name: 'FINOVA Enterprise Treasury',
     reconciliation_status: 'RECONCILED',
     is_demo: false,
   },
@@ -382,7 +382,7 @@ const sampleTxns = [
     initiated_at: '2026-10-31T11:15:00.000Z',
     completed_at: '2026-10-31T11:15:03.000Z',
     sender_name: 'MobiKwik Zip User',
-    recipient_name: 'ONEPAY Enterprise Treasury',
+    recipient_name: 'FINOVA Enterprise Treasury',
     reconciliation_status: 'RECONCILED',
     is_demo: false,
   },
@@ -404,7 +404,7 @@ const sampleTxns = [
     initiated_at: '2026-10-31T11:00:00.000Z',
     completed_at: '2026-10-31T11:00:02.000Z',
     sender_name: 'Airtel Money Merchant Pool',
-    recipient_name: 'ONEPAY Enterprise Treasury',
+    recipient_name: 'FINOVA Enterprise Treasury',
     reconciliation_status: 'RECONCILED',
     is_demo: false,
   },
@@ -426,7 +426,7 @@ const sampleTxns = [
     initiated_at: '2026-10-31T10:45:00.000Z',
     completed_at: '2026-10-31T10:45:01.000Z',
     sender_name: 'AePS Biometric Terminal #401',
-    recipient_name: 'ONEPAY Enterprise Treasury',
+    recipient_name: 'FINOVA Enterprise Treasury',
     reconciliation_status: 'RECONCILED',
     is_demo: false,
   },
@@ -448,7 +448,7 @@ const sampleTxns = [
     initiated_at: '2026-10-31T10:30:00.000Z',
     completed_at: '2026-10-31T10:30:02.000Z',
     sender_name: 'Jio Retail Customer',
-    recipient_name: 'ONEPAY Enterprise Treasury',
+    recipient_name: 'FINOVA Enterprise Treasury',
     reconciliation_status: 'RECONCILED',
     is_demo: false,
   },
@@ -462,7 +462,7 @@ for (const t of sampleTxns) {
 
 // Clean any sandbox flag in settings
 db.settings.is_sandbox = false;
-db.settings.organization_name = 'ONEPAY Enterprise Technologies Ltd.';
+db.settings.organization_name = 'FINOVA Enterprise Technologies Ltd.';
 
 fs.writeFileSync(filePath, JSON.stringify(db, null, 2), 'utf8');
 console.log(`Successfully updated database: ${db.providers.length} providers, ${db.transactions.length} transactions`);

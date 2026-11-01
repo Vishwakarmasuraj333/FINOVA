@@ -8,7 +8,7 @@ const rootDir = path.resolve(__dirname, '..');
 const dbFile = path.join(rootDir, 'data', 'finova-store.json');
 
 console.log('====================================================');
-console.log('   ONEPAY ENTERPRISE FINANCIAL INTEGRITY TEST SUITE   ');
+console.log('   FINOVA ENTERPRISE FINANCIAL INTEGRITY TEST SUITE   ');
 console.log('====================================================\n');
 
 let testsPassed = 0;

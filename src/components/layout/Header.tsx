@@ -96,7 +96,7 @@ export function Header({ onOpenMobileSidebar, onOpenSearch }: HeaderProps) {
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block text-xs font-semibold text-brand-primary">ONEPAY</span>
+          <span className="hidden sm:inline-block text-xs font-semibold text-brand-primary">FINOVA</span>
           <span className="hidden sm:inline-block text-[#303A31] dark:text-[#303A31] light:text-[#E1E8DF]">/</span>
           <h1 className="text-sm font-semibold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] truncate">
             {getBreadcrumbTitle()}

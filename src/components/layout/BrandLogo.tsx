@@ -73,7 +73,7 @@ export function BrandLogo({
       <div className="flex flex-col">
         <div className="flex items-center gap-1.5">
           <span className={`font-black tracking-tight text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219] ${textSizes[size]}`}>
-            ONE<span className="text-brand-primary dark:text-brand-primary light:text-brand-primary-light">PAY</span>
+            FIN<span className="text-brand-primary dark:text-brand-primary light:text-brand-primary-light">OVA</span>
           </span>
           <span className="text-[9px] px-1.5 py-0.2 rounded-md font-bold uppercase tracking-wider bg-brand-primary/15 text-brand-primary dark:text-brand-primary light:text-brand-primary-light border border-brand-primary/30">
             ENTERPRISE

@@ -1,6 +1,6 @@
-# ONEPAY — Production Implementation, QA & Financial Audit Report
+# FINOVA — Production Implementation, QA & Financial Audit Report
 
-**Product:** ONEPAY — Unified Payments & Financial Operations Platform  
+**Product:** FINOVA — Unified Payments & Financial Operations Platform  
 **Architecture:** Next.js 14 App Router, TypeScript, React 18, Tailwind CSS, Transactional Double-Entry Journal  
 **Execution Environment:** Node.js v22.20.0 (Windows NT 10.0 x64)  
 **Verification Date:** 2026-10-31  
@@ -11,9 +11,9 @@
 
 ## 1. Executive Summary
 
-ONEPAY has been designed and implemented as a world-class, production-grade fintech administration and unified payment operations platform. It aggregates authorized records across multiple Indian and international payment providers—including Google Pay, PhonePe, Paytm, BHIM UPI, Razorpay, Cashfree, Stripe, and Corporate Banking Rails (HDFC Bank Host-to-Host and ICICI CIB)—into a single, auditable, high-density dashboard and ledger.
+FINOVA has been designed and implemented as a world-class, production-grade fintech administration and unified payment operations platform. It aggregates authorized records across multiple Indian and international payment providers—including Google Pay, PhonePe, Paytm, BHIM UPI, Razorpay, Cashfree, Stripe, and Corporate Banking Rails (HDFC Bank Host-to-Host and ICICI CIB)—into a single, auditable, high-density dashboard and ledger.
 
-Unlike superficial mockups, ONEPAY is powered by an immutable double-entry ledger engine that operates strictly in integer minor units (paise), enforcing:
+Unlike superficial mockups, FINOVA is powered by an immutable double-entry ledger engine that operates strictly in integer minor units (paise), enforcing:
 - Mathematical balance: $\text{Closing Ledger Balance} = \text{Opening Balance} + \text{Posted Credits} - \text{Posted Debits}$.
 - Dual-signatory approval workflow for high-value payouts exceeding ₹5,00,000.00.
 - Mandatory justification and immutable audit logs for all adjustments and reversals.
@@ -75,7 +75,7 @@ All 18 routes render real pages with working interactions, proper loading states
 | **HDFC Bank** | BANK | SANDBOX | CONNECTED | Host-to-Host Corporate CMS, RTGS/NEFT | Corporate CMS Encrypted Channel |
 | **ICICI Bank CIB** | BANK | SANDBOX | **NOT_CONNECTED** | Corporate Payouts | Accurately flagged as disconnected due to missing mutual TLS certificate |
 
-*Zero-Credential Violation Policy:* ONEPAY never scrapes private consumer banking portals or requests UPI PINs, OTPs, or banking passwords.
+*Zero-Credential Violation Policy:* FINOVA never scrapes private consumer banking portals or requests UPI PINs, OTPs, or banking passwords.
 
 ---
 
@@ -85,7 +85,7 @@ The comprehensive test suite in `scripts/test-all.mjs` was executed:
 
 ```text
 ================================================================
-       ONEPAY ENTERPRISE MASTER TEST & VERIFICATION SUITE       
+       FINOVA ENTERPRISE MASTER TEST & VERIFICATION SUITE       
 ================================================================
 
 [PASS] Database file finova-store.json exists and is readable

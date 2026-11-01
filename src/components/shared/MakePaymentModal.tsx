@@ -141,8 +141,8 @@ export function MakePaymentModal({
           currency: 'INR',
           status: 'COMPLETED',
           payment_method: paymentMethod,
-          sender_name: direction === 'credit' ? counterparty : 'ONEPAY Enterprise Treasury',
-          recipient_name: direction === 'credit' ? 'ONEPAY Enterprise Treasury' : counterparty,
+          sender_name: direction === 'credit' ? counterparty : 'FINOVA Enterprise Treasury',
+          recipient_name: direction === 'credit' ? 'FINOVA Enterprise Treasury' : counterparty,
           reconciliation_status: 'RECONCILED',
           metadata: {
             app_code: selectedApp,

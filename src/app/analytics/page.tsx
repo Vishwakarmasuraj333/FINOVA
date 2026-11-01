@@ -100,7 +100,7 @@ export default function AnalyticsPage() {
   // Tree hierarchy representation
   const treeData: TreeNode = {
     id: 'root-treasury',
-    name: 'ONEPAY Consolidated Enterprise Treasury',
+    name: 'FINOVA Consolidated Enterprise Treasury',
     type: 'ROOT',
     balancePaise: 627000000, // ₹62,70,000
     volume24hPaise: 84500000,
