@@ -15,6 +15,7 @@ import {
 import { formatPaise, formatDateTime, maskVpa } from '@/lib/utils/format';
 import { Customer } from '@/types';
 import { StatusBadge } from '@/components/shared/StatusBadge';
+import { ProviderBadge } from '@/components/shared/ProviderBadge';
 import { useAuth } from '@/lib/auth/AuthContext';
 
 export default function CustomersPage() {
@@ -167,7 +168,26 @@ export default function CustomersPage() {
                     </td>
 
                     <td className="py-3.5 px-4 font-mono text-brand-primary">
-                      {cust.vpa ? maskVpa(cust.vpa) : '—'}
+                      {cust.vpa ? (
+                        <div className="flex items-center gap-1.5">
+                          <ProviderBadge
+                            code={
+                              cust.vpa.includes('ybl') || cust.vpa.includes('phonepe')
+                                ? 'phonepe'
+                                : cust.vpa.includes('paytm')
+                                ? 'paytm'
+                                : cust.vpa.includes('ok')
+                                ? 'gpay'
+                                : 'bhim'
+                            }
+                            iconOnly
+                            size="sm"
+                          />
+                          <span>{maskVpa(cust.vpa)}</span>
+                        </div>
+                      ) : (
+                        '—'
+                      )}
                     </td>
 
                     <td className="py-3.5 px-4 text-right font-bold tabular-nums text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219]">

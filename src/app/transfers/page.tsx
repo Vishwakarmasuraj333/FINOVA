@@ -16,6 +16,7 @@ import {
 import { formatPaise, formatDateTime } from '@/lib/utils/format';
 import { Transfer, Account } from '@/types';
 import { StatusBadge } from '@/components/shared/StatusBadge';
+import { ProviderBadge } from '@/components/shared/ProviderBadge';
 import { useAuth } from '@/lib/auth/AuthContext';
 
 export default function TransfersPage() {
@@ -241,8 +242,8 @@ export default function TransfersPage() {
                         </div>
                       </td>
 
-                      <td className="py-3.5 px-4 text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219]">
-                        {source ? source.name : 'Primary Disbursal Pool'}
+                      <td className="py-3.5 px-4">
+                        <ProviderBadge code={source ? (source.provider_id || source.name) : 'bank'} name={source ? source.name : 'Primary Disbursal Pool'} size="sm" />
                       </td>
 
                       <td className="py-3.5 px-4 text-xs">
