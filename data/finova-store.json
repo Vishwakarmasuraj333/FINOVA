@@ -219,7 +219,7 @@
     },
     {
       "id": "prov_hdfc",
-      "name": "HDFC Corporate Direct Banking (Host-to-Host)",
+      "name": "HDFC Corporate Direct Host-to-Host",
       "code": "hdfc_bank",
       "category": "BANK",
       "status": "CONNECTED",
@@ -251,7 +251,7 @@
       ],
       "last_synced_at": "2026-10-21T09:59:21.966Z",
       "last_sync_status": "FAILED",
-      "last_error": "Certificate handshake timeout. Missing mutual TLS client cert.",
+      "last_error": "Requires Mutual TLS Client Certificate & Corporate Signatory approval.",
       "webhook_url": "https://api.finova.internal/webhooks/icici",
       "webhook_events": [
         "IMPS_OUTWARD_STATUS"
@@ -388,238 +388,6 @@
       ],
       "health_score": 97,
       "merchant_id_masked": "POC_ICICI_••••6712",
-      "is_demo": false
-    },
-    {
-      "id": "prov_chillr",
-      "name": "Chillr Multi-Bank IMPS",
-      "code": "chillr",
-      "category": "UPI",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "PAYOUTS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/chillr",
-      "webhook_events": [
-        "IMPS_SETTLED"
-      ],
-      "health_score": 99,
-      "merchant_id_masked": "CHILLR_•••9811",
-      "is_demo": false
-    },
-    {
-      "id": "prov_trupay",
-      "name": "Trupay Unified Switch",
-      "code": "trupay",
-      "category": "UPI",
-      "status": "CONNECTED",
-      "environment": "SANDBOX",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/trupay",
-      "webhook_events": [
-        "TRUPAY_PAYMENT"
-      ],
-      "health_score": 98,
-      "merchant_id_masked": "TRU_SWITCH_••••5112",
-      "is_demo": false
-    },
-    {
-      "id": "prov_oxigen",
-      "name": "Oxigen Services & Wallet",
-      "code": "oxigen",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS",
-        "SETTLEMENTS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/oxigen",
-      "webhook_events": [
-        "OXI_SETTLED"
-      ],
-      "health_score": 96,
-      "merchant_id_masked": "OXI_WALLET_••••3390",
-      "is_demo": false
-    },
-    {
-      "id": "prov_moneyonmobile",
-      "name": "MoneyOnMobile Digital M-Purse",
-      "code": "moneyonmobile",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/moneyonmobile",
-      "webhook_events": [
-        "MOM_TRANS_SUCCESS"
-      ],
-      "health_score": 95,
-      "merchant_id_masked": "MOM_MPURSE_••••2201",
-      "is_demo": false
-    },
-    {
-      "id": "prov_zipcash",
-      "name": "ZipCash Card & Wallet Rail",
-      "code": "zipcash",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/zipcash",
-      "webhook_events": [
-        "ZIP_SETTLEMENT"
-      ],
-      "health_score": 97,
-      "merchant_id_masked": "ZIP_CARD_••••1092",
-      "is_demo": false
-    },
-    {
-      "id": "prov_mpurse",
-      "name": "m-Purse Pay Anywhere",
-      "code": "mpurse",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/mpurse",
-      "webhook_events": [
-        "MPURSE_PAYMENT"
-      ],
-      "health_score": 96,
-      "merchant_id_masked": "MPURSE_POS_••••7812",
-      "is_demo": false
-    },
-    {
-      "id": "prov_aadhaar",
-      "name": "Aadhaar Pay (AePS NPCI)",
-      "code": "aadhaar",
-      "category": "UPI",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "SETTLEMENTS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/aadhaar",
-      "webhook_events": [
-        "AEPS_SUCCESS"
-      ],
-      "health_score": 99,
-      "merchant_id_masked": "AEPS_NPCI_••••3992",
-      "is_demo": false
-    },
-    {
-      "id": "prov_itzcash",
-      "name": "ItzCash Card & Payouts",
-      "code": "itzcash",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "PAYOUTS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/itzcash",
-      "webhook_events": [
-        "ITZ_PAYOUT_SUCCESS"
-      ],
-      "health_score": 97,
-      "merchant_id_masked": "ITZ_CARD_••••6102",
-      "is_demo": false
-    },
-    {
-      "id": "prov_mrupee",
-      "name": "mRUPEE Mobile Payment",
-      "code": "mrupee",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/mrupee",
-      "webhook_events": [
-        "MRUPEE_COLLECT"
-      ],
-      "health_score": 95,
-      "merchant_id_masked": "MRUP_PPI_••••5023",
-      "is_demo": false
-    },
-    {
-      "id": "prov_quikwallet",
-      "name": "QuikWallet Restaurant & POS",
-      "code": "quikwallet",
-      "category": "WALLET",
-      "status": "CONNECTED",
-      "environment": "PRODUCTION",
-      "supported_operations": [
-        "PAYMENTS",
-        "SETTLEMENTS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/quikwallet",
-      "webhook_events": [
-        "QW_POS_SUCCESS"
-      ],
-      "health_score": 98,
-      "merchant_id_masked": "QW_POS_••••7719",
-      "is_demo": false
-    },
-    {
-      "id": "prov_citrus",
-      "name": "Citrus Pay Express PG",
-      "code": "citrus",
-      "category": "GATEWAY",
-      "status": "CONNECTED",
-      "environment": "SANDBOX",
-      "supported_operations": [
-        "PAYMENTS",
-        "REFUNDS"
-      ],
-      "last_synced_at": "2026-10-31T12:00:00.000Z",
-      "last_sync_status": "SUCCESS",
-      "webhook_url": "https://api.finova.internal/webhooks/citrus",
-      "webhook_events": [
-        "CITRUS_CAPTURED"
-      ],
-      "health_score": 96,
-      "merchant_id_masked": "CITRUS_VAULT_••••3810",
       "is_demo": false
     },
     {
@@ -982,6 +750,106 @@
       "health_score": 99.8,
       "merchant_id_masked": "AMEX_GLB_••••7719",
       "is_demo": false
+    },
+    {
+      "id": "prov_kotak",
+      "name": "Kotak Mahindra Bank Corporate Direct",
+      "code": "kotak",
+      "category": "BANK",
+      "status": "NOT_CONNECTED",
+      "environment": "SANDBOX",
+      "webhook_url": "https://api.finova.internal/webhooks/kotak",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS",
+        "SETTLEMENTS"
+      ],
+      "merchant_id_masked": "KOTAK••••8192",
+      "health_score": 0,
+      "last_error": "Awaiting Mutual TLS Corporate Key Exchange & Board Authorization"
+    },
+    {
+      "id": "prov_pnb",
+      "name": "Punjab National Bank Corporate CMS",
+      "code": "pnb",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "webhook_url": "https://api.finova.internal/webhooks/pnb",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS",
+        "SETTLEMENTS"
+      ],
+      "merchant_id_masked": "PNB••••4401",
+      "health_score": 99.4,
+      "last_error": null
+    },
+    {
+      "id": "prov_indusind",
+      "name": "IndusInd Bank Corporate Direct API",
+      "code": "indusind",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "webhook_url": "https://api.finova.internal/webhooks/indusind",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS"
+      ],
+      "merchant_id_masked": "INDUS••••9281",
+      "health_score": 99.6,
+      "last_error": null
+    },
+    {
+      "id": "prov_yesbank",
+      "name": "YES Bank API Banking Switch",
+      "code": "yesbank",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "webhook_url": "https://api.finova.internal/webhooks/yesbank",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS",
+        "SETTLEMENTS"
+      ],
+      "merchant_id_masked": "YES••••5839",
+      "health_score": 99.7,
+      "last_error": null
+    },
+    {
+      "id": "prov_idfc",
+      "name": "IDFC FIRST Bank Direct Corporate Rail",
+      "code": "idfc",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "webhook_url": "https://api.finova.internal/webhooks/idfc",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS",
+        "SETTLEMENTS"
+      ],
+      "merchant_id_masked": "IDFC••••7104",
+      "health_score": 99.8,
+      "last_error": null
+    },
+    {
+      "id": "prov_federal",
+      "name": "Federal Bank FedNet Corporate CMS",
+      "code": "federal",
+      "category": "BANK",
+      "status": "CONNECTED",
+      "environment": "PRODUCTION",
+      "webhook_url": "https://api.finova.internal/webhooks/federal",
+      "supported_operations": [
+        "PAYMENTS",
+        "PAYOUTS"
+      ],
+      "merchant_id_masked": "FED••••2290",
+      "health_score": 99.5,
+      "last_error": null
     }
   ],
   "accounts": [

@@ -173,9 +173,9 @@ export default function FinancialSummaryPage() {
 
           <button
             onClick={() => setAddAppOpen(true)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#162118] border border-brand-primary/60 text-brand-primary hover:bg-brand-primary hover:text-black font-extrabold text-xs transition-all shadow-sm"
           >
-            <Plus size={14} />
+            <Plus size={15} strokeWidth={2.5} />
             <span>+ Connect App</span>
           </button>
 
@@ -446,7 +446,7 @@ export default function FinancialSummaryPage() {
           {filteredLogs.slice(0, 6).map(log => (
             <div
               key={log.id}
-              className="p-3.5 rounded-xl bg-[#131814] border border-[#303A31] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs"
+              className="p-3.5 rounded-xl bg-[#131814] dark:bg-[#131814] light:bg-[#F8FAF7] border border-[#303A31] dark:border-[#303A31] light:border-[#E1E8DF] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs"
             >
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
@@ -456,22 +456,22 @@ export default function FinancialSummaryPage() {
                   <span className="text-[10px] px-1.5 py-0.2 rounded bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
                     {log.actor_role}
                   </span>
-                  <span className="font-mono text-xs font-semibold text-[#F4F7F1]">
+                  <span className="font-mono text-xs font-semibold text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219]">
                     {log.action}
                   </span>
                 </div>
-                <p className="text-xs text-[#A0ACA1]">
+                <p className="text-xs text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568]">
                   {log.reason || `Action on ${log.entity} (${log.entity_id})`}
                 </p>
               </div>
 
               <div className="flex items-center gap-4 text-right">
                 {log.amount_paise && (
-                  <div className="font-extrabold tabular-nums text-[#F4F7F1]">
+                  <div className="font-extrabold tabular-nums text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219]">
                     {formatPaise(log.amount_paise)}
                   </div>
                 )}
-                <div className="text-[11px] text-[#A0ACA1] whitespace-nowrap font-mono">
+                <div className="text-[11px] text-[#A0ACA1] dark:text-[#A0ACA1] light:text-[#687568] whitespace-nowrap font-mono">
                   {formatDateTime(log.timestamp)}
                 </div>
               </div>

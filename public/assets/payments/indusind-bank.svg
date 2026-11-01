@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="20" fill="#841A1C"/>
+  <circle cx="50" cy="50" r="36" fill="none" stroke="#C59B27" stroke-width="4"/>
+  <text x="50" y="47" font-family="sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" text-anchor="middle">INDUS</text>
+  <text x="50" y="63" font-family="sans-serif" font-weight="900" font-size="14" fill="#C59B27" text-anchor="middle">IND</text>
+</svg>

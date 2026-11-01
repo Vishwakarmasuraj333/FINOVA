@@ -37,45 +37,44 @@ export const PAYMENT_APPS_CATALOG = [
   { code: 'amazonpay', name: 'Amazon Pay', type: 'UPI / Wallet' },
   { code: 'whatsapppay', name: 'WhatsApp Pay', type: 'UPI Chat Pay' },
   { code: 'cred', name: 'CRED Pay', type: 'UPI / Credit Card' },
-  // Bank UPI Switch Rails
-  { code: 'sbi_pay', name: 'BHIM SBI Pay', type: 'SBI Core UPI' },
-  { code: 'bob', name: 'BHIM Baroda Pay', type: 'Bank of Baroda UPI' },
-  { code: 'rbl', name: 'RBL Bank BHIM', type: 'RBL Core UPI' },
-  { code: 'axis', name: 'BHIM Axis Pay', type: 'Axis Bank CMS' },
-  { code: 'paywiz', name: 'Canara PayWiz', type: 'Canara Bank UPI' },
-  { code: 'fino', name: 'Fino Payments Bank', type: 'Payments Bank' },
-  // Wallets & Smart Banking
-  { code: 'payzapp', name: 'PayZapp (HDFC)', type: 'SmartBuy Wallet' },
-  { code: 'freecharge', name: 'FreeCharge', type: 'UPI & Wallet' },
-  { code: 'mobikwik', name: 'MobiKwik', type: 'ZIP Pay Later & Wallet' },
-  { code: 'airtel', name: 'Airtel Thanks', type: 'Payments Bank' },
-  { code: 'jiomoney', name: 'JioMoney', type: 'Jio Wallet' },
-  { code: 'pockets', name: 'Pockets (ICICI)', type: 'Digital Wallet' },
-  // Legacy & Specialized FinTech Wallets
-  { code: 'chillr', name: 'Chillr', type: 'Instant IMPS' },
-  { code: 'trupay', name: 'Trupay', type: 'UPI Switch' },
-  { code: 'oxigen', name: 'Oxigen Wallet', type: 'Micro-ATM / Wallet' },
-  { code: 'moneyonmobile', name: 'MoneyOnMobile', type: 'Digital M-Purse' },
-  { code: 'zipcash', name: 'ZipCash', type: 'Prepaid Wallet' },
-  { code: 'mpurse', name: 'm-Purse', type: 'POS / NFC' },
-  { code: 'aadhaar', name: 'Aadhaar Pay', type: 'AePS NPCI' },
-  { code: 'itzcash', name: 'ItzCash', type: 'Payouts & Cards' },
-  { code: 'mrupee', name: 'mRUPEE', type: 'Mobile Wallet' },
-  { code: 'quikwallet', name: 'QuikWallet', type: 'Restaurant & POS' },
-  { code: 'sbi', name: 'SBI Buddy', type: 'YONO Predecessor' },
-  { code: 'citrus', name: 'Citrus Pay', type: 'Express Gateway' },
-  // Gateways & Banking Rails
-  { code: 'razorpay', name: 'Razorpay', type: 'Gateway & Payouts' },
+
+  // Direct Corporate CMS Banks & Host-to-Host Rails
+  { code: 'hdfc_bank', name: 'HDFC Corporate Direct', type: 'Host-to-Host CIB & CMS' },
+  { code: 'icici_bank', name: 'ICICI Corporate CIB', type: 'Corporate Direct API' },
+  { code: 'sbi', name: 'State Bank of India', type: 'SBI Corporate YONO CMS' },
+  { code: 'axis', name: 'Axis Bank Corporate', type: 'Axis Corporate Treasury CMS' },
+  { code: 'kotak', name: 'Kotak Mahindra Bank', type: 'Direct API Banking CMS' },
+  { code: 'pnb', name: 'Punjab National Bank', type: 'PNB Corporate Banking' },
+  { code: 'bob', name: 'BHIM Baroda Pay', type: 'Bank of Baroda UPI Host' },
+  { code: 'rbl', name: 'RBL Bank BHIM', type: 'RBL Core Corporate Direct' },
+  { code: 'indusind', name: 'IndusInd Bank', type: 'Direct Transaction Banking' },
+  { code: 'yesbank', name: 'YES Bank API Banking', type: 'Corporate Host-to-Host' },
+  { code: 'idfc', name: 'IDFC FIRST Bank', type: 'Corporate CMS & Instant Payout' },
+  { code: 'federal', name: 'Federal Bank', type: 'FedNet Corporate Host' },
+  { code: 'sbi_pay', name: 'BHIM SBI Pay', type: 'SBI Core UPI Switch' },
+  { code: 'paywiz', name: 'Canara PayWiz', type: 'Canara Bank UPI Switch' },
+  { code: 'fino', name: 'Fino Payments Bank', type: 'Escrow Clearing & Cash Payout' },
+
+  // Enterprise Gateways & Payout Engines
+  { code: 'razorpay', name: 'Razorpay', type: 'Gateway & Payouts Engine' },
   { code: 'cashfree', name: 'Cashfree', type: 'Payouts & AutoCollect' },
-  { code: 'hdfc_bank', name: 'HDFC Corporate', type: 'Host-to-Host CIB' },
   { code: 'stripe', name: 'Stripe', type: 'Global Payment Gateway' },
-  { code: 'paypal', name: 'PayPal', type: 'Cross-Border PG' },
-  // Card Networks & National Infrastructure
-  { code: 'rupay', name: 'RuPay', type: 'Domestic Card Rail' },
+  { code: 'paypal', name: 'PayPal', type: 'Cross-Border PG & Escrow' },
+
+  // Wallets & Smart Banking PPI
+  { code: 'payzapp', name: 'PayZapp (HDFC)', type: 'SmartBuy Prepaid Rail' },
+  { code: 'airtel', name: 'Airtel Thanks', type: 'Airtel Payments Bank' },
+  { code: 'mobikwik', name: 'MobiKwik', type: 'ZIP Pay Later & PPI' },
+  { code: 'freecharge', name: 'FreeCharge', type: 'Axis UPI & Wallet' },
+  { code: 'jiomoney', name: 'JioPay', type: 'Reliance Retail UPI Rail' },
+  { code: 'pockets', name: 'Pockets (ICICI)', type: 'Digital Corporate PPI' },
+
+  // National Card Infrastructure
+  { code: 'rupay', name: 'RuPay', type: 'Domestic NPCI Card Switch' },
   { code: 'visa', name: 'Visa Direct', type: 'Global Card Rail' },
   { code: 'mastercard', name: 'Mastercard Send', type: 'Global Card Rail' },
-  { code: 'amex', name: 'American Express', type: 'Premium Card Rail' },
-  { code: 'upi', name: 'UPI National Switch', type: 'NPCI Central Rail' },
+  { code: 'amex', name: 'American Express', type: 'Corporate Card Rail' },
+  { code: 'upi', name: 'UPI National Switch', type: 'NPCI Central ISO Switch' },
 ];
 
 export function MakePaymentModal({

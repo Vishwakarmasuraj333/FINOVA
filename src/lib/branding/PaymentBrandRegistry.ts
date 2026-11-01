@@ -607,15 +607,87 @@ export const PAYMENT_BRAND_REGISTRY: Record<string, PaymentBrandMeta> = {
   },
   paywiz: {
     code: 'paywiz',
-    name: 'PayWiz UPI (IDBI Bank Digital Rail)',
-    shortName: 'PayWiz',
+    name: 'Canara PayWiz UPI Switch',
+    shortName: 'Canara PayWiz',
     category: 'UPI',
-    typeLabel: 'IDBI Bank Interoperable UPI Switch',
+    typeLabel: 'Canara Bank Interoperable UPI Switch',
     status: 'CONNECTED',
     environment: 'PRODUCTION',
     brandColor: '#00875A',
-    officialWebsite: 'https://www.idbibank.in/',
+    officialWebsite: 'https://canarabank.com/',
     supportedOperations: ['PAYMENTS', 'REFUNDS'],
+  },
+  kotak: {
+    code: 'kotak',
+    name: 'Kotak Mahindra Bank Corporate Direct',
+    shortName: 'Kotak Bank',
+    category: 'BANK',
+    typeLabel: 'Corporate Direct API Banking & Escrow',
+    status: 'CONNECTED',
+    environment: 'PRODUCTION',
+    brandColor: '#EE1C25',
+    officialWebsite: 'https://www.kotak.com/corporate-banking/',
+    supportedOperations: ['PAYMENTS', 'PAYOUTS', 'SETTLEMENTS'],
+  },
+  pnb: {
+    code: 'pnb',
+    name: 'Punjab National Bank Corporate CMS',
+    shortName: 'PNB Corporate',
+    category: 'BANK',
+    typeLabel: 'Corporate Internet Banking & NEFT/RTGS Host',
+    status: 'CONNECTED',
+    environment: 'PRODUCTION',
+    brandColor: '#A20034',
+    officialWebsite: 'https://pnbindia.in/',
+    supportedOperations: ['PAYMENTS', 'PAYOUTS', 'SETTLEMENTS'],
+  },
+  indusind: {
+    code: 'indusind',
+    name: 'IndusInd Bank Corporate Direct API',
+    shortName: 'IndusInd Bank',
+    category: 'BANK',
+    typeLabel: 'Corporate Transaction Banking Rails',
+    status: 'CONNECTED',
+    environment: 'PRODUCTION',
+    brandColor: '#841A1C',
+    officialWebsite: 'https://www.indusind.com/corporate-banking/',
+    supportedOperations: ['PAYMENTS', 'PAYOUTS'],
+  },
+  yesbank: {
+    code: 'yesbank',
+    name: 'YES Bank API Banking Switch',
+    shortName: 'YES Bank',
+    category: 'BANK',
+    typeLabel: 'Real-time Corporate API Banking Switch',
+    status: 'CONNECTED',
+    environment: 'PRODUCTION',
+    brandColor: '#002B49',
+    officialWebsite: 'https://www.yesbank.in/corporate-banking',
+    supportedOperations: ['PAYMENTS', 'PAYOUTS', 'SETTLEMENTS'],
+  },
+  idfc: {
+    code: 'idfc',
+    name: 'IDFC FIRST Bank Direct Corporate Rail',
+    shortName: 'IDFC FIRST Bank',
+    category: 'BANK',
+    typeLabel: 'Corporate CMS & Instant Payouts Rail',
+    status: 'CONNECTED',
+    environment: 'PRODUCTION',
+    brandColor: '#991B1E',
+    officialWebsite: 'https://www.idfcfirstbank.com/wholesale-banking',
+    supportedOperations: ['PAYMENTS', 'PAYOUTS', 'SETTLEMENTS'],
+  },
+  federal: {
+    code: 'federal',
+    name: 'Federal Bank FedNet Corporate CMS',
+    shortName: 'Federal Bank',
+    category: 'BANK',
+    typeLabel: 'FedNet Corporate Host-to-Host Rail',
+    status: 'CONNECTED',
+    environment: 'PRODUCTION',
+    brandColor: '#004B87',
+    officialWebsite: 'https://www.federalbank.co.in/corporate-banking',
+    supportedOperations: ['PAYMENTS', 'PAYOUTS'],
   },
 };
 
@@ -681,6 +753,12 @@ export function normalizePaymentBrandCode(input: string): string {
   if (clean.includes('icici')) return 'icici_bank';
   if (clean.includes('axis')) return 'axis';
   if (clean.includes('sbi')) return 'sbi';
+  if (clean.includes('kotak')) return 'kotak';
+  if (clean.includes('pnb') || clean.includes('punjab')) return 'pnb';
+  if (clean.includes('indusind') || clean.includes('indus')) return 'indusind';
+  if (clean.includes('yes') || clean.includes('yesbank')) return 'yesbank';
+  if (clean.includes('idfc')) return 'idfc';
+  if (clean.includes('federal')) return 'federal';
 
   return clean;
 }
@@ -721,9 +799,15 @@ export const OFFICIAL_ASSET_MAP: Record<string, string> = {
   sbi_pay: '/assets/payments/sbi-pay.svg',
   paywiz: '/assets/payments/paywiz.svg',
   axis: '/assets/payments/axis-bank.svg',
-  hdfc_bank: '/assets/payments/payzapp.svg',
-  icici_bank: '/assets/payments/pockets.svg',
-  sbi: '/assets/payments/sbi-pay.svg',
+  hdfc_bank: '/assets/payments/hdfc-bank.svg',
+  icici_bank: '/assets/payments/icici-bank.svg',
+  sbi: '/assets/payments/sbi-bank.svg',
+  kotak: '/assets/payments/kotak-bank.svg',
+  pnb: '/assets/payments/pnb-bank.svg',
+  indusind: '/assets/payments/indusind-bank.svg',
+  yesbank: '/assets/payments/yes-bank.svg',
+  idfc: '/assets/payments/idfc-bank.svg',
+  federal: '/assets/payments/federal-bank.svg',
   razorpay: '/assets/payments/razorpay.svg',
   cashfree: '/assets/payments/cashfree.svg',
   stripe: '/assets/payments/stripe.svg',
