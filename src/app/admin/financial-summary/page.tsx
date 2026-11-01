@@ -24,12 +24,16 @@ import {
   Calendar,
   Layers,
   ExternalLink,
+  Zap,
+  Plus,
 } from 'lucide-react';
 import { formatPaise, formatDateTime } from '@/lib/utils/format';
 import { ConsolidatedFinancialSummary, AuditLog, Currency } from '@/types';
 import { StatusBadge } from '@/components/shared/StatusBadge';
 import { ProviderBadge } from '@/components/shared/ProviderBadge';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { MakePaymentModal } from '@/components/shared/MakePaymentModal';
+import { AddPaymentAppModal } from '@/components/shared/AddPaymentAppModal';
 
 export default function FinancialSummaryPage() {
   const { currentUser } = useAuth();
@@ -43,6 +47,10 @@ export default function FinancialSummaryPage() {
   const [selectedProvider, setSelectedProvider] = useState('all');
   const [selectedAccount, setSelectedAccount] = useState('all');
   const [auditSearch, setAuditSearch] = useState('');
+
+  // Modals
+  const [makePaymentOpen, setMakePaymentOpen] = useState(false);
+  const [addAppOpen, setAddAppOpen] = useState(false);
 
   const fetchFinancialSummary = async () => {
     setLoading(true);
@@ -154,11 +162,28 @@ export default function FinancialSummaryPage() {
             ))}
           </select>
 
+          {/* Quick Real Payment Actions */}
+          <button
+            onClick={() => setMakePaymentOpen(true)}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
+          >
+            <Zap size={14} />
+            <span>+ Make / Collect Payment</span>
+          </button>
+
+          <button
+            onClick={() => setAddAppOpen(true)}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
+          >
+            <Plus size={14} />
+            <span>+ Connect App</span>
+          </button>
+
           {/* CSV Export */}
           <a
             href="/api/export/csv?type=summary"
             download
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-colors shadow-xs"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#A0ACA1] hover:text-[#F4F7F1] font-extrabold text-xs hover:border-brand-primary/40 transition-colors shadow-xs"
           >
             <Download size={14} />
             <span>Export Audited CSV</span>
@@ -343,9 +368,7 @@ export default function FinancialSummaryPage() {
                   </td>
 
                   <td className="py-3.5 px-3">
-                    <span className="font-medium text-xs text-[#F4F7F1] dark:text-[#F4F7F1] light:text-[#192219]">
-                      {item.provider_name}
-                    </span>
+                    <ProviderBadge code={item.provider_name.toLowerCase()} name={item.provider_name} size="sm" />
                   </td>
 
                   <td className="py-3.5 px-3 text-right tabular-nums text-[#A0ACA1]">
@@ -456,6 +479,24 @@ export default function FinancialSummaryPage() {
           ))}
         </div>
       </div>
+
+      {/* Real Payment Execution Modal */}
+      <MakePaymentModal
+        isOpen={makePaymentOpen}
+        onClose={() => setMakePaymentOpen(false)}
+        onSuccess={() => {
+          fetchFinancialSummary();
+        }}
+      />
+
+      {/* Connect New Payment Application Modal */}
+      <AddPaymentAppModal
+        isOpen={addAppOpen}
+        onClose={() => setAddAppOpen(false)}
+        onSuccess={() => {
+          fetchFinancialSummary();
+        }}
+      />
     </div>
   );
 }
