@@ -205,7 +205,7 @@ export default function ProvidersPage() {
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
           >
             <Zap size={14} />
-            <span>+ Make / Collect Payment</span>
+            <span>Make / Collect Payment</span>
           </button>
 
           <button
@@ -213,7 +213,7 @@ export default function ProvidersPage() {
             className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
           >
             <Plus size={15} />
-            <span>+ Connect Payment App</span>
+            <span>Connect Payment App</span>
           </button>
         </div>
       </div>

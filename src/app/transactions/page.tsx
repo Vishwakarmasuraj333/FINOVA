@@ -197,7 +197,7 @@ export default function TransactionsPage() {
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
           >
             <Zap size={14} />
-            <span>+ Make Real Payment</span>
+            <span>Make Real Payment</span>
           </button>
 
           <button
@@ -205,7 +205,7 @@ export default function TransactionsPage() {
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#1A211B] border border-[#303A31] text-[#F4F7F1] font-bold text-xs hover:border-brand-primary/50 transition-colors shadow-xs"
           >
             <Plus size={14} />
-            <span>+ Connect App</span>
+            <span>Connect App</span>
           </button>
 
           <a
@@ -252,29 +252,39 @@ export default function TransactionsPage() {
             { code: 'phonepe', name: 'PhonePe' },
             { code: 'paytm', name: 'Paytm' },
             { code: 'gpay', name: 'Google Pay' },
+            { code: 'bharatpe', name: 'BharatPe' },
             { code: 'bhim', name: 'BHIM UPI' },
+            { code: 'amazonpay', name: 'Amazon Pay' },
             { code: 'razorpay', name: 'Razorpay' },
             { code: 'cashfree', name: 'Cashfree' },
             { code: 'payzapp', name: 'PayZapp' },
             { code: 'freecharge', name: 'FreeCharge' },
             { code: 'mobikwik', name: 'MobiKwik' },
             { code: 'airtel', name: 'Airtel Money' },
+            { code: 'bhim_sbi', name: 'BHIM SBI Pay' },
+            { code: 'bob', name: 'Baroda Pay' },
+            { code: 'rbl', name: 'RBL BHIM' },
+            { code: 'canara', name: 'Canara PayWiz' },
+            { code: 'fino', name: 'Fino Bank' },
+            { code: 'whatsapppay', name: 'WhatsApp Pay' },
+            { code: 'cred', name: 'CRED Pay' },
             { code: 'jiomoney', name: 'JioMoney' },
             { code: 'pockets', name: 'Pockets' },
-            { code: 'chillr', name: 'Chillr' },
-            { code: 'trupay', name: 'Trupay' },
-            { code: 'oxigen', name: 'Oxigen' },
-            { code: 'moneyonmobile', name: 'MoneyOnMobile' },
-            { code: 'zipcash', name: 'ZipCash' },
-            { code: 'mpurse', name: 'm-Purse' },
-            { code: 'aadhaar', name: 'Aadhaar Pay' },
-            { code: 'itzcash', name: 'ItzCash' },
-            { code: 'mrupee', name: 'mRUPEE' },
-            { code: 'quikwallet', name: 'QuikWallet' },
+            { code: 'kotak', name: 'Kotak Bank' },
+            { code: 'pnb', name: 'PNB CMS' },
+            { code: 'indusind', name: 'IndusInd Bank' },
+            { code: 'yesbank', name: 'YES Bank' },
+            { code: 'idfc', name: 'IDFC FIRST' },
+            { code: 'federal', name: 'Federal Bank' },
             { code: 'axis', name: 'Axis Bank' },
-            { code: 'sbi', name: 'SBI Buddy' },
+            { code: 'sbi', name: 'SBI Corporate' },
             { code: 'hdfc_bank', name: 'HDFC CMS' },
             { code: 'stripe', name: 'Stripe' },
+            { code: 'paypal', name: 'PayPal' },
+            { code: 'rupay', name: 'RuPay' },
+            { code: 'visa', name: 'Visa' },
+            { code: 'mastercard', name: 'Mastercard' },
+            { code: 'amex', name: 'Amex' },
           ].map(app => {
             const isSelected = selectedProvider === `prov_${app.code}`;
             return (
