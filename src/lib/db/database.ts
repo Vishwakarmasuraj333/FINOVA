@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import {
   Account,
   PaymentProvider,
@@ -20,9 +21,6 @@ import {
   Currency,
 } from '@/types';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const DB_FILE = path.join(DATA_DIR, 'finova-store.json');
-
 export interface FinovaDatabase {
   users: User[];
   settings: SystemSettings;
@@ -41,12 +39,32 @@ export interface FinovaDatabase {
   processed_idempotency_keys: Record<string, { timestamp: string; resultId: string }>;
 }
 
-// In-process write lock to ensure concurrency safety
-let isWriting = false;
+// Global memory cache across serverless warm invocations
+declare global {
+  var __finova_memory_db: FinovaDatabase | undefined;
+}
 
-function ensureDataDir(): void {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+const BUNDLED_DB_FILE = path.join(process.cwd(), 'data', 'finova-store.json');
+
+function getWritableDbFile(): string {
+  // If running in Vercel / AWS Lambda environment where root is read-only
+  if (
+    process.env.VERCEL ||
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+    process.cwd().startsWith('/var/task') ||
+    process.cwd().startsWith('/var/runtime')
+  ) {
+    return path.join(os.tmpdir(), 'finova-store.json');
+  }
+  return BUNDLED_DB_FILE;
+}
+
+function ensureDataDir(filePath: string): void {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) {
+    try {
+      fs.mkdirSync(dir, { recursive: true });
+    } catch {}
   }
 }
 
@@ -1047,43 +1065,84 @@ export function getInitialSeedData(): FinovaDatabase {
 }
 
 export function readDb(): FinovaDatabase {
-  ensureDataDir();
-  if (!fs.existsSync(DB_FILE)) {
-    const seed = getInitialSeedData();
-    writeDb(seed);
-    return seed;
+  // 1. Fast in-memory cache across serverless warm invocations
+  if (globalThis.__finova_memory_db) {
+    return globalThis.__finova_memory_db;
   }
 
-  try {
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    return JSON.parse(raw) as FinovaDatabase;
-  } catch (err) {
-    console.error('Error reading finova-store.json, resetting to seed data:', err);
-    const seed = getInitialSeedData();
-    writeDb(seed);
-    return seed;
+  const writableFile = getWritableDbFile();
+
+  // 2. Check if writable file exists in /tmp (or local)
+  if (writableFile !== BUNDLED_DB_FILE && fs.existsSync(writableFile)) {
+    try {
+      const raw = fs.readFileSync(writableFile, 'utf-8');
+      const parsed = JSON.parse(raw) as FinovaDatabase;
+      if (parsed && Array.isArray(parsed.providers) && parsed.providers.length > 0) {
+        globalThis.__finova_memory_db = parsed;
+        return parsed;
+      }
+    } catch (err) {
+      console.warn('Could not read from writable file, falling back to bundled data');
+    }
   }
+
+  // 3. Fallback to bundled finova-store.json
+  if (fs.existsSync(BUNDLED_DB_FILE)) {
+    try {
+      const raw = fs.readFileSync(BUNDLED_DB_FILE, 'utf-8');
+      const parsed = JSON.parse(raw) as FinovaDatabase;
+      globalThis.__finova_memory_db = parsed;
+      return parsed;
+    } catch (err) {
+      console.error('Error reading bundled finova-store.json:', err);
+    }
+  }
+
+  // 4. Initial seed fallback
+  const seed = getInitialSeedData();
+  globalThis.__finova_memory_db = seed;
+  try {
+    writeDb(seed);
+  } catch {}
+  return seed;
 }
 
 export function writeDb(db: FinovaDatabase): void {
-  ensureDataDir();
-  // Atomic write to prevent partial corruption
-  const tempFile = `${DB_FILE}.${Date.now()}.tmp`;
+  // 1. Always update authoritative in-memory state first
+  globalThis.__finova_memory_db = db;
+
+  const targetFile = getWritableDbFile();
+  ensureDataDir(targetFile);
+
+  // 2. Atomic write with comprehensive EROFS serverless fallback
+  const tempFile = `${targetFile}.${Date.now()}.tmp`;
   try {
     fs.writeFileSync(tempFile, JSON.stringify(db, null, 2), 'utf-8');
-    fs.renameSync(tempFile, DB_FILE);
-  } catch (err) {
+    fs.renameSync(tempFile, targetFile);
+  } catch (err: any) {
+    // Clean up temporary file if left behind
     if (fs.existsSync(tempFile)) {
       try {
         fs.unlinkSync(tempFile);
       } catch {}
     }
-    throw err;
+
+    // In read-only serverless environment (/var/task), redirect to /tmp
+    if (err && (err.code === 'EROFS' || err.message?.includes('read-only'))) {
+      const serverlessTmp = path.join(os.tmpdir(), 'finova-store.json');
+      try {
+        fs.writeFileSync(serverlessTmp, JSON.stringify(db, null, 2), 'utf-8');
+        return;
+      } catch (tmpErr) {
+        console.warn('Serverless storage fallback write notice (in-memory remains authoritative):', tmpErr);
+      }
+    } else {
+      console.warn('Write warning (in-memory store remains authoritative):', err.message);
+    }
   }
 }
 
 export function runInTransaction<T>(callback: (db: FinovaDatabase) => { db: FinovaDatabase; result: T }): T {
-  // Simple concurrency protection
   const db = readDb();
   const { db: updatedDb, result } = callback(db);
   writeDb(updatedDb);
