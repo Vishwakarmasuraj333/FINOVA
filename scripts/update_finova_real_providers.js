@@ -119,3 +119,4 @@ if (hdfc) {
 fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf8');
 console.log('Database updated successfully. Remaining providers count:', db.providers.length);
 console.log('Codes:', db.providers.map(p => p.code).join(', '));
+

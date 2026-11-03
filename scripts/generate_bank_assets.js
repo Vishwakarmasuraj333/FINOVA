@@ -75,3 +75,4 @@ for (const [filename, content] of Object.entries(svgs)) {
   console.log(`Generated: ${filename}`);
 }
 console.log('All bank SVGs generated successfully.');
+

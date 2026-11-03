@@ -63,7 +63,7 @@ export default function FinancialSummaryPage() {
         sumRes.json(),
         audRes.json(),
       ]);
-      setSummary(sumData);
+      setSummary(sumData);                                                                                                                                                                                                                                                                                                                 
       setAuditLogs(audData || []);
     } catch (err) {
       console.error('Error fetching financial summary:', err);

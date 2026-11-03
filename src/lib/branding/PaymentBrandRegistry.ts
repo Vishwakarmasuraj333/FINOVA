@@ -1,3 +1,4 @@
+
 export type IntegrationStatusType =
   | 'CONNECTED'
   | 'CONFIGURED_NOT_VERIFIED'

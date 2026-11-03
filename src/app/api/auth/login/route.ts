@@ -58,10 +58,11 @@ export async function POST(request: Request) {
 
     const response = NextResponse.json(result);
     // Set authenticated session cookie
+    const isSecure = process.env.NODE_ENV === 'production' && !request.url.includes('localhost') && !request.url.includes('127.0.0.1');
     response.cookies.set('finova_session', result.user.id, {
       path: '/',
       httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
+      secure: isSecure,
       sameSite: 'lax',
       maxAge: 30 * 24 * 60 * 60,
     });
