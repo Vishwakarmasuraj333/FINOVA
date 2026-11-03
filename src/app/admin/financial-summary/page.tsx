@@ -168,7 +168,7 @@ export default function FinancialSummaryPage() {
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
           >
             <Zap size={14} />
-            <span>+ Make / Collect Payment</span>
+            <span>Make / Collect Payment</span>
           </button>
 
           <button
@@ -176,7 +176,7 @@ export default function FinancialSummaryPage() {
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#162118] border border-brand-primary/60 text-brand-primary hover:bg-brand-primary hover:text-black font-extrabold text-xs transition-all shadow-sm"
           >
             <Plus size={15} strokeWidth={2.5} />
-            <span>+ Connect App</span>
+            <span>Connect App</span>
           </button>
 
           {/* CSV Export */}

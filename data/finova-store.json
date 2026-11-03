@@ -948,12 +948,12 @@
       "is_demo": false
     },
     {
-      "id": "txn_aadhaar_01",
+      "id": "txn_bharatpe_01",
       "internal_ref": "FIN-TXN-2026-7015",
       "external_ref": "UTR662910283711",
-      "idempotency_key": "idemp_aadhaar_7015",
+      "idempotency_key": "idemp_bharatpe_7015",
       "account_id": "acc_hdfc_primary",
-      "provider_id": "prov_aadhaar",
+      "provider_id": "prov_bharatpe",
       "type": "PAYMENT_CREDIT",
       "amount_paise": 2500000,
       "fee_paise": 12500,
@@ -964,7 +964,7 @@
       "payment_method": "UPI",
       "initiated_at": "2026-10-31T10:45:00.000Z",
       "completed_at": "2026-10-31T10:45:01.000Z",
-      "sender_name": "AePS Biometric Terminal #401",
+      "sender_name": "Reliance Retail Dynamic QR",
       "recipient_name": "FINOVA Enterprise Treasury",
       "reconciliation_status": "RECONCILED",
       "is_demo": false

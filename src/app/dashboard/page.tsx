@@ -167,7 +167,7 @@ export default function DashboardPage() {
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-primary text-black font-extrabold text-xs hover:bg-brand-accent transition-all shadow-md shadow-brand-primary/20"
           >
             <Zap size={14} className="fill-black" />
-            <span>+ Make / Collect Payment</span>
+            <span>Make / Collect Payment</span>
           </button>
 
           <button
@@ -175,7 +175,7 @@ export default function DashboardPage() {
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#162118] border border-brand-primary/60 text-brand-primary hover:bg-brand-primary hover:text-black font-extrabold text-xs transition-all shadow-sm"
           >
             <Plus size={15} strokeWidth={2.5} />
-            <span>+ Connect App</span>
+            <span>Connect App</span>
           </button>
 
           {/* Export Report Action */}
@@ -226,35 +226,31 @@ export default function DashboardPage() {
             { code: 'bharatpe', name: 'BharatPe' },
             { code: 'bhim', name: 'BHIM UPI' },
             { code: 'amazonpay', name: 'Amazon Pay' },
+            { code: 'whatsapppay', name: 'WhatsApp Pay' },
+            { code: 'cred', name: 'CRED Pay' },
             { code: 'razorpay', name: 'Razorpay' },
             { code: 'cashfree', name: 'Cashfree' },
+            { code: 'hdfc_bank', name: 'HDFC Corporate' },
+            { code: 'icici_bank', name: 'ICICI Corporate' },
+            { code: 'sbi', name: 'SBI Corporate' },
+            { code: 'axis', name: 'Axis Bank' },
+            { code: 'kotak', name: 'Kotak Bank' },
+            { code: 'pnb', name: 'PNB Corporate' },
+            { code: 'indusind', name: 'IndusInd Bank' },
+            { code: 'yesbank', name: 'YES Bank' },
+            { code: 'idfc', name: 'IDFC FIRST Bank' },
+            { code: 'federal', name: 'Federal Bank' },
+            { code: 'bob', name: 'Baroda Pay' },
+            { code: 'rbl', name: 'RBL BHIM' },
+            { code: 'paywiz', name: 'Canara PayWiz' },
+            { code: 'fino', name: 'Fino Bank' },
+            { code: 'sbi_pay', name: 'BHIM SBI Pay' },
             { code: 'payzapp', name: 'PayZapp' },
             { code: 'freecharge', name: 'FreeCharge' },
             { code: 'mobikwik', name: 'MobiKwik' },
             { code: 'airtel', name: 'Airtel Money' },
-            { code: 'sbi_pay', name: 'BHIM SBI Pay' },
-            { code: 'bob', name: 'Baroda Pay' },
-            { code: 'rbl', name: 'RBL BHIM' },
-            { code: 'axis', name: 'BHIM Axis Pay' },
-            { code: 'paywiz', name: 'Canara PayWiz' },
-            { code: 'fino', name: 'Fino Payments Bank' },
-            { code: 'whatsapppay', name: 'WhatsApp Pay' },
-            { code: 'cred', name: 'CRED Pay' },
             { code: 'jiomoney', name: 'JioMoney' },
             { code: 'pockets', name: 'Pockets' },
-            { code: 'chillr', name: 'Chillr' },
-            { code: 'trupay', name: 'Trupay' },
-            { code: 'oxigen', name: 'Oxigen' },
-            { code: 'moneyonmobile', name: 'MoneyOnMobile' },
-            { code: 'zipcash', name: 'ZipCash' },
-            { code: 'mpurse', name: 'm-Purse' },
-            { code: 'aadhaar', name: 'Aadhaar Pay' },
-            { code: 'itzcash', name: 'ItzCash' },
-            { code: 'mrupee', name: 'mRUPEE' },
-            { code: 'quikwallet', name: 'QuikWallet' },
-            { code: 'sbi', name: 'SBI Buddy' },
-            { code: 'citrus', name: 'Citrus Pay' },
-            { code: 'hdfc_bank', name: 'HDFC CMS' },
             { code: 'stripe', name: 'Stripe' },
             { code: 'paypal', name: 'PayPal' },
             { code: 'rupay', name: 'RuPay' },
